@@ -5,9 +5,10 @@ const constants = require('../../config/constants')
 
 const logger = require('./loggerutil')('%c[ConfigManager]', 'color: #a02d2a; font-weight: bold')
 
+//const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
+//const dataPath = path.join(sysRoot, '.' + constants.APP_DATA_NAME)
 
-const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
-const dataPath = path.join(sysRoot, '.' + constants.APP_DATA_NAME)
+const dataPath = process.env.HOME.concat('/'+constants.APP_DATA_NAME)
 
 // Forked processes do not have access to electron, so we have this workaround.
 const launcherDir = process.env.CONFIG_DIRECT_PATH || require('electron').remote.app.getPath('userData')
@@ -41,8 +42,7 @@ exports.setDataDirectory = function(dataDirectory){
 }
 
 const configPath = path.join(exports.getLauncherDirectory(), 'config.json')
-const configPathLEGACY = path.join(dataPath, 'config.json')
-const firstLaunch = !fs.existsSync(configPath) && !fs.existsSync(configPathLEGACY)
+const firstLaunch = !fs.existsSync(configPath)
 
 exports.getAbsoluteMinRAM = function(){
     const mem = os.totalmem()
@@ -130,13 +130,9 @@ exports.load = function(){
     if(!fs.existsSync(configPath)){
         // Create all parent directories.
         fs.ensureDirSync(path.join(configPath, '..'))
-        if(fs.existsSync(configPathLEGACY)){
-            fs.moveSync(configPathLEGACY, configPath)
-        } else {
-            doLoad = false
-            config = DEFAULT_CONFIG
-            exports.save()
-        }
+        doLoad = false
+        config = DEFAULT_CONFIG
+        exports.save()
     }
     if(doLoad){
         let doValidate = false

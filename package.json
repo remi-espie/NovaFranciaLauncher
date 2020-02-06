@@ -1,13 +1,13 @@
 {
-  "name": "helioslauncher",
-  "version": "1.7.0",
-  "productName": "Helios Launcher",
+  "name": "mrlauncher",
+  "version": "1.0.0",
+  "productName": "ModRealms Launcher",
   "description": "Modded Minecraft Launcher",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
+  "author": "Rob Weddell (original by Daniel Scalzi)",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/dscalzi/HeliosLauncher",
+  "homepage": "https://github.com/ModRealms-Network/HeliosLauncher",
   "bugs": {
-    "url": "https://github.com/dscalzi/HeliosLauncher/issues"
+    "url": "https://github.com/ModRealms-Network/HeliosLauncher/issues"
   },
   "private": true,
   "main": "index.js",
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dscalzi/HeliosLauncher.git"
+    "url": "git+https://github.com/ModRealms-Network/HeliosLauncher.git"
   }
 }
