@@ -8,6 +8,15 @@ const isDev                         = require('./app/assets/js/isdev')
 const path                          = require('path')
 const semver                        = require('semver')
 const url                           = require('url')
+let settings = require('./app/config/settings.json')
+// Enable live reload for all the files inside your project directory
+require('electron-reload')(__dirname, {
+    electron: require('${__dirname}/../../node_modules/electron')
+})
+
+app.on('window-all-closed', () => {
+    app.quit()
+})
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
@@ -105,7 +114,13 @@ function createWindow() {
         backgroundColor: '#171614'
     })
 
-    ejse.data('bkid', Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)))
+    let backgroundDir = fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds'))
+    ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
+
+    //load constants into ejs
+    Object.keys(settings).forEach(function(key) {
+        ejse.data(key, settings[key])
+    })
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'app', 'app.ejs'),

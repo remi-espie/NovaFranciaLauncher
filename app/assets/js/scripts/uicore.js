@@ -141,7 +141,8 @@ document.addEventListener('readystatechange', function () {
         Array.from(document.getElementsByClassName('fCb')).map((val) => {
             val.addEventListener('click', e => {
                 const window = remote.getCurrentWindow()
-                window.close()
+                //window.close()
+                window.destroy();
             })
         })
 
