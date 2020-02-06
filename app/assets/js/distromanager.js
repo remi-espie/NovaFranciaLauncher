@@ -3,7 +3,7 @@ const path = require('path')
 const request = require('request')
 const ConfigManager = require('./configmanager')
 const logger        = require('./loggerutil')('%c[DistroManager]', 'color: #a02d2a; font-weight: bold')
-const constants = require('../constants')
+const constants = require('../../config/constants')
 /**
  * Represents the download information
  * for a specific module.

@@ -1,0 +1,19 @@
+{
+  "APP_DISPLAY_NAME": "ModRealms Launcher",
+
+  "WELCOME_HEADER_TEXT": "WELCOME TO MODREALMS",
+  "WELCOME_DESC_TEXT": "Our mission is to .....",
+  "WELCOME_DESC_CTA": "You are just a few clicks away from...",
+
+  "WEBSITE_ENABLE": true,
+  "WEBSITE_URL": "https://modrealms.net",
+  "TWITTER_ENABLE": true,
+  "TWITTER_URL": "https://twitter.com",
+  "INSTAGRAM_ENABLE": false,
+  "INSTAGRAM_URL": "#",
+  "YOUTUBE_ENABLE": true,
+  "YOUTUBE_URL": "#",
+  "DISCORD_ENABLE": true,
+  "DISCORD_URL": "#"
+
+}
