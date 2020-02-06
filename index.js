@@ -114,7 +114,8 @@ function createWindow() {
         backgroundColor: '#171614'
     })
 
-    ejse.data('bkid', Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)))
+    let backgroundDir = fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds'))
+    ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
 
     //load constants into ejs
     Object.keys(settings).forEach(function(key) {
