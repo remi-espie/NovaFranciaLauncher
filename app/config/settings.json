@@ -8,12 +8,12 @@
   "WEBSITE_ENABLE": true,
   "WEBSITE_URL": "https://modrealms.net",
   "TWITTER_ENABLE": true,
-  "TWITTER_URL": "https://twitter.com",
+  "TWITTER_URL": "https://twitter.com/modrealms",
   "INSTAGRAM_ENABLE": false,
   "INSTAGRAM_URL": "#",
   "YOUTUBE_ENABLE": true,
-  "YOUTUBE_URL": "#",
+  "YOUTUBE_URL": "https://www.youtube.com/channel/UCx_iGrTo1z_ZuOf2w_Lfl1Q",
   "DISCORD_ENABLE": true,
-  "DISCORD_URL": "#"
+  "DISCORD_URL": "https://discord.gg/modrealms"
 
 }
