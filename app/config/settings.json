@@ -1,19 +1,23 @@
 {
-  "APP_DISPLAY_NAME": "ModRealms Launcher",
+  "APP_DISPLAY_NAME": "Helios Launcher",
 
-  "WELCOME_HEADER_TEXT": "WELCOME TO MODREALMS",
+  "WELCOME_HEADER_TEXT": "WELCOME TO HELIOS LAUNCHER",
   "WELCOME_DESC_TEXT": "Our mission is to .....",
   "WELCOME_DESC_CTA": "You are just a few clicks away from...",
 
   "WEBSITE_ENABLE": true,
-  "WEBSITE_URL": "https://modrealms.net",
+  "WEBSITE_URL": "https://google.co.uk",
   "TWITTER_ENABLE": true,
   "TWITTER_URL": "https://twitter.com",
   "INSTAGRAM_ENABLE": false,
   "INSTAGRAM_URL": "#",
-  "YOUTUBE_ENABLE": true,
+  "YOUTUBE_ENABLE": false,
   "YOUTUBE_URL": "#",
-  "DISCORD_ENABLE": true,
-  "DISCORD_URL": "#"
+  "DISCORD_ENABLE": false,
+  "DISCORD_URL": "#",
+
+  "CUSTOM_SOURCE_ENABLE": true,
+  "LAUNCHER_SOURCE_URL": "https://github.com/dscalZi/HeliosLauncher/",
+  "LAUNCHER_ISSUE_URL": "https://github.com/dscalZi/HeliosLauncher/issues"
 
 }

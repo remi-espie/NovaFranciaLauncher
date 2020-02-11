@@ -1,6 +1,7 @@
 // Requirements
 const os     = require('os')
 const semver = require('semver')
+const { RELEASE_NOTES_URL} = require('./config/constants')
 
 const { JavaGuard } = require('./assets/js/assetguard')
 const DropinModUtil  = require('./assets/js/dropinmodutil')
@@ -1200,7 +1201,7 @@ function populateAboutVersionInformation(){
  */
 function populateReleaseNotes(){
     $.ajax({
-        url: 'https://github.com/dscalzi/HeliosLauncher/releases.atom',
+        url: RELEASE_NOTES_URL,
         success: (data) => {
             const version = 'v' + remote.app.getVersion()
             const entries = $(data).find('entry')

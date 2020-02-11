@@ -292,10 +292,10 @@
                     </div>
                 </div>
                 <div id="settingsAboutButtons">
-                    <a href="https://github.com/dscalZi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Source (GitHub)</a>
-                    <!-- The following must be included in third-party usage. -->
-                    <!-- <a href="https://github.com/dscalzi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Original Source</a> -->
-                    <a href="https://github.com/dscalZi/HeliosLauncher/issues" id="settingsAboutSupportButton" class="settingsAboutButton">Support</a>
+                    <a href="<%=LAUNCHER_SOURCE_URL%>" id="settingsAboutSourceButton" class="settingsAboutButton" style="display:<%= (CUSTOM_SOURCE_ENABLE) ? 'flex' : 'none'%>">Source (GitHub)</a>
+                    <!-- Original source must be included in 3rd party use! -->
+                    <a href="https://github.com/dscalzi/HeliosLauncher" id="settingsAboutSourceButton" class="settingsAboutButton">Original Source</a>
+                    <a href="<%=LAUNCHER_ISSUE_URL%>" id="settingsAboutSupportButton" class="settingsAboutButton">Support</a>
                     <a href="#" id="settingsAboutDevToolsButton" class="settingsAboutButton">DevTools Console</a>
                 </div>
             </div>
@@ -330,7 +330,7 @@
                             <span id="settingsUpdateVersionTitle">Stable Release</span>
                             <div id="settingsUpdateVersionLine">
                                 <span id="settingsUpdateVersionText">Version </span>
-                                <span id="settingsUpdateVersionValue">0.0.1-alpha.18</span>
+                                <span id="settingsUpdateVersionValue">0.0.1</span>
                             </div>
                         </div>
                     </div>
