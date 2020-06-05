@@ -33,7 +33,6 @@ remote.getCurrentWebContents().on('devtools-opened', () => {
 // Disable zoom, needed for darwin.
 webFrame.setZoomLevel(0)
 webFrame.setVisualZoomLevelLimits(1, 1)
-webFrame.setLayoutZoomLevelLimits(0, 0)
 
 // Initialize auto updates in production environments.
 let updateCheckListener
@@ -48,7 +47,7 @@ if(!isDev){
                 loggerAutoUpdaterSuccess.log('New update available', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/ModRealms-Network/HeliosLauncher/releases/download/v${info.version}/modrealmslauncher-${info.version}.dmg`
+                    info.darwindownload = `https://github.com/ModRealms-Network/HeliosLauncher/releases/download/v${info.version}modrealmslauncher-setup-${info.version}.dmg`
                     showUpdateUI(info)
                 }
                 

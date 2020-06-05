@@ -20,7 +20,7 @@ builder.build({
     config: {
         appId: 'modrealmslauncher',
         productName: 'ModRealms Launcher',
-        artifactName: '${productName}.${ext}',
+        artifactName: '${productName}-setup-${version}.${ext}',
         copyright: 'Copyright © 2018-2020 Daniel Scalzi',
         directories: {
             buildResources: 'build',

@@ -572,7 +572,7 @@ class ProcessBuilder {
 
     /**
      * Ensure that the classpath entries all point to jar files.
-     *
+     * 
      * @param {Array.<String>} list Array of classpath entries.
      */
     _processClassPathList(list) {
@@ -752,6 +752,7 @@ class ProcessBuilder {
         }
         return libs
     }
+
 }
 
 module.exports = ProcessBuilder
