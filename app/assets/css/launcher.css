@@ -3571,7 +3571,7 @@ input:checked + .toggleSwitchSlider:before {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    height: 55px;
+    height: auto;
 }
 
 /* The name of the server listing. */
@@ -3583,7 +3583,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Description for the server listing. */
 .serverListingDescription {
     font-size: 12px;
-    line-height: 10px;
+    line-height: 15px;
+    text-align: left;
     /*font-weight: bold;*/
 }
 
@@ -3596,16 +3597,16 @@ input:checked + .toggleSwitchSlider:before {
 
 /* The minecraft version of the server listing. */
 .serverListingRevision {
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 12px;
-    height: 12px;
-    border-radius: 2px;
+    line-height: 10px;
+    height: 14px;
+    border-radius: 4px;
     background: rgba(31, 140, 11, 0.8);
-    padding: 0px 2px;
+    padding: 1px 2px;
 }
 
 /* The revision version of the server's manifest. */
