@@ -3611,9 +3611,9 @@ input:checked + .toggleSwitchSlider:before {
 /* The revision version of the server's manifest. */
 .serverListingMCVersion {
     color: #969696;
-    font-size: 11px;
-    line-height: 12px;
-    padding: 0px 5px;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 4px 3px;
 }
 
 /* Star which indicates the default (main) server. */
