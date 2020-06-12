@@ -2915,6 +2915,18 @@ input:checked + .toggleSwitchSlider:before {
     fill: #838383;
 }
 
+/* Settings icon colors. */
+#refreshSVG {
+    fill: #ffffff;
+    height: 30px;
+}
+.mediaButton:hover #refreshSVG,
+.mediaButton:focus #refreshSVG,
+.mediaButton:active #refreshSVG {
+    height: 25px;
+    fill: #838383;
+}
+
 /* Settings tooltip styles. */
 #settingsTooltip {
     visibility: hidden;

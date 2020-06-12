@@ -1,10 +1,13 @@
 /**
  * Script for landing.ejs
  */
+
 // Requirements
 const cp                      = require('child_process')
 const crypto                  = require('crypto')
 const {URL}                   = require('url')
+const {Remarkable}          = require('remarkable')
+const youtube = require('remarkable-youtube')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -112,6 +115,11 @@ document.getElementById('launch_button').addEventListener('click', function(e){
 document.getElementById('settingsMediaButton').onclick = (e) => {
     prepareSettings()
     switchView(getCurrentView(), VIEWS.settings)
+}
+document.getElementById('refreshMediaButton').onclick = (e) => {
+    DistroManager.pullRemote().then((data) => {
+        loggerLanding.log('Updated the distribution index from the remote server.')
+    })
 }
 
 // Bind avatar overlay button.
@@ -858,7 +866,7 @@ function setNewsLoading(val){
                 dotStr += '.'
             }
             nELoadSpan.innerHTML = nLStr + dotStr
-        }, 750)
+        }, 5)
     } else {
         if(newsLoadingListener != null){
             clearInterval(newsLoadingListener)
@@ -1056,7 +1064,14 @@ function displayArticle(articleObject, index){
     newsArticleDate.innerHTML = articleObject.date
     // newsArticleComments.innerHTML = articleObject.comments
     // newsArticleComments.href = articleObject.commentsLink
-    newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content.replace(/<:br:676190676458668072>/g, '<br>').replace(/\*/g, '').replace(/_/g, '').replace(/`/g, '') + '<div class="newsArticleSpacerBot"></div></div>'
+
+    let md = new Remarkable('full', {
+        html: true
+    })
+
+    let content = md.render(articleObject.content.toString().replace(/\n/g, '<br>'))
+
+    newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + content + '<div class="newsArticleSpacerBot"></div></div>'
     Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
         v.onclick = () => {
             const text = v.parentElement.getElementsByClassName('bbCodeSpoilerText')[0]
@@ -1089,12 +1104,12 @@ function loadNews(){
                     // Resolve date.
                     const date = new Date(el.find('pubDate').text()).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
 
-                        // Resolve comments.
-                        // let comments = el.find('slash\\:comments').text() || '0'
-                        // comments = comments + ' Comment' + (comments === '1' ? '' : 's')
+                    // Resolve comments.
+                    // let comments = el.find('slash\\:comments').text() || '0'
+                    // comments = comments + ' Comment' + (comments === '1' ? '' : 's')
 
                     // Fix relative links in content.
-                    let content = el.find('content\\:encoded').text()
+                    let content = el.find('description').text()
                     let regex = /src="(?!http:\/\/|https:\/\/)(.+?)"/g
                     let matches
                     while((matches = regex.exec(content))){
@@ -1130,4 +1145,8 @@ function loadNews(){
             })
         })
     })
+}
+
+function parseContent(){
+
 }
