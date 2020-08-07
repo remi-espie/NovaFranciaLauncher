@@ -194,6 +194,29 @@ class Util {
         }
     }
 
+    static isAutoconnectBroken(forgeVersion) {
+
+        const minWorking = [31, 2, 15]
+        const verSplit = forgeVersion.split('.').map(v => Number(v))
+
+        if(verSplit[0] === 31) {
+            for(let i=0; i<minWorking.length; i++) {
+                if(verSplit[i] > minWorking[i]) {
+                    return false
+                } else if(verSplit[i] < minWorking[i]) {
+                    return true
+                }
+            }
+        
+            return false
+
+        } catch(err) {
+            throw new Error('Forge version is complex (changed).. launcher requires a patch.')
+        }
+
+        return false
+    }
+
 }
 
 
@@ -991,7 +1014,7 @@ class AssetGuard extends EventEmitter {
             }
             let buf = fs.readFileSync(filePath)
             let calcdhash = AssetGuard._calculateHash(buf, algo)
-            return calcdhash === hash
+            return calcdhash === hash.toLowerCase()
         }
         return false
     }
