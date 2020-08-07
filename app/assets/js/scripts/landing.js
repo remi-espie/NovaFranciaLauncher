@@ -7,7 +7,6 @@ const cp                      = require('child_process')
 const crypto                  = require('crypto')
 const {URL}                   = require('url')
 const {Remarkable}          = require('remarkable')
-const youtube = require('remarkable-youtube')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -118,7 +117,7 @@ document.getElementById('settingsMediaButton').onclick = (e) => {
 }
 document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
-        loggerLanding.log('Updated the distribution index from the remote server.')
+        onDistroRefresh(data)
     })
 }
 

@@ -925,7 +925,7 @@ body, button {
     justify-content: center;
 }
 #settingsNavHeaderText {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 /* Navigation items outer container. */
@@ -954,6 +954,7 @@ body, button {
     color: grey;
     cursor: pointer;
     outline: none;
+    font-size: 18px;
     transition: 0.25s ease;
 }
 .settingsNavItem:hover,
@@ -969,13 +970,13 @@ body, button {
 
 /* Div to add some space between nav items. */
 .settingsNavSpacer {
-    height: 25px;
+    height: 35px;
 }
 
 /* Content container for the done button. */
 #settingsNavContentBottom {
     position: absolute;
-    top: 65%;
+    top: 70%;
 }
 
 /* Settings navigational divider. */
@@ -984,7 +985,7 @@ body, button {
     height: 1px;
     background: rgba(126, 126, 126, 0.57);
     margin-left: auto;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 /* Settings done button styles. */
@@ -998,6 +999,7 @@ body, button {
     cursor: pointer;
     outline: none;
     transition: 0.25s ease;
+    font-size: 18px;
 }
 #settingsNavDone:hover,
 #settingsNavDone:focus {
@@ -1053,11 +1055,11 @@ body, button {
     margin-bottom: 20px;
 }
 .settingsTabHeaderText {
-    font-size: 20px;
+    font-size: 30px;
     font-family: 'Avenir Medium';
 }
 .settingsTabHeaderDesc {
-    font-size: 12px;
+    font-size: 18px;
 }
 
 /* Remove spin button from number inputs. */
@@ -1100,12 +1102,12 @@ body, button {
     flex-direction: column;
 }
 .settingsFieldTitle {
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'Avenir Medium';
     color: rgba(255, 255, 255, 0.95);
 }
 .settingsFieldDesc {
-    font-size: 12px;
+    font-size: 15px;
     color: rgba(255, 255, 255, .95);
     margin-top: 5px;
 }
@@ -1119,8 +1121,8 @@ body, button {
 .toggleSwitch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 45px;
+    height: 25px;
     border-radius: 50px;
     box-sizing: border-box;
 }
@@ -1142,9 +1144,9 @@ body, button {
 .toggleSwitchSlider:before {
     position: absolute;
     content: "";
-    height: 13px;
+    height: 16px;
     width: 16px;
-    left: 3px;
+    left: 5px;
     bottom: 3px;
     background-color: white;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
@@ -1157,7 +1159,7 @@ input:checked + .toggleSwitchSlider {
     border: 1px solid rgb(31, 140, 11);
 }
 input:checked + .toggleSwitchSlider:before {
-    transform: translateX(15px);
+    transform: translateX(17px);
 }
 
 /* Range Slider styles. */
@@ -1526,7 +1528,7 @@ input:checked + .toggleSwitchSlider:before {
 #settingsReqModsContent,
 #settingsOptModsContent,
 #settingsDropinModsContent {
-    font-size: 12px;
+    font-size: 16px;
     background: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     color: white;
@@ -1576,7 +1578,7 @@ input:checked + .toggleSwitchSlider:before {
 /* The version of the mod. */
 .settingsModVersion {
     color: grey;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 /* Disabled toggleswitch for required mods. */
@@ -2920,9 +2922,8 @@ input:checked + .toggleSwitchSlider:before {
     fill: #ffffff;
     height: 30px;
 }
-.mediaButton:hover #refreshSVG,
-.mediaButton:focus #refreshSVG,
-.mediaButton:active #refreshSVG {
+
+#refreshSVG:hover {
     height: 25px;
     fill: #838383;
 }
