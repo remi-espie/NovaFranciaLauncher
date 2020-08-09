@@ -3445,11 +3445,9 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* * *
-* Overlay View (Server + Account Selection Content)
+* Overlay View (Account Selection Content)
 * * */
 
-/* Server selection content container. */
-#serverSelectContent,
 #accountSelectContent {
     display: flex;
     flex-direction: column;
@@ -3457,9 +3455,6 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     height: 75%;
 }
-
-/* Server selection header. */
-#serverSelectHeader,
 #accountSelectHeader {
     font-family: 'Avenir Medium';
     font-size: 27px;
@@ -3467,9 +3462,6 @@ input:checked + .toggleSwitchSlider:before {
     color: #fff;
     margin-bottom: 25px;
 }
-
-/* Wrapper div for the list of available servers. */
-#serverSelectList,
 #accountSelectList {
     display: flex;
     flex-direction: column;
@@ -3480,35 +3472,76 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Scrollable div which lists the available servers. */
-#serverSelectListScrollable,
 #accountSelectListScrollable {
     padding: 0px 5px;
     overflow-y: scroll;
 }
-#serverSelectListScrollable::-webkit-scrollbar,
 #accountSelectListScrollable::-webkit-scrollbar {
     width: 5px;
 }
-#serverSelectListScrollable::-webkit-scrollbar-track,
+
 #accountSelectListScrollable::-webkit-scrollbar-track {
     display: none;
 }
-#serverSelectListScrollable::-webkit-scrollbar-thumb,
 #accountSelectListScrollable::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
+}
+
+/* * *
+* Overlay View (Server Selection Content)
+* * */
+
+/* Server selection content container. */
+#serverSelectContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+}
+/* Server selection header. */
+#serverSelectHeader {
+    font-family: 'Avenir Medium';
+    font-size: 27px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 25px;
+}
+/* Wrapper div for the list of available servers. */
+#serverSelectList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 65%;
+    min-height: 40%;
+}
+#serverSelectListScrollable::-webkit-scrollbar-track {
+    display: none;
+}
+#serverSelectListScrollable::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
+}
+#serverSelectListScrollable {
+    padding: 0px 5px;
+    overflow-y: scroll;
+}
+#serverSelectListScrollable::-webkit-scrollbar {
+    width: 5px;
 }
 
 /* Content container for a server listing. */
 .serverListing {
     border: none;
     padding: 0;
-    width: 600px;
-    min-height: 75px;
+    width: 300px;
+    height: 750px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    opacity: 0.6;
+    opacity: 0.4;
     transition: 0.25s ease;
     cursor: pointer;
     position: relative;

@@ -157,11 +157,13 @@ class ProcessBuilder {
         let lMods = []
 
         for(let mdl of mdls){
+            /* For each module in the pack modules */
             const type = mdl.getType()
             if(type === DistroManager.Types.ForgeMod || type === DistroManager.Types.LiteMod || type === DistroManager.Types.LiteLoader){
-                const o = !mdl.getRequired().isRequired()
-                const e = ProcessBuilder.isModEnabled(modCfg[mdl.getVersionlessID()], mdl.getRequired())
-                if(!o || (o && e)){
+                /* If the module is a forge or litemod */
+                const required = !mdl.getRequired().isRequired()
+                const enabled = ProcessBuilder.isModEnabled(modCfg[mdl.getVersionlessID()], mdl.getRequired())
+                if(!required || (required && enabled)){
                     if(mdl.hasSubModules()){
                         const v = this.resolveModConfiguration(modCfg[mdl.getVersionlessID()].mods, mdl.getSubModules())
                         fMods = fMods.concat(v.fMods)

@@ -210,9 +210,10 @@ class Util {
         
             return false
 
-        } catch(err) {
-            throw new Error('Forge version is complex (changed).. launcher requires a patch.')
         }
+        // catch(err) {
+        //     throw new Error('Forge version is complex (changed).. launcher requires a patch.')
+        // }
 
         return false
     }
