@@ -54,12 +54,12 @@ deploy:
   provider: releases
   # ⋮
   edge: true
-  api_key: $GITHUB_TOKEN
+  api_key: $GH_TOKEN
   file:
-    - dist/ModRealmsLauncher-setup-1.0.0.exe
-    - dist/ModRealmsLauncher-setup-1.0.0.AppImage
-    - dist/ModRealmsLauncher-setup-1.0.0.dmg
-    - dist/ModRealmsLauncher-setup-1.0.0.exe.blockmap
+    - dist/ModRealmsLauncher-setup-1.0.0-alpha.1.exe
+    - dist/ModRealmsLauncher-setup-1.0.0-alpha.1.AppImage
+    - dist/ModRealmsLauncher-setup-1.0.0-alpha.1.dmg
+    - dist/ModRealmsLauncher-setup-1.0.0-alpha.1.exe.blockmap
     - dist/latest-mac.yml
     - dist/latest-linux.yml
     - dist/latest.yml
