@@ -2875,7 +2875,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Social media icon shared styles. */
 .mediaSVG {
     fill: #ffffff;
-    height: 60px;
+    height: 50px;
     width: 80px;
     transition: 0.25s ease;
     cursor: pointer;
