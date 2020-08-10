@@ -543,15 +543,15 @@ body, button {
     10%, 90% {
         transform: translate3d(-1px, 0, 0);
     }
-    
+
     20%, 80% {
         transform: translate3d(2px, 0, 0);
     }
-  
+
     30%, 50%, 70% {
         transform: translate3d(-4px, 0, 0);
     }
-  
+
     40%, 60% {
         transform: translate3d(4px, 0, 0);
     }
@@ -2861,7 +2861,7 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 70px;
 }
 
 /* Divider bar between the external and internal icons. */
@@ -2875,15 +2875,15 @@ input:checked + .toggleSwitchSlider:before {
 /* Social media icon shared styles. */
 .mediaSVG {
     fill: #ffffff;
-    height: 25px;
+    height: 60px;
+    width: 80px;
     transition: 0.25s ease;
     cursor: pointer;
-    width: 40px;
 }
 .mediaSVG:hover,
 .mediaURL:focus .mediaSVG,
 .mediaSVG:active {
-    height: 20px;
+    height: 50px;
 }
 
 /* Social media URL shared styles. */
@@ -2908,23 +2908,18 @@ input:checked + .toggleSwitchSlider:before {
 /* Settings icon colors. */
 #settingsSVG {
     fill: #ffffff;
-    height: 30px;
 }
-.mediaButton:hover #settingsSVG,
-.mediaButton:focus #settingsSVG,
-.mediaButton:active #settingsSVG {
-    height: 25px;
+
+#settingsSVG:hover {
     fill: #838383;
 }
 
 /* Settings icon colors. */
 #refreshSVG {
     fill: #ffffff;
-    height: 30px;
 }
 
 #refreshSVG:hover {
-    height: 25px;
     fill: #838383;
 }
 
@@ -2962,13 +2957,22 @@ input:checked + .toggleSwitchSlider:before {
     transition-delay:0s;
 }
 
+/* Link icon colors. */
+#linkSVG:hover,
+#linkSVG:focus #linkSVG {
+    fill: #f7ff39;
+}
+#linkSVG:active {
+    fill: #c6d231;
+}
+
 /* Twitter icon colors. */
 #twitterSVG:hover,
-#twitterURL:focus #twitterSVG {
+#twitterSVG:focus {
     fill: #1da1f2;
 }
 #twitterSVG:active {
-    fill: #1b8dd4;
+    fill: #176ea9;
 }
 
 /* Instagram icon colors. */
@@ -2987,7 +2991,7 @@ input:checked + .toggleSwitchSlider:before {
     fill: #f00;
 }
 #youtubeSVG:active {
-    fill: #ea0202;
+    fill: #b20202;
 }
 
 /* Discord icon colors. */
@@ -2996,7 +3000,7 @@ input:checked + .toggleSwitchSlider:before {
     fill: #7288d9;
 }
 #discordSVG:active {
-    fill: #657ac4;
+    fill: #4b5a91;
 }
 
 /*******************************************************************************
@@ -3254,7 +3258,7 @@ input:checked + .toggleSwitchSlider:before {
     top: 25px;
     display: none;
 }
- 
+
 /* Left side of launch details container, displays percentage and a divider. */
 #launch_details_left {
     display: flex;
