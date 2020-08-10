@@ -65,3 +65,5 @@ deploy:
     - dist/latest.yml
   draft: true
   overwrite: false
+  on:
+    tags: true
