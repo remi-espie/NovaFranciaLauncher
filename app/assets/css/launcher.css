@@ -3167,6 +3167,8 @@ input:checked + .toggleSwitchSlider:before {
 #newsButton:hover #newsButtonSVG,
 #newsButton:focus #newsButtonSVG {
     -webkit-filter: drop-shadow(0px 0px 2px #fff);
+    transition-duration: 0.65s;
+    transform: rotate(180deg);
 }
 #newsButton:active #newsButtonSVG .arrowLine {
     stroke: #c7c7c7;
