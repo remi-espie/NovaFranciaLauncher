@@ -2975,19 +2975,9 @@ input:checked + .toggleSwitchSlider:before {
     fill: #176ea9;
 }
 
-/* Instagram icon colors. */
-#instagramSVG:hover,
-#instagramURL:focus #instagramSVG {
-    fill: url('#instaFill')
-    /*fill: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); */
-}
-#instagramSVG:active {
-    fill: url('#instaFill')
-}
-
 /* Youtube icon colors. */
 #youtubeSVG:hover,
-#youtubeURL:focus #youtubeSVG {
+#youtubeSVG:focus {
     fill: #f00;
 }
 #youtubeSVG:active {
@@ -2996,7 +2986,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Discord icon colors. */
 #discordSVG:hover,
-#discordURL:focus #discordSVG {
+#discordSVG:focus {
     fill: #7288d9;
 }
 #discordSVG:active {
@@ -3011,7 +3001,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Style for a general label on the bottom of the landing view. */
 .bot_label {
-    font-size: 15px;
+    font-size: 25px;
     letter-spacing: 1px;
     font-weight: bold;
     text-shadow: 0px 0px 0px #bebcbb;
@@ -3019,11 +3009,11 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Divider used on the bottom of the landing view. */
 .bot_divider {
-    height: 35px;
-    width: 2px;
+    height: 45px;
+    width: 1px;
     background: rgba(107, 105, 105, 0.7);
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 70px;
+    margin-right: 30px;
 }
 
 /* * *
@@ -3039,7 +3029,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Span which displays the player count of the selected server. */
 #player_count {
     color: #949494;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 900;
     text-shadow: 0px 0px 20px #949494;
     margin-left: 10px;
@@ -3237,14 +3227,15 @@ input:checked + .toggleSwitchSlider:before {
     padding: 0px;
     transition: 0.25s ease;
     outline: none;
+    color: rgb(0, 196, 22);
 }
 #launch_button:hover,
 #launch_button:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
+    color: rgb(0, 196, 22);
+    font-size: 32.5px;
 }
 #launch_button:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+
 }
 #launch_button:disabled {
     color: #c7c7c7;
