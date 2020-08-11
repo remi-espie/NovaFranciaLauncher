@@ -56,10 +56,10 @@ deploy:
   edge: true
   api_key: $GH_TOKEN
   file:
-    - dist/ModRealmsLauncher-setup-2.0.0-beta.3.exe
-    - dist/ModRealmsLauncher-setup-2.0.0-beta.3.AppImage
-    - dist/ModRealmsLauncher-setup-2.0.0-beta.3.dmg
-    - dist/ModRealmsLauncher-setup-2.0.0-beta.3.exe.blockmap
+    - dist/ModRealmsLauncher-setup-2.0.0-beta.4.exe
+    - dist/ModRealmsLauncher-setup-2.0.0-beta.4.AppImage
+    - dist/ModRealmsLauncher-setup-2.0.0-beta.4.dmg
+    - dist/ModRealmsLauncher-setup-2.0.0-beta.4.exe.blockmap
     - dist/latest-mac.yml
     - dist/latest-linux.yml
     - dist/latest.yml
