@@ -9,12 +9,12 @@ const semver                        = require('semver')
 const url                           = require('url')
 let settings = require('./app/config/settings.json')
 
-// Enable live reload for all the files inside your project directory
-if(isDev) {
-    require('electron-reload')(__dirname, {
-        electron: require('${__dirname}/../../node_modules/electron')
-    })
-}
+// // Enable live reload for all the files inside your project directory
+// if(isDev) {
+//     require('electron-reload')(__dirname, {
+//         electron: require('${__dirname}/../../node_modules/electron')
+//     }
+// }
 
 app.on('window-all-closed', () => {
     app.quit()
