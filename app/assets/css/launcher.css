@@ -3366,7 +3366,7 @@ input:checked + .toggleSwitchSlider:before {
     flex-direction: column;
     align-items: center;
     /*justify-content: space-between;*/
-    width: 300px;
+    width: 400px;
     /*height: 35%;*/
     box-sizing: border-box;
     padding: 15px 0px;
@@ -3404,7 +3404,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Overlay title styles. */
 #overlayTitle {
     font-family: 'Avenir Medium';
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     letter-spacing: 1px;
     -webkit-user-select: initial;
@@ -3412,7 +3412,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Overlay description styles. */
 #overlayDesc {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
     -webkit-user-select: initial;
 }
@@ -3431,6 +3431,7 @@ input:checked + .toggleSwitchSlider:before {
     color: white;
     font-family: 'Avenir Medium';
     font-weight: bold;
+    font-size: 20px;
     border-radius: 2px;
     padding: 0px 8.1px;
     cursor: pointer;
@@ -3449,7 +3450,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Overlay dismiss option styles. */
 #overlayDismiss {
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     text-decoration: none;
     padding-top: 2.5px;
     background: none;
