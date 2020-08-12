@@ -110,14 +110,14 @@ function showFatalStartupError(){
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
                 'Fatal Error: Unable to Load Distribution Index',
-                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application.',
-                'Close'
+                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application. <br><br>Its very possible that the launcher has updated and changed the location for the distribution index. We would recommend installing the latest version of the launcher from our releases page. <br><br>If you continue to have issues, please contact the developers of the launcher',
+                'Install Latest Version',
+                'Close Launcher'
             )
             setOverlayHandler(() => {
-                const window = remote.getCurrentWindow()
-                window.close()
+                shell.openExternal('https://github.com/ModRealms-Network/HeliosLauncher/releases')
             })
-            toggleOverlay(true)
+            toggleOverlay(true, true)
         })
     }, 750)
 }
