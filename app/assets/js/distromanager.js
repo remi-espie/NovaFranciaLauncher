@@ -398,6 +398,13 @@ class Server {
     }
 
     /**
+     * @returns {string} The server code for this server
+     */
+    getServerCode(){
+        return this.serverCode
+    }
+
+    /**
      * @returns {boolean} Whether or not the server is autoconnect.
      * by default.
      */
