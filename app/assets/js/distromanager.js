@@ -506,6 +506,23 @@ class DistroIndex {
     }
 
     /**
+     * Get a server configuration by its ID. If it does not
+     * exist, null will be returned.
+     *
+     * @param {string} id The ID of the server.
+     *
+     * @returns {Server} The server configuration with the given ID or null.
+     */
+    getServerFromCode(code){
+        for(let serv of this.servers){
+            if(serv.serverCode === code){
+                return serv
+            }
+        }
+        return null
+    }
+
+    /**
      * Get the main server.
      * 
      * @returns {Server} The main server.
@@ -582,7 +599,7 @@ exports.pullLocal = function(){
                     data = DistroIndex.fromJSON(JSON.parse(d))
                     resolve(data)
                 } catch(e) {
-                    reject('We cannot parse the JSON in the local distribution file')
+                    reject('We cannot parse the JSON in the local distribution file: ' + e)
                 }
             } else {
                 reject(err)
