@@ -2,8 +2,8 @@
   "APP_DISPLAY_NAME": "ModRealms Launcher",
 
   "WELCOME_HEADER_TEXT": "Welcome to ModRealms!",
-  "WELCOME_DESC_TEXT": "We hope you enjoy your stay",
-  "WELCOME_DESC_CTA": "Click below to get started!",
+  "WELCOME_DESC_TEXT": "N/A",
+  "WELCOME_DESC_CTA": "N/A",
 
   "WEBSITE_ENABLE": true,
   "WEBSITE_URL": "https://modrealms.net",

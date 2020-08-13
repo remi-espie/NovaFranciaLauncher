@@ -232,7 +232,7 @@ body, button {
     justify-content: center;
     align-items: center;
     width: 50%;
-    top: -10%;
+    top: -15%;
     position: relative;
 }
 
@@ -274,36 +274,40 @@ body, button {
 */
 
 #welcomeImageSeal {
-    border-radius: 50%;
-    border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
-    height: 125px;
-    width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    margin-bottom: 5%;
-    margin-top: 10%;
+    border-radius: 50px;
+    background: rgba(1, 2, 1, 0.2);
+    height: 300px;
+    width: 300px;
+    box-shadow: 0px 8px 20px -7px rgb(0, 0, 0);
+    margin-bottom: 20px;
 }
 
 #welcomeHeader {
     font-family: 'Avenir Medium';
     text-align: center;
     color: white;
-    margin-bottom: 25px;
-    letter-spacing: 1px;
-    font-size: 20px;
-    text-shadow: white 0px 0px 0px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    font-size: 40px;
 }
 
 #welcomeDescription {
-    text-align: justify;
-    font-size: 13px;
+    text-align: center;
+    font-size: 22px;
     font-weight: 100;
-    text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
+    color: #bdbdbd;
+    text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 20px
+}
+
+#welcomeDescription a {
+    color: #7289da;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 #welcomeDescCTA {
     text-align: center;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 100;
     text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
 }
@@ -314,15 +318,22 @@ body, button {
     font-weight: bold;
     letter-spacing: 2px;
     border: none;
-    padding: 15px 5px;
     margin: 10px 0px;
     cursor: pointer;
     position: relative;
-    right: -20px;
+    right: -16px;
     transition: 0.5s ease;
     margin-top: 5%;
     margin-bottom: -5%;
 }
+
+#welcomeButtonContent {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    color: #7289da
+}
+
 #welcomeButton:disabled {
     color: rgba(255, 255, 255, 0.75);
     pointer-events: none;
@@ -342,8 +353,8 @@ body, button {
     transform: rotate(90deg);
     margin-left: 20px;
     transition: 0.25s ease;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 #welcomeButton:hover #welcomeSVG,
 #welcomeButton:focus #welcomeSVG {
@@ -357,11 +368,6 @@ body, button {
 }
 #welcomeButton:disabled #welcomeSVG .arrowLine {
     stroke: rgba(255, 255, 255, 0.75);
-}
-
-#welcomeButtonContent {
-    display: flex;
-    align-items: center;
 }
 
 /*******************************************************************************
@@ -614,8 +620,8 @@ body, button {
     font-weight: bold;
     letter-spacing: 2px;
     border: none;
-    padding: 20px 5px;
-    margin: 20px 0px;
+    padding: 20px 0px 20px 0px;
+    margin: 20px 0px 120px 0px;
     cursor: pointer;
     position: relative;
     right: -10px;
