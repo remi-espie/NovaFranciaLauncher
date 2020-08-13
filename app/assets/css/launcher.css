@@ -2851,13 +2851,13 @@ input:checked + .toggleSwitchSlider:before {
     height: 110px;
     width: 110px;
     right: 30px;
-    z-index: 5;
     margin-top: 5px;
 }
 
 /* Logo container styles w/ update. */
 #image_seal_container[update]{
-    cursor: pointer
+    cursor: pointer;
+    z-index: 5;
 }
 #image_seal_container[update]:before,
 #image_seal_container[update]:after {
