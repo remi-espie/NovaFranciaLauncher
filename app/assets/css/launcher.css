@@ -372,7 +372,7 @@ body, button {
 
 /* Styles for dimmer login span. */
 .loginSpanDim {
-    font-size: 12px;
+    font-size: 18px;
     color: #848484;
     font-weight: bold;
 }
@@ -470,7 +470,7 @@ body, button {
 
 /* Login form anchor styles. */
 #loginForm a {
-    font-size: 12px;
+    font-size: 18px;
     color: #848484;
     font-weight: bold;
     text-decoration: none;
@@ -488,11 +488,10 @@ body, button {
 /* Logo on login form. */
 #loginImageSeal {
     border-radius: 50px;
-    border: 1px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
-    height: 125px;
-    width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    background: rgba(1, 2, 1, 0.2);
+    height: 300px;
+    width: 300px;
+    box-shadow: 0px 8px 20px -7px rgb(0, 0, 0);
     margin-bottom: 20px;
 }
 
@@ -500,7 +499,7 @@ body, button {
 #loginSubheader {
     font-family: 'Avenir Medium';
     margin-bottom: 15px;
-    font-size: 20px;
+    font-size: 30px;
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -517,20 +516,20 @@ body, button {
 /* SVG icons on the login view. */
 .loginSVG {
     fill: #fff;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
 }
 
 /* Span which displays errors related to login field content. */
 .loginErrorSpan {
     font-family: 'Avenir Medium';
     font-weight: normal;
-    font-size: 12px;
+    font-size: 16px;
     color: #ff1b0c;
     width: 100%;
     text-align: right;
     position: absolute;
-    top: 7px;
+    top: 10px;
     opacity: 0;
     transition: 0.25s ease;
 }
@@ -559,19 +558,19 @@ body, button {
 
 /* Login text input styles. */
 .loginField {
-    font-family: 'Avenir Book';
+    font-family: 'Avenir Medium';
     background: none;
     border-width: 1.5px 0px 0px 0px;
     border-style: solid;
-    width: 300px;
+    width: 420px;
     margin-bottom: 20px;
     border-color: #fff;
     color: rgba(255, 255, 255, 0.75);
-    font-weight: bold;
+    font-weight: 100;
     text-align: center;
     box-sizing: border-box;
     padding: 5px;
-    font-size: 13px;
+    font-size: 22px;
     letter-spacing: 1px;
 }
 .loginField:focus {
@@ -600,7 +599,7 @@ body, button {
 #loginOptions {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 130%;
 }
 
 /* Remember option text. */
@@ -615,8 +614,8 @@ body, button {
     font-weight: bold;
     letter-spacing: 2px;
     border: none;
-    padding: 15px 5px;
-    margin: 10px 0px;
+    padding: 20px 5px;
+    margin: 20px 0px;
     cursor: pointer;
     position: relative;
     right: -10px;
@@ -644,8 +643,8 @@ body, button {
     transform: rotate(90deg);
     margin-left: 10px;
     transition: 0.25s ease;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 #loginButton:hover #loginSVG,
 #loginButton:focus #loginSVG {
@@ -664,6 +663,7 @@ body, button {
 #loginButtonContent {
     display: flex;
     align-items: center;
+    font-size: 25px;
 }
 
 #loginButton .circle-loader,
@@ -787,8 +787,8 @@ body, button {
 
 /* Disclaimer text styles. */
 .loginDisclaimerText {
-    font-size: 12px;
-    color: #5b5b5b;
+    font-size: 16px;
+    color: #464646;
     font-weight: bold;
     text-align: center;
 }
@@ -818,8 +818,8 @@ body, button {
 /* Create a custom checkbox. */
 .loginCheckmark {
     position: relative;
-    height: 10px;
-    width: 10px;
+    height: 15px;
+    width: 15px;
     border: 1px solid #848484;
     border-radius: 1px;
     background: none;
@@ -852,12 +852,12 @@ body, button {
 /* Style the checkmark/indicator. */
 #checkmarkContainer .loginCheckmark:after {
     position: absolute;
-    left: 3.5px;
+    left: 4.5px;
     top: 0.5px;
-    width: 2px;
-    height: 6px;
+    width: 3px;
+    height: 9px;
     border: solid #a2a2a2;
-    border-width: 0 2px 2px 0;
+    border-width: 0 2px 3px 0;
     transform: rotate(45deg);
 }
 
