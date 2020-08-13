@@ -2849,7 +2849,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Logo container styles. */
 #image_seal_container {
-    position: relative;
+    position: absolute;
     height: 110px;
     width: 110px;
     right: 30px;
@@ -2909,7 +2909,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 #image_seal_container[update]:hover #updateAvailableTooltip {
     visibility: visible;
-    opacity: 1;
+    opacity: 0.8;
     transition-delay: 0s;
 }
 
