@@ -709,6 +709,7 @@ function resolveDropinModsForUI(){
     let dropinMods = ''
 
     for(dropin of CACHE_DROPIN_MODS){
+
         dropinMods += `<div id="${dropin.fullName}" class="settingsBaseMod settingsDropinMod" ${!dropin.disabled ? 'enabled' : ''}>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">

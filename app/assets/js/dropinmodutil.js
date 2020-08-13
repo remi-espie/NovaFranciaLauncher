@@ -40,7 +40,7 @@ exports.scanForDropinMods = function(modsDir, version) {
         let verCandidates = []
         const versionDir = path.join(modsDir, version)
         if(fs.existsSync(versionDir)){
-            verCandidates = fs.readdirSync(versionDir)
+            // verCandidates = fs.readdirSync(versionDir)
         }
         for(let file of modCandidates){
             const match = MOD_REGEX.exec(file)
