@@ -3597,7 +3597,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Overlay dismiss option styles. */
 #overlayDismiss {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 17px;
+    color: rgba(149, 12, 0, 0.75);
     text-decoration: none;
     padding-top: 2.5px;
     background: none;
@@ -3943,9 +3944,9 @@ input:checked + .toggleSwitchSlider:before {
 #accountSelectCancel {
     font-weight: bold;
     font-size: 17px;
+    color: rgba(149, 12, 0, 0.75);
     text-decoration: none;
     padding-top: 2.5px;
-    color: rgb(151, 12, 0);
     transition: 0.25s ease;
     background: none;
     border: none;
