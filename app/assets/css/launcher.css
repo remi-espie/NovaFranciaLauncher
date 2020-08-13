@@ -1700,9 +1700,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Mod elements. */
 .settingsMod,
 .settingsSubMod {
-    padding: 10px 0px 10px 15px;
-    margin-left: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 10px 10px 15px;
 }
 .settingsDropinMod {
     padding: 10px;
