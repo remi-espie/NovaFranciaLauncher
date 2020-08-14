@@ -3719,7 +3719,8 @@ input:checked + .toggleSwitchSlider:before {
 
 #serverSelectListScrollable > .serverListing {
     margin-left: 15px;
-    min-width: 270px
+    min-width: 270px;
+    max-width: 270px;
 }
 
 /*#serverSelectListScrollable > .serverListing:first-child {*/
