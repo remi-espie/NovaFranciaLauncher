@@ -125,6 +125,7 @@ document.getElementById('settingsMediaButton').onclick = (e) => {
 document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
+        showMainUI(data)
     })
 }
 
@@ -731,22 +732,23 @@ function dlAsync(login = true){
                     }
 
                 } catch(err) {
-
                     loggerLaunchSuite.error('Error during launch', err)
                     showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
-
                 }
             }
 
             // Disconnect from AssetExec
             aEx.disconnect()
-
         }
     })
 
     // Begin Validations
 
     // Validate Forge files.
+    validateServerInformation()
+}
+
+function validateServerInformation() {
     setLaunchDetails('Loading server information..')
 
     refreshDistributionIndex(true, (data) => {
