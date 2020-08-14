@@ -6,7 +6,8 @@
 const cp                      = require('child_process')
 const crypto                  = require('crypto')
 const {URL}                   = require('url')
-const {Remarkable}          = require('remarkable')
+const {Remarkable}            = require('remarkable')
+const fs                      = require('fs-extra')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -151,6 +152,13 @@ function updateSelectedAccount(authUser){
     user_text.innerHTML = username
 }
 updateSelectedAccount(ConfigManager.getSelectedAccount())
+
+function randomiseBackground() {
+    let backgroundDir = fs.readdirSync(path.join(__dirname, 'assets', 'images', 'backgrounds'))
+    const backgrounds = Array.from(backgroundDir.values())
+    const bkid = backgrounds[Math.floor((Math.random() * backgroundDir.length))]
+    document.body.style.backgroundImage = `url('assets/images/backgrounds/${bkid}')`
+}
 
 // Bind selected server
 function updateSelectedServer(serv){
