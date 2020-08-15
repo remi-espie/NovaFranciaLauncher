@@ -3712,7 +3712,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 #serverSelectListScrollable::-webkit-scrollbar-thumb {
     border: 1px solid #222222;
-    background-color: rgba(174, 114, 255, 0.5)
+    background-color: rgba(125, 125, 125, 0.5);
 }
 #serverSelectListScrollable::-webkit-scrollbar {
     background-color: rgba(179, 179, 179, 0.3);
