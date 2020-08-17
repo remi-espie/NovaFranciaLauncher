@@ -1011,7 +1011,6 @@ class AssetGuard extends EventEmitter {
         if(fs.existsSync(filePath)){
             //No hash provided, have to assume it's good.
             if(hash == null){
-                console.log('There\'s no hash clientside, we assume it doesn\'t exist and all is good!')
                 return true
             }
             let buf = fs.readFileSync(filePath)
@@ -1741,7 +1740,7 @@ class AssetGuard extends EventEmitter {
                     if(resp.statusCode === 200){
 
                         let doHashCheck = false
-                        /*const contentLength = parseInt(resp.headers['content-length'])
+                        const contentLength = parseInt(resp.headers['content-length'])
 
                         if(contentLength !== asset.size){
                             console.log(`WARN: Got ${contentLength} bytes for ${asset.id}: Expected ${asset.size}`)
@@ -1751,7 +1750,7 @@ class AssetGuard extends EventEmitter {
                             this.totaldlsize -= asset.size
                             this.totaldlsize += contentLength
                         }
-*/
+
                         let writeStream = fs.createWriteStream(asset.to)
                         writeStream.on('close', () => {
                             if(dlTracker.callback != null){
