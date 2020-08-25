@@ -514,6 +514,7 @@ function asyncSystemScan(mcVersion, launchAfter = true){
                     }
 
                     setLaunchDetails('Java Installed!')
+                    addMetric('javainstalls')
 
                     if(launchAfter){
                         dlAsync()
@@ -677,7 +678,7 @@ function dlAsync(login = true){
             switch(m.data){
                 case 'download':
                     loggerLaunchSuite.error('Error while downloading:', m.error)
-                    
+                    addMetric('serverfailedinstalls', ConfigManager.getSelectedServer().split('-')[0])
                     if(m.error.code === 'ENOENT'){
                         showLaunchFailure(
                             'Download Error',
@@ -728,6 +729,7 @@ function dlAsync(login = true){
                         DiscordWrapper.updateDetails('Loading game..')
                     }
                     proc.stdout.on('data', gameStateChange)
+                    proc.stdout.on('data', metricsListener)
                     proc.stdout.removeListener('data', tempListener)
                     proc.stderr.removeListener('data', gameErrorListener)
                 }
@@ -758,6 +760,17 @@ function dlAsync(login = true){
                     }
                 }
 
+                // Listener for Metrics.
+                const metricsListener = function(data){
+                    data = data.trim()
+                    if(SERVER_JOINED_REGEX.test(data)){
+                        addMetric('serversuccessfullogins', ConfigManager.getSelectedServer().split('-')[0])
+                    } else if(data.indexOf('what to listen for in log') > -1){
+                        // what metric to add, etc
+                        // addMetric()
+                    }
+                }
+
                 const gameErrorListener = function(data){
                     data = data.trim()
                     if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
@@ -775,6 +788,7 @@ function dlAsync(login = true){
                     proc.stderr.on('data', gameErrorListener)
 
                     setLaunchDetails('Done. Enjoy the server!')
+                    addMetric('packplays', ConfigManager.getSelectedServer().split('-')[0])
 
                     // Init Discord Hook
                     const distro = DistroManager.getDistribution()

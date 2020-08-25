@@ -283,6 +283,7 @@ loginButton.addEventListener('click', () => {
                 loginLoading(false)
                 loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.success'), Lang.queryJS('login.login'))
                 formDisabled(false)
+                addMetric('successfullogins')
             })
         }, 1000)
     }).catch((err) => {
@@ -295,6 +296,7 @@ loginButton.addEventListener('click', () => {
         })
         toggleOverlay(true)
         loggerLogin.log('Error while logging in.', err)
+        addMetric('failedlogins')
     })
 
 })
