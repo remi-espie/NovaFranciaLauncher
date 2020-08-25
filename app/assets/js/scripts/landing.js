@@ -8,6 +8,7 @@ const crypto                  = require('crypto')
 const {URL}                   = require('url')
 const {Remarkable}            = require('remarkable')
 const fs                      = require('fs-extra')
+const mongo                   = require('mongodb')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -27,6 +28,7 @@ const user_text               = document.getElementById('user_text')
 const loggerLanding = LoggerUtil('%c[Landing]', 'color: #000668; font-weight: bold')
 const loggerAEx = LoggerUtil('%c[AEx]', 'color: #353232; font-weight: bold')
 const loggerLaunchSuite = LoggerUtil('%c[LaunchSuite]', 'color: #000668; font-weight: bold')
+const loggerMetrics = LoggerUtil('%c[ModRealms Metrics]', 'color: #7289da; font-weight: bold')
 
 /* Launch Progress Wrapper Functions */
 
