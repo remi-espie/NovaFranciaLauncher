@@ -96,11 +96,12 @@ function runMongoDBTask(task){
         auth: {
             password: 'modrealmslauncher',
             username: 'modrealmslauncher'
-        }
+        },
+        useUnifiedTopology: true
     }, task)
 }
 
-function addMetric(type, pack = null){
+async function addMetric(type, pack = null){
     let update
     let query
     query = {
@@ -110,7 +111,6 @@ function addMetric(type, pack = null){
         let field = 'packs.' + pack
         update = {
             $inc: {
-                amount: 1,
                 [field]: 1
             },
             $set: {
@@ -131,9 +131,9 @@ function addMetric(type, pack = null){
         if(err) loggerMetrics.log('Error while connecting to MongoDB ' + err)
         client.db('launcher').collection('metrics').updateOne(query, update, function (err, res) {
             if (err) loggerMetrics.log('Error while updating metrics! ' + err)
-            loggerMetrics.log('Updated metrics for type: ' + type)
+            else loggerMetrics.log('Updated metrics for type: ' + type)
+            client.close()
         })
-        client.close()
     })
 }
 
