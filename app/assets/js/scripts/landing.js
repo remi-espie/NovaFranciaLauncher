@@ -101,7 +101,7 @@ function runMongoDBTask(task){
     }, task)
 }
 
-async function addMetric(type, pack = null){
+function addMetric(type, pack = null){
     let update
     let query
     query = {
@@ -721,7 +721,7 @@ function dlAsync(login = true){
                 setLaunchDetails('Launching game..')
 
                 // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
-                const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
+                const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has joined!`)
 
                 const onLoadComplete = () => {
                     toggleLaunchArea(false)
@@ -729,7 +729,6 @@ function dlAsync(login = true){
                         DiscordWrapper.updateDetails('Loading game..')
                     }
                     proc.stdout.on('data', gameStateChange)
-                    proc.stdout.on('data', metricsListener)
                     proc.stdout.removeListener('data', tempListener)
                     proc.stderr.removeListener('data', gameErrorListener)
                 }
@@ -754,20 +753,10 @@ function dlAsync(login = true){
                 const gameStateChange = function(data){
                     data = data.trim()
                     if(SERVER_JOINED_REGEX.test(data)){
+                        addMetric('serversuccessfullogins', ConfigManager.getSelectedServer().split('-')[0])
                         DiscordWrapper.updateDetails('Exploring the Realm!')
                     } else if(GAME_JOINED_REGEX.test(data)){
                         DiscordWrapper.updateDetails('Sailing to Westeros!')
-                    }
-                }
-
-                // Listener for Metrics.
-                const metricsListener = function(data){
-                    data = data.trim()
-                    if(SERVER_JOINED_REGEX.test(data)){
-                        addMetric('serversuccessfullogins', ConfigManager.getSelectedServer().split('-')[0])
-                    } else if(data.indexOf('what to listen for in log') > -1){
-                        // what metric to add, etc
-                        // addMetric()
                     }
                 }
 
