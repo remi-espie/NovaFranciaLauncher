@@ -719,6 +719,7 @@ function dlAsync(login = true){
                 loggerLaunchSuite.log(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
                 let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
                 setLaunchDetails('Launching game..')
+                addMetric('packplays', ConfigManager.getSelectedServer().split('-')[0])
 
                 // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
                 const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has joined!`)
@@ -777,7 +778,6 @@ function dlAsync(login = true){
                     proc.stderr.on('data', gameErrorListener)
 
                     setLaunchDetails('Done. Enjoy the server!')
-                    addMetric('packplays', ConfigManager.getSelectedServer().split('-')[0])
 
                     // Init Discord Hook
                     const distro = DistroManager.getDistribution()
