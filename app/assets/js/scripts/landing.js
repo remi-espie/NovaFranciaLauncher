@@ -756,7 +756,7 @@ function dlAsync(login = true){
                         addMetric('serversuccessfullogins', ConfigManager.getSelectedServer().split('-')[0])
                         DiscordWrapper.updateDetails('Exploring the Realm!')
                     } else if(GAME_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Sailing to Westeros!')
+                        DiscordWrapper.updateDetails('Sailing to ModRealms!')
                     }
                 }
 
