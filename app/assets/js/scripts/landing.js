@@ -327,6 +327,7 @@ const refreshServerStatus = async function(fade = false){
 }
 
 function loadDiscord(){
+    if(!ConfigManager.getDiscordIntegration()) return
     const distro = DistroManager.getDistribution()
     if(!hasRPC){
         if(distro.discord != null){
