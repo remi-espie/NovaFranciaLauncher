@@ -79,3 +79,7 @@ exports.shutdownRPC = function(){
     client = null
     activity = null
 }
+
+exports.getClient = function(){
+    return client
+}
