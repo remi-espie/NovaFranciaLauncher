@@ -65,6 +65,7 @@ function showMainUI(data){
     prepareSettings(true)
     updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
     refreshServerStatus()
+    loadDiscord()
     setTimeout(() => {
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         randomiseBackground()
@@ -88,6 +89,10 @@ function showMainUI(data){
             } else {
                 currentView = VIEWS.login
                 $(VIEWS.login).fadeIn(1000)
+                if(hasRPC){
+                    DiscordWrapper.updateDetails('Adding an Account...')
+                    DiscordWrapper.clearState()
+                }
             }
         }
 
@@ -346,6 +351,10 @@ async function validateSelectedAccount(){
                 }
                 toggleOverlay(false)
                 switchView(getCurrentView(), VIEWS.login)
+                if(hasRPC){
+                    DiscordWrapper.updateDetails('Adding an Account...')
+                    DiscordWrapper.clearState()
+                }
             })
             setDismissHandler(() => {
                 if(accLen > 1){
