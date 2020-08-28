@@ -333,20 +333,10 @@ function loadDiscord(){
     loggerLanding.log('Now loading DiscordRPC')
     if(!hasRPC){
         if(distro.discord != null){
-            DiscordWrapper.initRPC(distro.discord, serv.discord, 'Landing Screen...')
+            DiscordWrapper.initRPC(distro.discord, serv.discord, '...')
             hasRPC = true
         }
     }
-    setTimeout(() => {
-        if(hasRPC){
-            if(serv){
-                DiscordWrapper.updateDetails('Ready to Play!')
-                DiscordWrapper.updateState('Server: ' + serv.getName())
-            } else {
-                DiscordWrapper.updateDetails('Landing Screen...')
-            }
-        }
-    }, 1000)
 }
 
 refreshMojangStatuses()
