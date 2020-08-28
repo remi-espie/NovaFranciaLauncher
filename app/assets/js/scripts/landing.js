@@ -328,12 +328,9 @@ const refreshServerStatus = async function(fade = false){
 
 function loadDiscord(){
     const distro = DistroManager.getDistribution()
-    const serv = distro.getServer(ConfigManager.getSelectedServer())
-
-    loggerLanding.log('Now loading DiscordRPC')
     if(!hasRPC){
         if(distro.discord != null){
-            DiscordWrapper.initRPC(distro.discord, serv.discord, '...')
+            DiscordWrapper.initRPC(distro.discord, null, '...')
             hasRPC = true
         }
     }
