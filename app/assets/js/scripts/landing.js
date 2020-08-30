@@ -217,12 +217,12 @@ function randomiseBackground() {
 
 // Bind selected server
 function updateSelectedServer(serv){
+    server_selection_button.innerHTML = '\u2022 ' + (serv != null ? serv.getName() : 'No Server Selected')
     if(getCurrentView() === VIEWS.settings){
         saveAllModConfigurations()
     }
     ConfigManager.setSelectedServer(serv != null ? serv.getID() : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '\u2022 ' + (serv != null ? serv.getName() : 'No Server Selected')
     if(getCurrentView() === VIEWS.settings){
         animateModsTabRefresh()
     }
@@ -735,6 +735,7 @@ function dlAsync(login = true){
                 setLaunchDetails('Launching game..')
                 addMetric('packplays', ConfigManager.getSelectedServer().split('-')[0])
                 const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has joined!`)
+                const SERVER_LEAVE_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has left!`)
 
                 const onLoadComplete = () => {
                     toggleLaunchArea(false)
