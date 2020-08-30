@@ -946,6 +946,11 @@ function slide_(up){
 // Bind news button.
 document.getElementById('newsButton').onclick = () => {
     // Toggle tabbing.
+    if(document.getElementById('newsButton').hasAttribute('selected')){
+        document.getElementById('newsButton').removeAttribute('selected')
+    } else {
+        document.getElementById('newsButton').setAttribute('selected', '')
+    }
     if(newsActive){
         $('#landingContainer *').removeAttr('tabindex')
         $('#newsContainer *').attr('tabindex', '-1')
