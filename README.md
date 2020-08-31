@@ -10,7 +10,7 @@
 
 ## Downloads
 
-You can download from [GitHub Releases](https://github.com/dscalzi/HeliosLauncher/releases)
+You can download from [GitHub Releases](https://github.com/ModRealms-Network/ModRealmsLauncher/releases)
 
 ## Development (ModRealms fork)
 
