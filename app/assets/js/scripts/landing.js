@@ -821,7 +821,8 @@ function validateServerInformation() {
     setLaunchDetails('Loading server information..')
     DiscordWrapper.updateDetails('Loading server information...')
 
-    refreshDistributionIndex(true, (data) => {
+    // don't download from remote for the time being, until I've refracted the distribution file into several smaller files.
+    refreshDistributionIndex(false, (data) => {
         onDistroRefresh(data)
         serv = data.getServer(ConfigManager.getSelectedServer())
         aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
