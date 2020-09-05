@@ -183,6 +183,19 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
         showMainUI(data)
+        setOverlayContent(
+            'Launcher Refreshed!',
+            'This is a confirmation letting you know that you have manually refreshed your launcher, your server list is now up to date and should be good to go! If you have any problems please do let us know!',
+            'Great! Thank you.',
+            'Discord Invite Link'
+        )
+        setOverlayHandler(() => {
+            toggleOverlay(false)
+        })
+        setDismissHandler(() => {
+            shell.openExternal('https://discord.gg/tKKeTdc')
+        })
+        toggleOverlay(true, true)
     })
 }
 
