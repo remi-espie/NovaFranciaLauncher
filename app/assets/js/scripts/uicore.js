@@ -140,7 +140,7 @@ document.addEventListener('readystatechange', function () {
             val.addEventListener('click', e => {
                 const window = remote.getCurrentWindow()
                 //window.close()
-                window.destroy();
+                window.destroy()
             })
         })
 
