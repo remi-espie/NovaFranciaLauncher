@@ -2502,7 +2502,7 @@ input:checked + .toggleSwitchSlider:before {
     transition: top 2s ease;
     top: 0px;
     height: 100%;
-    width: 34%;
+    width: 30%;
     display: inline-flex;
     justify-content: center;
 }
@@ -3192,7 +3192,22 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Divider used on the bottom of the landing view. */
-.bot_divider {
+.bot_divider_status {
+     height: 45px;
+     width: 1px;
+     background: rgba(107, 105, 105, 0.7);
+     margin-left: 70px;
+     margin-right: 30px;
+}
+
+.bot_divider_play {
+    width: 1px;
+    background: rgba(107, 105, 105, 0.7);
+    margin-left: 60px;
+    margin-right: 30px;
+}
+
+.bot_divider_progress {
     height: 45px;
     width: 1px;
     background: rgba(107, 105, 105, 0.7);
@@ -3443,7 +3458,7 @@ input:checked + .toggleSwitchSlider:before {
     font-weight: 900;
     letter-spacing: 1px;
     text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 20px;
+    font-size: 25px;
     min-width: 53.21px;
     max-width: 53.21px;
     text-align: right;
@@ -3464,6 +3479,7 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     line-height: 24px;
     padding: 0px;
+    margin: 0px 5px 0px 0px;
     transition: 0.25s ease;
 }
 #server_selection_button:hover,
@@ -3477,8 +3493,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Progress bar styles. */
 #launch_progress[value] {
-    height: 3px;
-    width: 265px;
+    height: 3px;width: 265px;
     -webkit-appearance: none;
 }
 #launch_progress[value]::-webkit-progress-bar {
