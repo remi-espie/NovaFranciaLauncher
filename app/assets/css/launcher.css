@@ -3626,7 +3626,7 @@ input:checked + .toggleSwitchSlider:before {
 #overlayDismiss {
     font-weight: bold;
     font-size: 17px;
-    color: rgba(149, 12, 0, 0.75);
+    color: rgba(255, 14, 0, 0.51);
     text-decoration: none;
     padding-top: 2.5px;
     background: none;
