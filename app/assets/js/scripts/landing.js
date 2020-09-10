@@ -187,7 +187,21 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
             'Launcher Refreshed!',
             'This is a confirmation letting you know that you have manually refreshed your launcher, your server list is now up to date and should be good to go! If you have any problems please do let us know!',
             'Great! Thank you.',
-            'Discord Invite Link'
+            'Join our Discord'
+        )
+        setOverlayHandler(() => {
+            toggleOverlay(false)
+        })
+        setDismissHandler(() => {
+            shell.openExternal('https://discord.gg/tKKeTdc')
+        })
+        toggleOverlay(true, true)
+    }).catch(err => {
+        setOverlayContent(
+            'Error Refreshing Distribution',
+            'We were unable to update the servers available on the launcher. Please confirm that you are connected to the internet before continuing. If this persists, please come join our Discord and let us know!<br><br>Your error message is: ' + err,
+            'Confirm',
+            'Join our Discord'
         )
         setOverlayHandler(() => {
             toggleOverlay(false)
