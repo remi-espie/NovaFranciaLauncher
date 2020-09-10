@@ -570,17 +570,17 @@ exports.pullRemote = function(){
             if(!error){
                 try {
                     data = DistroIndex.fromJSON(JSON.parse(body))
+
+                    fs.writeFile(distroDest, body, 'utf-8', (err) => {
+                        if(!err){
+                            resolve(data)
+                        } else {
+                            reject(err)
+                        }
+                    })
                 } catch(e) {
                     reject('We cannot parse the JSON in the remote distribution file')
                 }
-
-                fs.writeFile(distroDest, body, 'utf-8', (err) => {
-                    if(!err){
-                        resolve(data)
-                    } else {
-                        reject(err)
-                    }
-                })
             } else {
                 reject(error)
             }
