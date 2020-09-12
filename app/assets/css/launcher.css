@@ -4032,24 +4032,44 @@ input:checked + .toggleSwitchSlider:before {
     position: absolute;
     width: 400px;
     height: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-.pulsing {
-    transform: scale(1);
-    animation: pulse 1s infinite;
+#loadCenterImage[inflation] {
+    animation: inflate 1s 1;
 }
 
-/* Rotating animation for the spinner. */
-@keyframes pulse {
+.spinning {
+    animation: spin 0.9s infinite;
+}
+
+/* Pulsing animation for the spinner. */
+@keyframes inflate {
     0% {
-        transform: scale(0.9);
-    }
-
-    70% {
-        transform: scale(1);
+        transform:scale(1)
     }
 
     100% {
-        transform: scale(0.9);
+        transform:scale(25)
+    }
+}
+
+/* Rotating animation for the spinner. */
+@keyframes spin {
+    0% {
+        transform:rotate(0deg)
+    }
+
+    50% {
+        transform:rotate(380deg)
+    }
+
+    75% {
+        transform:rotate(350deg)
+    }
+
+    100% {
+        transform:rotate(360deg)
     }
 }

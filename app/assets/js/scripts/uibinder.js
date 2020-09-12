@@ -62,6 +62,15 @@ function showMainUI(data){
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
+    setTimeout(() => {
+        let loadingImage = document.getElementById('loadCenterImage')
+        loadingImage.setAttribute('inflation', '')
+        $('#loadingContainer').fadeOut(250, () => {
+            loadingImage.removeAttribute('class')
+            loadingImage.removeAttribute('inflation')
+        })
+    }, 0)
+
     prepareSettings(true)
     updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
     refreshServerStatus()
@@ -81,7 +90,7 @@ function showMainUI(data){
 
         if(ConfigManager.isFirstLaunch()){
             currentView = VIEWS.welcome
-            $(VIEWS.welcome).fadeIn(1000)
+            $(VIEWS.welcome).fadeIn(100)
             if(hasRPC){
                 DiscordWrapper.updateDetails('Welcome and continue.')
                 DiscordWrapper.updateState('Launcher Setup')
@@ -89,7 +98,7 @@ function showMainUI(data){
         } else {
             if(isLoggedIn){
                 currentView = VIEWS.landing
-                $(VIEWS.landing).fadeIn(1000)
+                $(VIEWS.landing).fadeIn(100)
                 if(hasRPC && !ConfigManager.isFirstLaunch()){
                     if(ConfigManager.getSelectedServer()){
                         const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
@@ -101,21 +110,14 @@ function showMainUI(data){
                 }
             } else {
                 currentView = VIEWS.login
-                $(VIEWS.login).fadeIn(1000)
+                $(VIEWS.login).fadeIn(100)
                 if(hasRPC){
                     DiscordWrapper.updateDetails('Adding an Account...')
                     DiscordWrapper.clearState()
                 }
             }
         }
-
-        setTimeout(() => {
-            $('#loadingContainer').fadeOut(500, () => {
-                $('#loadCenterImage').removeClass('pulsing')
-            })
-        }, 250)
-        
-    }, 750)
+    }, 250)
     // Disable tabbing to the news container.
     initNews().then(() => {
         $('#newsContainer *').attr('tabindex', '-1')
