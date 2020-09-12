@@ -1292,6 +1292,9 @@ document.getElementById('settingsAboutDevToolsButton').onclick = (e) => {
  */
 function isPrerelease(version){
     const preRelComp = semver.prerelease(version)
+    if(preRelComp != null && preRelComp.includes('release')) {
+        return false
+    }
     return preRelComp != null && preRelComp.length > 0
 }
 
