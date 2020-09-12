@@ -189,20 +189,14 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
             'Great! Thank you.',
             'Join our Discord'
         )
-        setOverlayHandler(() => {
-            toggleOverlay(false)
-        })
-        setDismissHandler(() => {
-            shell.openExternal('https://discord.gg/tKKeTdc')
-        })
-        toggleOverlay(true, true)
     }).catch(err => {
         setOverlayContent(
             'Error Refreshing Distribution',
-            'We were unable to update the servers available on the launcher. Please confirm that you are connected to the internet before continuing. If this persists, please come join our Discord and let us know!<br><br>Your error message is: ' + err,
-            'Confirm',
+            'We were unable to grab the latest server information from the internet upon startup, so we have used a previously stored version instead.<br><br>This is not recommended, and you should restart your client to fix this to avoid your modpack files being out of date. If you wish to continue using the launcher, you can try again at any time by pressing the refresh button on the landing screen.<br><br>If this continues to occur, and you are not too sure why, come and see us on Discord!<br><br>Error Code:<br>' + err,
+            'Understood.',
             'Join our Discord'
         )
+    }).finally(() => {
         setOverlayHandler(() => {
             toggleOverlay(false)
         })
