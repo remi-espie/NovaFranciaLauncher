@@ -226,6 +226,12 @@ document.getElementById('accountSelectCancel').addEventListener('click', () => {
     })
 })
 
+$('#serverSelectListScrollable').on('mousewheel', function(event, delta) {
+    let speed = event.originalEvent.deltaY > 0 ? event.originalEvent.deltaY - 60 : event.originalEvent.deltaY + 60
+    this.scrollLeft += speed
+    event.preventDefault()
+})
+
 function setServerListingHandlers(){
     const listings = Array.from(document.getElementsByClassName('serverListing'))
     listings.map((val) => {
@@ -281,7 +287,7 @@ function populateServerListings(){
                     <div class="serverListingRevision">${serv.getVersion()}</div>
                 </div>
                 <div class="serverListingDescription">${serv.getDescription()}</div>
-                <div class="serverSelectedText">Selected!</div>
+<!--                <div class="serverSelectedText">Selected!</div>-->
             </div>
         </button>`
     }
