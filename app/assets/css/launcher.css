@@ -3763,6 +3763,7 @@ input:checked + .toggleSwitchSlider:before {
     cursor: default;
     opacity: 1.0;
     height: 500px;
+    background: rgba(219, 219, 219, 0.24);
 }
 .serverListing:hover,
 .serverListing:focus {
@@ -3772,7 +3773,6 @@ input:checked + .toggleSwitchSlider:before {
 .serverSelectedText {
     visibility: hidden;
     color: #b6b6b6;
-    font-weight: bold;
     padding-top: 15px;
     font-size: 15px;
     font-family: "Avenir Medium";
