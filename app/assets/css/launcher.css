@@ -78,7 +78,7 @@ body, button {
 /* Flexbox to wrap the main frame content. */
 #frameMain {
     display: flex;
-    height: 20px
+    height: 24px
 }
 
 /* Undraggable region on the left and right of the frame. */
@@ -109,7 +109,7 @@ body, button {
     padding: 0px 10px;
 }
 #frameTitleText {
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Avenir Medium';
     letter-spacing: 0.5px;
 }
@@ -138,8 +138,8 @@ body, button {
 .frameButton {
     background: none;
     border: none;
-    height: 22px;
-    width: 39px;
+    height: 25px;
+    width: 40px;
     cursor: pointer;
 }
 .frameButton:hover,
@@ -869,7 +869,7 @@ body, button {
 
 /*
 #login_filter {
-    height: calc(100% - 22px);
+    height: calc(100% - 26px);
     width: 100%;
     z-index: 9000;
     position: absolute;
@@ -3410,7 +3410,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Main launch content container. */
 #landingContainer > #lower > #right #launch_content {
     position: relative;
-    top: 22px;
+    top: 26px;
     display: inline-flex;
 }
 
@@ -3525,12 +3525,12 @@ input:checked + .toggleSwitchSlider:before {
 #overlayContainer {
     position: absolute;
     z-index: 500;
-    top: 22px;
+    top: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 22px);
+    height: calc(100% - 28px);
     background: rgba(0, 0, 0, 0.50);
 }
 
@@ -4007,7 +4007,7 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 22px);
+    height: calc(100% - 26px);
 }
 
 /* Loading content container. */
