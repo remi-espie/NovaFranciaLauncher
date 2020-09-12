@@ -3384,6 +3384,17 @@ input:checked + .toggleSwitchSlider:before {
     top: 50%;
 }
 
+#newsButtonAlertText {
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    border-radius: 50%;
+    background: #f4fff5;
+    right: -1px;
+    top: 50%;
+}
+
+
 /* Arrow image which floats above the news button. */
 #newsButtonSVG {
     height: 15px;
