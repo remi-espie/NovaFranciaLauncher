@@ -8,7 +8,6 @@ const crypto                  = require('crypto')
 const {URL}                   = require('url')
 const {Remarkable}            = require('remarkable')
 const fs                      = require('fs-extra')
-const mongo                   = require('mongodb')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -504,7 +503,6 @@ function asyncSystemScan(mcVersion, launchAfter = true){
                     }
 
                     setLaunchDetails('Java Installed!')
-                    addMetric('javainstalls')
 
                     if(launchAfter){
                         dlAsync()
@@ -667,7 +665,6 @@ function dlAsync(login = true){
             switch(m.data){
                 case 'download':
                     loggerLaunchSuite.error('Error while downloading:', m.error)
-                    addMetric('serverfailedinstalls', ConfigManager.getSelectedServer().split('-')[0])
                     if(m.error.code === 'ENOENT'){
                         showLaunchFailure(
                             'Download Error',
@@ -708,7 +705,6 @@ function dlAsync(login = true){
                 loggerLaunchSuite.log(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
                 let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
                 setLaunchDetails('Launching game..')
-                addMetric('packplays', ConfigManager.getSelectedServer().split('-')[0])
                 const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has joined!`)
                 const SERVER_LEAVE_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} has left!`)
 
@@ -743,7 +739,6 @@ function dlAsync(login = true){
                 const gameStateChange = function(data){
                     data = data.trim()
                     if(SERVER_JOINED_REGEX.test(data)){
-                        addMetric('serversuccessfullogins', ConfigManager.getSelectedServer().split('-')[0])
                         DiscordWrapper.updateDetails('Exploring the Realm!')
                         DiscordWrapper.resetTime()
                     }
