@@ -1176,11 +1176,7 @@ function displayArticle(articleObject, index){
     // newsArticleComments.innerHTML = articleObject.comments
     // newsArticleComments.href = articleObject.commentsLink
 
-    let md = new Remarkable('full', {
-        html: true
-    })
-
-    let content = md.render(articleObject.content.toString().replace(/\n/g, '<br>'))
+    let content = articleObject.content
 
     newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + content + '<div class="newsArticleSpacerBot"></div></div>'
     Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
@@ -1220,7 +1216,7 @@ function loadNews(){
                     // comments = comments + ' Comment' + (comments === '1' ? '' : 's')
 
                     // Fix relative links in content.
-                    let content = el.find('description').text()
+                    let content = el.find('content\\:encoded').text()
                     let regex = /src="(?!http:\/\/|https:\/\/)(.+?)"/g
                     let matches
                     while((matches = regex.exec(content))){
