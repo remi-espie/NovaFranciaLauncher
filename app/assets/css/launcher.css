@@ -2169,7 +2169,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Checkmark next to the version information. */
 #settingsAboutCurrentVersionCheck {
     border-radius: 50%;
-    background: #23aa23;
+    background: #00e529;
     text-align: center;
     font-weight: bold;
     margin: 11px 12px;
@@ -2189,7 +2189,7 @@ input:checked + .toggleSwitchSlider:before {
 #settingsAboutCurrentVersionTitle {
     font-size: 20px;
     font-family: 'Avenir Book';
-    color: #23aa23;
+    color: #00e529;
     font-weight: bold;
 }
 
@@ -2371,7 +2371,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Checkmark next to the version information. */
 #settingsUpdateVersionCheck {
     border-radius: 50%;
-    background: rgba(0, 255, 49, 0.7);
+    background: rgb(0, 229, 41);
     text-align: center;
     font-weight: bold;
     margin: 11px 12px;
@@ -2391,7 +2391,7 @@ input:checked + .toggleSwitchSlider:before {
 #settingsUpdateVersionTitle {
     font-size: 20px;
     font-family: 'Avenir Book';
-    color: rgba(0, 255, 49, 0.7);
+    color: rgb(0, 229, 41);
     font-weight: bold;
 }
 
