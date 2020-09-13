@@ -570,19 +570,23 @@ exports.pullRemote = function(){
             if(!error){
                 try {
                     data = DistroIndex.fromJSON(JSON.parse(body))
-
-                    fs.writeFile(distroDest, body, 'utf-8', (err) => {
-                        if(!err){
-                            resolve(data)
-                        } else {
-                            reject(err)
-                        }
-                    })
-                } catch(e) {
-                    reject('We cannot parse the JSON in the remote distribution file')
+                } catch (e) {
+                    reject(e)
+                    return
                 }
+
+                fs.writeFile(distroDest, body, 'utf-8', (err) => {
+                    if(!err){
+                        resolve(data)
+                        return
+                    } else {
+                        reject(err)
+                        return
+                    }
+                })
             } else {
                 reject(error)
+                return
             }
         })
     })
@@ -595,15 +599,12 @@ exports.pullLocal = function(){
     return new Promise((resolve, reject) => {
         fs.readFile(DEV_MODE ? DEV_PATH : DISTRO_PATH, 'utf-8', (err, d) => {
             if(!err){
-                logger.log(d)
-                try {
-                    data = DistroIndex.fromJSON(JSON.parse(d))
-                    resolve(data)
-                } catch(e) {
-                    reject('We cannot parse the JSON in the local distribution file: ' + e)
-                }
+                data = DistroIndex.fromJSON(JSON.parse(d))
+                resolve(data)
+                return
             } else {
                 reject(err)
+                return
             }
         })
     })
