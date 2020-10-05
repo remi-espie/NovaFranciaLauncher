@@ -720,6 +720,7 @@ function dlAsync(login = true){
                         DiscordWrapper.resetTime()
                     }
                     proc.stdout.on('data', gameStateChange)
+                    proc.stdout.on('data', gameCrashReportListener)
                     proc.stdout.removeListener('data', tempListener)
                     proc.stderr.removeListener('data', gameErrorListener)
                 }
@@ -746,6 +747,31 @@ function dlAsync(login = true){
                     if(SERVER_JOINED_REGEX.test(data)){
                         DiscordWrapper.updateDetails('Exploring the Realm!')
                         DiscordWrapper.resetTime()
+                    }
+                }
+
+                // Listener for Discord RPC.
+                const gameCrashReportListener = function(data){
+                    data = data.trim()
+                    let date = new Date()
+                    if(data.includes('---- Minecraft Crash Report ----' > -1)){
+                        let CRASH_REPORT_FOLDER = path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports')
+                        let CRASH_REPORT_NAME = ('crash-' + date.getFullYear() + '-' + (date.getMonth() + 1).toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-' + date.getDate().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '_' + date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getSeconds().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-client.txt')
+                        let CRASH_REPORT_PATH = path.join(CRASH_REPORT_FOLDER, CRASH_REPORT_NAME)
+                        shell.showItemInFolder(CRASH_REPORT_PATH)
+                        setOverlayContent(
+                            'Game Crashed!',
+                            'Uh oh! It looks like your game has just crashed. We have opened up the crash-reports folder so that you can easily share it with our staff team over on Discord. If you have any repeating crashes, we always recommend that you come and see us!<br><br>For future reference, your crash report file is: <br>' + CRASH_REPORT_NAME,
+                            'Okay, thanks!',
+                            'Open Crash Report'
+                        )
+                        setOverlayHandler(() => {
+                            toggleOverlay(false)
+                        })
+                        setDismissHandler(() => {
+                            shell.openPath(CRASH_REPORT_PATH)
+                        })
+                        toggleOverlay(true, true)
                     }
                 }
 
