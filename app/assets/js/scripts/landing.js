@@ -753,8 +753,8 @@ function dlAsync(login = true){
                 // Listener for Discord RPC.
                 const gameCrashReportListener = function(data){
                     data = data.trim()
-                    let date = new Date()
-                    if(data.includes('---- Minecraft Crash Report ----' > -1)){
+                    if(data.includes('---- Minecraft Crash Report ----')){
+                        let date = new Date()
                         let CRASH_REPORT_FOLDER = path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports')
                         let CRASH_REPORT_NAME = ('crash-' + date.getFullYear() + '-' + (date.getMonth() + 1).toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-' + date.getDate().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '_' + date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getSeconds().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-client.txt')
                         let CRASH_REPORT_PATH = path.join(CRASH_REPORT_FOLDER, CRASH_REPORT_NAME)
