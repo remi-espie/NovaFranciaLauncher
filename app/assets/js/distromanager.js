@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const request = require('request')
 const ConfigManager = require('./configmanager')
 const logger        = require('./loggerutil')('%c[DistroManager]', 'color: #a02d2a; font-weight: bold')
@@ -577,6 +578,8 @@ exports.pullRemote = function(){
 
                 fs.writeFile(distroDest, body, 'utf-8', (err) => {
                     if(!err){
+                        ConfigManager.setDistributionHash(crypto.createHash('md5').update(body).digest('hex'))
+                        ConfigManager.save()
                         resolve(data)
                         return
                     } else {

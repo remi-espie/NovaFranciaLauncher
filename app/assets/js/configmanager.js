@@ -23,6 +23,25 @@ exports.getLauncherDirectory = function(){
 }
 
 /**
+ * Retrieve the file hash for the current stored distribution file
+ *
+ * @returns {string} The absolute path of the launcher directory.
+ */
+exports.getDistributionHash = function(){
+    return config.distributionHash
+}
+
+/**
+ * Stores the current distribution file hash into the configuration
+ *
+ * @returns {string} The absolute path of the launcher directory.
+ */
+exports.setDistributionHash = function(hash){
+    config.distributionHash = hash
+}
+
+
+/**
  * Get the launcher's data directory. This is where all files related
  * to game launch are installed (common, instances, java, etc).
  *
@@ -138,6 +157,7 @@ const DEFAULT_CONFIG = {
         dismissed: false
     },
     clientToken: null,
+    distributionHash: null,
     selectedServer: null, // Resolved
     selectedAccount: null,
     authenticationDatabase: {},
