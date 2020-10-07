@@ -3401,8 +3401,16 @@ input:checked + .toggleSwitchSlider:before {
     letter-spacing: 2px;
     text-shadow: 0px 0px 0px #bebcbb;
     font-size: 20px;
-    line-height: 50px;
+    padding: 10px 0px 3px 0px;
     display: flex;
+    transition: 0.25s ease;
+}
+
+#newsButtonText[alertShown] {
+    border-bottom: 2px red double;
+    /*text-decoration: underline;*/
+    /*text-decoration*/
+    /*text-decoration-color: #e85a5b;*/
     transition: 0.25s ease;
 }
 

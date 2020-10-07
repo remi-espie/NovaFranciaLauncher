@@ -971,7 +971,7 @@ document.getElementById('newsButton').onclick = () => {
         $('#landingContainer *').attr('tabindex', '-1')
         $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
         if(newsAlertShown){
-            $('#newsButtonAlert').fadeOut(2000)
+            document.getElementById('newsButtonText').removeAttribute('alertShown')
             newsAlertShown = false
             ConfigManager.setNewsCacheDismissed(true)
             ConfigManager.save()
@@ -1057,7 +1057,8 @@ let newsAlertShown = false
  */
 function showNewsAlert(){
     newsAlertShown = true
-    $(newsButtonAlert).fadeIn(250)
+    document.getElementById('newsButtonText').setAttribute('alertShown', '')
+    //$(newsButtonAlert).fadeIn(150)
 }
 
 /**
