@@ -42,6 +42,21 @@ document.addEventListener('click', closeSettingsSelect)
 
 bindSettingsSelect()
 
+function bindFolderOpeners(){
+    for(let ele of document.getElementsByClassName('settingsFolderOpenButton')){
+        ele.onclick = async e => {
+            const pathId = ele.getAttribute('pathId')
+            if(pathId){
+                if(pathId === 'DataDirectory'){
+                    shell.openPath(ConfigManager.getDataDirectory())
+                }
+            }
+
+        }
+    }
+}
+
+bindFolderOpeners()
 
 function bindFileSelectors(){
     for(let ele of document.getElementsByClassName('settingsFileSelButton')){
