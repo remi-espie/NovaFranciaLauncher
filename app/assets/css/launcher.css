@@ -3106,6 +3106,9 @@ input:checked + .toggleSwitchSlider:before {
 #refreshSVG:hover {
     fill: #838383;
 }
+#refreshMediaButton[inprogress] #refreshSVG {
+    animation: spin 0.8s infinite;
+}
 
 /* Settings tooltip styles. */
 #settingsTooltip {
@@ -3143,7 +3146,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Link icon colors. */
 #linkSVG:hover,
-#linkSVG:focus #linkSVG {
+#linkSVG:focus {
     fill: #f7ff39;
 }
 #linkSVG:active {

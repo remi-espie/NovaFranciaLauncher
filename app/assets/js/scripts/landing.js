@@ -141,6 +141,8 @@ document.getElementById('openInstanceMediaButton').onclick = (e) => {
 }
 
 document.getElementById('refreshMediaButton').onclick = (e) => {
+    let ele = document.getElementById('refreshMediaButton')
+    ele.setAttribute('inprogress', '')
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
         showMainUI(data)
@@ -165,13 +167,14 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
             shell.openExternal('https://discord.gg/tKKeTdc')
         })
         toggleOverlay(true, true)
+        ele.removeAttribute('inprogress')
     })
 }
 
 // Bind avatar overlay button.
 document.getElementById('avatarOverlay').onclick = (e) => {
     prepareSettings()
-    switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
+    switchView(getCurrentView(), VIEWS.settings, 250, 250, () => {
         settingsNavItemListener(document.getElementById('settingsNavAccount'), false)
     })
 }
