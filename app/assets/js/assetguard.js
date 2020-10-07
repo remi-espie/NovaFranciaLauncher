@@ -1357,13 +1357,10 @@ class AssetGuard extends EventEmitter {
                 const assetName = path.join(hash.substring(0, 2), hash)
                 const urlName = hash.substring(0, 2) + '/' + hash
                 const ast = new Asset(key, hash, value.size, resourceURL + urlName, path.join(objectPath, assetName))
-                if(!AssetGuard._validateLocal(ast.to, 'sha1', ast.hash)){
+                if(!fs.existsSync(ast.to)){
                     dlSize += (ast.size*1)
                     assetDlQueue.push(ast)
-                    loggerAG.log(assetName + ' has not been validated successfully, and will be downloaded.')
-                }
-                else {
-                    loggerAG.log(assetName + ' has been validated successfully.')
+                    loggerAG.log(assetName + ' does not exist, and therefore will be downloaded!')
                 }
                 cb()
             }, (err) => {
