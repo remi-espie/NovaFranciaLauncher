@@ -131,6 +131,15 @@ document.getElementById('settingsMediaButton').onclick = (e) => {
         DiscordWrapper.clearState()
     }
 }
+
+document.getElementById('openInstanceMediaButton').onclick = (e) => {
+    if(ConfigManager.getSelectedServer()){
+        shell.openPath(path.join(ConfigManager.getDataDirectory(), 'instances', ConfigManager.getSelectedServer()))
+    } else {
+        shell.openPath(path.join(ConfigManager.getDataDirectory(), 'instances'))
+    }
+}
+
 document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
