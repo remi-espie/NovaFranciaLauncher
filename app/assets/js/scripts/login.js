@@ -284,7 +284,7 @@ loginButton.addEventListener('click', () => {
         $('.circle-loader').toggleClass('load-complete')
         $('.checkmark').toggle()
         setTimeout(() => {
-            switchView(VIEWS.login, loginViewOnSuccess, 500, 500, () => {
+            switchView(VIEWS.login, loginViewOnSuccess, 250, 250, () => {
                 // Temporary workaround
                 if(loginViewOnSuccess === VIEWS.settings){
                     prepareSettings()

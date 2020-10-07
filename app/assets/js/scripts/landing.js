@@ -305,10 +305,10 @@ const refreshServerStatus = async function(fade = false){
         loggerLanding.debug(err)
     }
     if(fade){
-        $('#server_status_wrapper').fadeOut(250, () => {
+        $('#server_status_wrapper').fadeOut(150, () => {
             document.getElementById('landingPlayerLabel').innerHTML = pLabel
             document.getElementById('player_count').innerHTML = pVal
-            $('#server_status_wrapper').fadeIn(500)
+            $('#server_status_wrapper').fadeIn(250)
         })
     } else {
         document.getElementById('landingPlayerLabel').innerHTML = pLabel
@@ -414,7 +414,7 @@ function asyncSystemScan(mcVersion, launchAfter = true){
                     toggleOverlay(false)
                 })
                 setDismissHandler(() => {
-                    $('#overlayContent').fadeOut(250, () => {
+                    $('#overlayContent').fadeOut(150, () => {
                         //$('#overlayDismiss').toggle(false)
                         setOverlayContent(
                             'Java is Required<br>to Launch',
@@ -430,7 +430,7 @@ function asyncSystemScan(mcVersion, launchAfter = true){
                             toggleOverlay(false, true)
                             asyncSystemScan()
                         })
-                        $('#overlayContent').fadeIn(250)
+                        $('#overlayContent').fadeIn(150)
                     })
                 })
                 toggleOverlay(true, true)
@@ -984,6 +984,7 @@ document.getElementById('newsButton').onclick = () => {
         $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
         if(newsAlertShown){
             document.getElementById('newsButtonText').removeAttribute('alertShown')
+            $('#newsButtonAlert').fadeOut(1000)
             newsAlertShown = false
             ConfigManager.setNewsCacheDismissed(true)
             ConfigManager.save()
@@ -1031,9 +1032,9 @@ function setNewsLoading(val){
 
 // Bind retry button.
 newsErrorRetry.onclick = () => {
-    $('#newsErrorFailed').fadeOut(250, () => {
+    $('#newsErrorFailed').fadeOut(150, () => {
         initNews()
-        $('#newsErrorLoading').fadeIn(250)
+        $('#newsErrorLoading').fadeIn(150)
     })
 }
 
@@ -1053,8 +1054,8 @@ newsArticleContentScrollable.onscroll = (e) => {
  */
 function reloadNews(){
     return new Promise((resolve, reject) => {
-        $('#newsContent').fadeOut(250, () => {
-            $('#newsErrorLoading').fadeIn(250)
+        $('#newsContent').fadeOut(150, () => {
+            $('#newsErrorLoading').fadeIn(150)
             initNews().then(() => {
                 resolve()
             })
@@ -1094,8 +1095,8 @@ function initNews(){
                 // News Loading Failed
                 setNewsLoading(false)
 
-                $('#newsErrorLoading').fadeOut(250, () => {
-                    $('#newsErrorFailed').fadeIn(250, () => {
+                $('#newsErrorLoading').fadeOut(150, () => {
+                    $('#newsErrorFailed').fadeIn(150, () => {
                         resolve()
                     })
                 })
@@ -1110,8 +1111,8 @@ function initNews(){
                 })
                 ConfigManager.save()
 
-                $('#newsErrorLoading').fadeOut(250, () => {
-                    $('#newsErrorNone').fadeIn(250, () => {
+                $('#newsErrorLoading').fadeOut(150, () => {
+                    $('#newsErrorNone').fadeIn(150, () => {
                         resolve()
                     })
                 })
@@ -1169,9 +1170,9 @@ function initNews(){
                 document.getElementById('newsNavigateRight').onclick = () => { switchHandler(true) }
                 document.getElementById('newsNavigateLeft').onclick = () => { switchHandler(false) }
 
-                $('#newsErrorContainer').fadeOut(250, () => {
+                $('#newsErrorContainer').fadeOut(150, () => {
                     displayArticle(newsArr[0], 1)
-                    $('#newsContent').fadeIn(250, () => {
+                    $('#newsContent').fadeIn(150, () => {
                         resolve()
                     })
                 })

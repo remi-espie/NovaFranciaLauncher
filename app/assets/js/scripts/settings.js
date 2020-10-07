@@ -284,9 +284,9 @@ function settingsNavItemListener(ele, fade = true){
     document.getElementById(selectedSettingsTab).onscroll = settingsTabScrollListener
 
     if(fade){
-        $(`#${prevTab}`).fadeOut(250, () => {
+        $(`#${prevTab}`).fadeOut(150, () => {
             $(`#${selectedSettingsTab}`).fadeIn({
-                duration: 250,
+                duration: 150,
                 start: () => {
                     settingsTabScrollListener({
                         target: document.getElementById(selectedSettingsTab)
@@ -344,7 +344,7 @@ settingsNavDone.onclick = () => {
 
 // Bind the add account button.
 document.getElementById('settingsAddAccount').onclick = (e) => {
-    switchView(getCurrentView(), VIEWS.login, 500, 500, () => {
+    switchView(getCurrentView(), VIEWS.login, 250, 250, () => {
         loginViewOnCancel = VIEWS.settings
         loginViewOnSuccess = VIEWS.settings
         loginCancelEnabled(true)
@@ -473,7 +473,7 @@ function processLogOut(val, isLastAccount){
             validateSelectedAccount()
         }
     })
-    $(parent).fadeOut(250, () => {
+    $(parent).fadeOut(150, () => {
         parent.remove()
     })
 }
@@ -1037,9 +1037,9 @@ function saveAllModConfigurations(){
  * server is changed.
  */
 function animateModsTabRefresh(){
-    $('#settingsTabMods').fadeOut(500, () => {
+    $('#settingsTabMods').fadeOut(150, () => {
         prepareModsTab()
-        $('#settingsTabMods').fadeIn(500)
+        $('#settingsTabMods').fadeIn(150)
     })
 }
 

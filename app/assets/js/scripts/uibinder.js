@@ -36,7 +36,7 @@ let currentView
  * @param {*} onNextFade Optional. Callback function to execute when the next view
  * fades in.
  */
-function switchView(current, next, currentFadeTime = 500, nextFadeTime = 500, onCurrentFade = () => {}, onNextFade = () => {}){
+function switchView(current, next, currentFadeTime = 250, nextFadeTime = 250, onCurrentFade = () => {}, onNextFade = () => {}){
     currentView = next
     $(`${current}`).fadeOut(currentFadeTime, () => {
         onCurrentFade()
@@ -65,7 +65,7 @@ function showMainUI(data){
     setTimeout(() => {
         let loadingImage = document.getElementById('loadCenterImage')
         loadingImage.setAttribute('inflation', '')
-        $('#loadingContainer').fadeOut(250, () => {
+        $('#loadingContainer').fadeOut(150, () => {
             loadingImage.removeAttribute('class')
             loadingImage.removeAttribute('inflation')
         })
@@ -126,7 +126,7 @@ function showMainUI(data){
 
 function showFatalStartupError(){
     setTimeout(() => {
-        $('#loadingContainer').fadeOut(250, () => {
+        $('#loadingContainer').fadeOut(150, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
                 'Fatal Error: Unable to Load Distribution Index',
@@ -374,9 +374,9 @@ async function validateSelectedAccount(){
             setDismissHandler(() => {
                 if(accLen > 1){
                     prepareAccountSelectionList()
-                    $('#overlayContent').fadeOut(250, () => {
+                    $('#overlayContent').fadeOut(150, () => {
                         bindOverlayKeys(true, 'accountSelectContent', true)
-                        $('#accountSelectContent').fadeIn(250)
+                        $('#accountSelectContent').fadeIn(150)
                     })
                 } else {
                     const accountsObj = ConfigManager.getAuthAccounts()
