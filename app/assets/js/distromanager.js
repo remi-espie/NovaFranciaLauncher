@@ -3,8 +3,9 @@ const path = require('path')
 const crypto = require('crypto')
 const request = require('request')
 const ConfigManager = require('./configmanager')
-const logger        = require('./loggerutil')('%c[DistroManager]', 'color: #a02d2a; font-weight: bold')
+const logger = require('./loggerutil')('%c[DistroManager]', 'color: #a02d2a; font-weight: bold')
 const constants = require('../../config/constants')
+const isDev = require('../../assets/js/isdev')
 /**
  * Represents the download information
  * for a specific module.
@@ -558,12 +559,9 @@ let data = null
  * @returns {Promise.<DistroIndex>}
  */
 exports.pullRemote = function(){
-    if(DEV_MODE){
-        return exports.pullLocal()
-    }
     return new Promise((resolve, reject) => {
         const opts = {
-            url: constants.DISTRIBUTION_URL,
+            url: isDev ? constants.DEV_DISTRIBUTION_URL : constants.LIVE_DISTRIBUTION_URL,
             timeout: 7500
         }
         const distroDest = path.join(ConfigManager.getLauncherDirectory(), 'distribution.json')
