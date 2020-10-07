@@ -1251,20 +1251,43 @@ input:checked + .toggleSwitchSlider:before {
 /* File selection button. */
 .settingsFileSelButton {
     border: 0px;
-    border-radius: 0px 3px 3px 0px;
-    font-size: 12px;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 15px;
     padding: 0px 5px;
     cursor: pointer;
     background: rgba(126, 126, 126, 0.57);
     transition: 0.25s ease;
     white-space: nowrap;
     outline: none;
+    margin: 0px 3px;
 }
 .settingsFileSelButton:hover,
 .settingsFileSelButton:focus {
     text-shadow: 0px 0px 20px white;
 }
 .settingsFileSelButton:active {
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* File Open button. */
+.settingsFolderOpenButton {
+    border: 0px;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 15px;
+    padding: 0px 5px;
+    cursor: pointer;
+    background: rgba(126, 126, 126, 0.57);
+    transition: 0.25s ease;
+    white-space: nowrap;
+    outline: none;
+    margin: 0px 3px;
+}
+.settingsFolderOpenButton:hover,
+.settingsFolderOpenButton:focus {
+    text-shadow: 0px 0px 20px white;
+}
+.settingsFolderOpenButton:active {
     text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
 }
@@ -2922,11 +2945,51 @@ input:checked + .toggleSwitchSlider:before {
     border-style: solid;
     border-color: transparent transparent rgb(0, 0, 0) transparent;
 }
+
 #image_seal_container[update]:hover #updateAvailableTooltip {
     visibility: visible;
     opacity: 0.8;
     transition-delay: 0s;
 }
+
+/* Update available tooltip styles. */
+#mediaSVGTooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 130px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 1px 5px;
+    position: absolute;
+    cursor: default;
+    z-index: 1;
+    top: 100%;
+    font-family: 'Avenir Medium';
+    font-size: 15px;
+    transition: visibility 0s linear 0.25s, opacity 0.25s ease;
+}
+#mediaSVGTooltip::after {
+    content: " ";
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+}
+
+.mediaButton:hover ~ #mediaSVGTooltip,
+.mediaButton:focus ~ #mediaSVGTooltip,
+.mediaButton:active ~ #mediaSVGTooltip {
+    visibility: visible;
+    opacity: 1;
+    transition-delay:0.05s;
+}
+
+
 
 /* Update available animation. */
 @keyframes glow-grow {
@@ -3035,9 +3098,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social Media Icon division containers. */
-#internalMedia, #externalMedia {
+#externalMedia {
     display: flex;
     flex-direction: column;
+}
+
+#internalMedia {
+    display: flex;
+    flex-direction: row;
 }
 
 /* Container object which wraps an icon to ensure fluid transitions. */
@@ -3090,67 +3158,40 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Settings icon colors. */
-#settingsSVG {
-    fill: #ffffff;
-}
-
-#settingsSVG:hover {
+#settingsSVG:hover,
+#settingsSVG:focus {
     fill: #838383;
 }
-
-/* Settings icon colors. */
-#refreshSVG {
-    fill: #ffffff;
+#refreshSVG:active {
+    fill: #585858;
 }
-
-#refreshSVG:hover {
-    fill: #838383;
+#refreshSVG:hover,
+#refreshSVG:focus {
+    fill: #e2c1ff;
+}
+#refreshSVG:active {
+    fill: #c393e1;
 }
 #refreshMediaButton[inprogress] #refreshSVG {
     animation: spin 0.8s infinite;
 }
 
-/* Settings tooltip styles. */
-#settingsTooltip {
-    visibility: hidden;
-    opacity: 0;
-    width: 75px;
-    height: 20px;
-    background-color: rgba(0, 0, 0, 0.75);
-    text-align: center;
-    border-radius: 4px;
-    position: absolute;
-    z-index: 1;
-    right: 130%;
-    font-size: 12px;
-    line-height: 20px;
-    transition: visibility 0s linear 0.25s, opacity 0.25s ease;
+
+#openInstanceSVG:hover,
+#openInstanceSVG:focus {
+    fill: #f4ff85;
 }
-#settingsTooltip::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent transparent rgba(0, 0, 0, 0.75);
-}
-.mediaButton:hover #settingsTooltip,
-.mediaButton:focus #settingsTooltip,
-.mediaButton:active #settingsTooltip {
-    visibility: hidden;
-    opacity: 1;
-    transition-delay:0s;
+#openInstanceSVG:active {
+    fill: #ccd56f;
 }
 
 /* Link icon colors. */
 #linkSVG:hover,
 #linkSVG:focus {
-    fill: #f7ff39;
+    fill: #43ff7a;
 }
 #linkSVG:active {
-    fill: #c6d231;
+    fill: #31ba59;
 }
 
 /* Twitter icon colors. */
@@ -3168,7 +3209,7 @@ input:checked + .toggleSwitchSlider:before {
     fill: #f00;
 }
 #youtubeSVG:active {
-    fill: #b20202;
+    fill: #950202;
 }
 
 /* Discord icon colors. */
