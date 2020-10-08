@@ -32,12 +32,12 @@ exports.getDistributionVersion = function(){
 }
 
 /**
- * Stores the current distribution ETag version into the configuration
+ * Stores the current distribution ETag version into the configuration, to compare with remote headers.
  *
  * @returns {string} The absolute path of the launcher directory.
  */
-exports.setDistributionVersion = function(hash){
-    config.distributionVersion = hash
+exports.setDistributionVersion = function(version){
+    config.distributionVersion = version
 }
 
 

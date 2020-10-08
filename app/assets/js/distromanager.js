@@ -561,6 +561,7 @@ let data = null
  * Pulls the remote version of the distribution file from the correct URLs, requiring a download.
  */
 exports.pullRemote = function(){
+    logger.info('Now preparing to pull distribution from remote server.')
     return new Promise((resolve, reject) => {
         const opts = {
             url: distributionURL,
@@ -579,9 +580,10 @@ exports.pullRemote = function(){
 
                 fs.writeFile(distroDest, body, 'utf-8', (err) => {
                     if(!err){
-                        ConfigManager.setDistributionVersion(resp.headers['ETag'])
+                        ConfigManager.setDistributionVersion(String(resp.headers['etag']))
                         ConfigManager.save()
                         resolve(data)
+                        logger.info('Pulled distribution from remote server.')
                     } else {
                         reject(err)
                     }
@@ -598,11 +600,13 @@ exports.pullRemote = function(){
  * Pulls the local version of the distribution file, does not require any downloading.
  */
 exports.pullLocal = function(){
+    logger.info('Now preparing to pull distribution from local.')
     return new Promise((resolve, reject) => {
         fs.readFile(DEV_MODE ? DEV_PATH : DISTRO_PATH, 'utf-8', (err, d) => {
             if(!err){
                 data = DistroIndex.fromJSON(JSON.parse(d))
                 resolve(data)
+                logger.info('Pulled distribution from local.')
                 return
             } else {
                 reject(err)
@@ -618,9 +622,9 @@ exports.pullLocal = function(){
  */
 exports.pullRemoteIfOutdated = function(){
     return new Promise((resolve, reject) => {
-        request.head({distributionURL, json: true}, (err, resp) => {
+        request.head(distributionURL, (err, resp) => {
             if(!err && resp.statusCode === 200){
-                const tag = resp.headers['ETag']
+                const tag = resp.headers['etag']
                 if(tag === ConfigManager.getDistributionVersion()){
                     this.pullLocal().then(data => {
                         resolve(data)
