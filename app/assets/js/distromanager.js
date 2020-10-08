@@ -558,14 +558,16 @@ let data = null
 
 /**
  * @returns {Promise.<DistroIndex>}
+ * Pulls the remote version of the distribution file from the correct URLs, requiring a download.
  */
 exports.pullRemote = function(){
     return new Promise((resolve, reject) => {
         const opts = {
-            url: isDev ? constants.DEV_DISTRIBUTION_URL : constants.LIVE_DISTRIBUTION_URL,
+            url: distributionURL,
             timeout: 7500
         }
         const distroDest = path.join(ConfigManager.getLauncherDirectory(), 'distribution.json')
+
         request(opts, (error, resp, body) => {
             if(!error){
                 try {
@@ -577,18 +579,15 @@ exports.pullRemote = function(){
 
                 fs.writeFile(distroDest, body, 'utf-8', (err) => {
                     if(!err){
-                        ConfigManager.setDistributionHash(crypto.createHash('md5').update(body).digest('hex'))
+                        ConfigManager.setDistributionVersion(resp.headers['ETag'])
                         ConfigManager.save()
                         resolve(data)
-                        return
                     } else {
                         reject(err)
-                        return
                     }
                 })
             } else {
                 reject(error)
-                return
             }
         })
     })
@@ -596,6 +595,7 @@ exports.pullRemote = function(){
 
 /**
  * @returns {Promise.<DistroIndex>}
+ * Pulls the local version of the distribution file, does not require any downloading.
  */
 exports.pullLocal = function(){
     return new Promise((resolve, reject) => {
@@ -607,6 +607,35 @@ exports.pullLocal = function(){
             } else {
                 reject(err)
                 return
+            }
+        })
+    })
+}
+
+/**
+ * @returns {Promise.<DistroIndex>}
+ * Runs a remote ETag version check on the distribution file. If it matches the locally stored version, grab the local.
+ */
+exports.pullRemoteIfOutdated = function(){
+    return new Promise((resolve, reject) => {
+        request.head({distributionURL, json: true}, (err, resp) => {
+            if(!err && resp.statusCode === 200){
+                const tag = resp.headers['ETag']
+                if(tag === ConfigManager.getDistributionVersion()){
+                    this.pullLocal().then(data => {
+                        resolve(data)
+                    }).catch(err => {
+                        resolve(err)
+                    })
+                } else {
+                    this.pullRemote().then(data => {
+                        resolve(data)
+                    }).catch(err => {
+                        resolve(err)
+                    })
+                }
+            } else {
+                reject(err)
             }
         })
     })
