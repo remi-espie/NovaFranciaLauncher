@@ -1030,7 +1030,7 @@ function setResourcePackOptions(arr, selected){
             for(let sib of this.parentNode.children){
                 sib.removeAttribute('selected')
             }
-            this.setAttribute('selected', '')c
+            this.setAttribute('selected', '')
             closeSettingsSelect()
         })
         cont.appendChild(d)
