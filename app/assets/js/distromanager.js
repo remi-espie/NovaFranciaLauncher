@@ -1,11 +1,12 @@
 const fs = require('fs')
 const path = require('path')
-const crypto = require('crypto')
 const request = require('request')
 const ConfigManager = require('./configmanager')
 const logger = require('./loggerutil')('%c[DistroManager]', 'color: #a02d2a; font-weight: bold')
 const constants = require('../../config/constants')
 const isDev = require('../../assets/js/isdev')
+
+const distributionURL = isDev ? constants.DEV_DISTRIBUTION_URL : constants.LIVE_DISTRIBUTION_URL
 /**
  * Represents the download information
  * for a specific module.
