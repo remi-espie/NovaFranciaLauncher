@@ -325,17 +325,17 @@ function mergeModConfiguration(o, n, nReq = false){
     return n
 }
 
-function refreshDistributionIndex(remote, onSuccess, onError){
-    if(remote){
-        DistroManager.pullRemote()
-            .then(onSuccess)
-            .catch(onError)
-    } else {
-        DistroManager.pullLocal()
-            .then(onSuccess)
-            .catch(onError)
-    }
-}
+// function refreshDistributionIndex(remote, onSuccess, onError){
+//     if(remote){
+//         DistroManager.pullRemote()
+//             .then(onSuccess)
+//             .catch(onError)
+//     } else {
+//         DistroManager.pullLocal()
+//             .then(onSuccess)
+//             .catch(onError)
+//     }
+// }
 
 async function validateSelectedAccount(){
     const selectedAcc = ConfigManager.getSelectedAccount()

@@ -833,29 +833,21 @@ function validateServerInformation() {
     setLaunchDetails('Loading server information..')
     DiscordWrapper.updateDetails('Loading server information...')
 
-    // don't download from remote for the time being, until I've refracted the distribution file into several smaller files.
-    refreshDistributionIndex(false, (data) => {
+    DistroManager.pullRemoteIfOutdated().then(data => {
         onDistroRefresh(data)
         serv = data.getServer(ConfigManager.getSelectedServer())
         aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-    }, (err) => {
-        loggerLaunchSuite.log('Error while fetching a fresh copy of the distribution index.', err)
-        refreshDistributionIndex(false, (data) => {
-            onDistroRefresh(data)
+    }).catch(err => {
+        loggerLaunchSuite.error('Unable to refresh distribution index.', err)
+        if(DistroManager.getDistribution() == null){
+            showLaunchFailure('Fatal Error', 'Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details.')
+
+            // Disconnect from AssetExec
+            aEx.disconnect()
+        } else {
             serv = data.getServer(ConfigManager.getSelectedServer())
             aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-        }, (err) => {
-            loggerLaunchSuite.error('Unable to refresh distribution index.', err)
-            if(DistroManager.getDistribution() == null){
-                showLaunchFailure('Fatal Error', 'Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details.')
-
-                // Disconnect from AssetExec
-                aEx.disconnect()
-            } else {
-                serv = data.getServer(ConfigManager.getSelectedServer())
-                aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-            }
-        })
+        }
     })
 }
 
