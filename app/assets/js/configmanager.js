@@ -23,21 +23,21 @@ exports.getLauncherDirectory = function(){
 }
 
 /**
- * Retrieve the file hash for the current stored distribution file
+ * Retrieve the ETag version for the current stored distribution file
  *
  * @returns {string} The absolute path of the launcher directory.
  */
-exports.getDistributionHash = function(){
-    return config.distributionHash
+exports.getDistributionVersion = function(){
+    return config.distributionVersion
 }
 
 /**
- * Stores the current distribution file hash into the configuration
+ * Stores the current distribution ETag version into the configuration
  *
  * @returns {string} The absolute path of the launcher directory.
  */
-exports.setDistributionHash = function(hash){
-    config.distributionHash = hash
+exports.setDistributionVersion = function(hash){
+    config.distributionVersion = hash
 }
 
 
@@ -157,7 +157,7 @@ const DEFAULT_CONFIG = {
         dismissed: false
     },
     clientToken: null,
-    distributionHash: null,
+    distributionVersion: null,
     selectedServer: null, // Resolved
     selectedAccount: null,
     authenticationDatabase: {},
