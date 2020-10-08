@@ -12,14 +12,6 @@ let settings = require('./app/config/settings.json')
 // // Enable live reload for all the files inside your project directory
 if(isDev) {
     console.log('Is in dev mode!')
-    try {
-        require('electron-reloader')(module, {
-            debug: true,
-            watchRenderer: true
-        })
-    } catch (error) {
-        console.log('Error: ' + error)
-    }
 }
 
 app.on('window-all-closed', () => {
