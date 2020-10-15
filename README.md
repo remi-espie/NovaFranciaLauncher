@@ -68,8 +68,8 @@ This project is forked from HeliosLauncher, a project by dscalzi for the server 
 [discord2]: https://discord.gg/zNWUXdt 'Original Project Discord'
 [original]: https://github.com/dscalzi/HeliosLauncher 'Original Project GitHub'
 ```console
-> git clone https://github.com/dscalzi/HeliosLauncher.git
-> cd HeliosLauncher
+> git clone https://github.com/ModRealms-Network/ModRealmsLauncher.git
+> cd ModRealmsLauncher
 > npm install
 ```
 
@@ -168,18 +168,6 @@ You may use this software in your own project so long as the following condition
 * The source code remain **public** as a fork of this repository.
 
 We reserve the right to update these conditions at any time, please check back periodically.
-
----
-
-## Resources
-
-* [Wiki][wiki]
-* [Nebula (Create Distribution.json)][nebula]
-* [v2 Rewrite Branch (WIP)][v2branch]
-
-The best way to contact the developers is on Discord.
-
-[![discord](https://discordapp.com/api/guilds/211524927831015424/embed.png?style=banner3)][discord]
 
 ---
 
