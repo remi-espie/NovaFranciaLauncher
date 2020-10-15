@@ -90,6 +90,15 @@ function setLaunchEnabled(val){
     document.getElementById('launch_button').disabled = !val
 }
 
+/**
+ * Enable or disable the launch button.
+ *
+ * @param {string} the text to set the launch button to.
+ */
+function setLaunchButtonText(text){
+    document.getElementById('launch_button').innerHTML = text
+}
+
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', function(e){
     if(checkCurrentServer(true)){
@@ -217,6 +226,12 @@ function updateSelectedServer(serv){
         animateModsTabRefresh()
     }
     setLaunchEnabled(serv != null)
+    if(serv){
+        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'PLAY' : 'INSTALL')
+    } else {
+        setLaunchButtonText('PLAY')
+    }
+
 }
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '\u2022 Loading..'
@@ -722,6 +737,7 @@ function dlAsync(login = true){
             versionData = m.result.versionData
 
             if(login && allGood) {
+                updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
                 const authUser = ConfigManager.getSelectedAccount()
                 loggerLaunchSuite.log(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
                 let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
