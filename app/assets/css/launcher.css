@@ -3503,6 +3503,10 @@ input:checked + .toggleSwitchSlider:before {
     display: inline-flex;
 }
 
+#launch_content {
+    width: 525px;
+}
+
 /* The launch button. */
 #launch_button {
     background: none;
