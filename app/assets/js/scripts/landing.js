@@ -133,10 +133,14 @@ document.getElementById('settingsMediaButton').onclick = (e) => {
 }
 
 document.getElementById('openInstanceMediaButton').onclick = (e) => {
-    if(ConfigManager.getSelectedServer()){
-        shell.openPath(path.join(ConfigManager.getDataDirectory(), 'instances', ConfigManager.getSelectedServer()))
+    let INSTANCE_PATH = path.join(ConfigManager.getDataDirectory(), 'instances', ConfigManager.getSelectedServer())
+    let INSTANCES_PATH = path.join(ConfigManager.getDataDirectory(), 'instances')
+    if(ConfigManager.getSelectedServer() && fs.pathExistsSync(INSTANCE_PATH)){
+        shell.openPath(INSTANCE_PATH)
+    } else if (fs.pathExistsSync(INSTANCES_PATH)){
+        shell.openPath(INSTANCES_PATH)
     } else {
-        shell.openPath(path.join(ConfigManager.getDataDirectory(), 'instances'))
+        shell.openPath(ConfigManager.getDataDirectory())
     }
 }
 
