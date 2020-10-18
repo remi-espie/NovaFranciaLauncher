@@ -44,11 +44,12 @@ branches:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
 
 before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "TheFlash787"
-  - git config --local user.email "sonically@hotmail.co.uk"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
+  - if ! [[ $TRAVIS_TAG ]]; then
+  -   git config --local user.name "TheFlash787"
+  -   git config --local user.email "sonically@hotmail.co.uk"
+  -   git tag $TRAVIS_TAG
+  - fi
 
 deploy:
   provider: releases
