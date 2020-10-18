@@ -216,7 +216,7 @@ function randomiseBackground() {
 
 // Bind selected server
 function updateSelectedServer(serv){
-    server_selection_button.innerHTML = '\u2022 ' + (serv != null ? serv.getName() : 'No Server Selected')
+    server_selection_button.innerHTML = (serv != null ? serv.getName() : 'No Server Selected')
     if(getCurrentView() === VIEWS.settings){
         saveAllModConfigurations()
     }
@@ -227,7 +227,7 @@ function updateSelectedServer(serv){
     }
     setLaunchEnabled(serv != null)
     if(serv){
-        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'PLAY' : 'INSTALL')
+        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'PLAY' : 'INSTALL & PLAY')
     } else {
         setLaunchButtonText('PLAY')
     }
