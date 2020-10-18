@@ -3601,7 +3601,6 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 11px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
 }
 
 /*******************************************************************************

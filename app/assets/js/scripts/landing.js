@@ -823,7 +823,7 @@ function dlAsync(login = true){
                     proc.stdout.on('data', tempListener)
                     proc.stderr.on('data', gameErrorListener)
 
-                    setLaunchDetails('Done. Enjoy the server!')
+                    setLaunchDetails('Your modpack is now launching...<br>Enjoy the server!')
                     proc.on('close', (code, signal) => {
                         if(hasRPC){
                             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
