@@ -754,7 +754,7 @@ function dlAsync(login = true){
                     proc.stdout.on('data', gameStateChange)
                     proc.stdout.on('data', gameCrashReportListener)
                     proc.stdout.removeListener('data', tempListener)
-                    proc.stderr.removeListener('data', gameErrorListener)
+                    proc.stdout.removeListener('data', gameLaunchErrorListener)
                 }
                 const start = Date.now()
 
@@ -763,7 +763,8 @@ function dlAsync(login = true){
                 // the client application has started, and we can hide
                 // the progress bar stuff.
                 const tempListener = function(data){
-                    if(GAME_LAUNCH_REGEX.test(data.trim())){
+                    data = data.trim()
+                    if(GAME_LAUNCH_REGEX.test(data)){
                         const diff = Date.now()-start
                         if(diff < MIN_LINGER) {
                             setTimeout(onLoadComplete, MIN_LINGER-diff)
@@ -785,6 +786,7 @@ function dlAsync(login = true){
                 // Listener for Discord RPC.
                 const gameCrashReportListener = function(data){
                     data = data.trim()
+                    console.log(data)
                     if(data.includes('---- Minecraft Crash Report ----')){
                         let date = new Date()
                         let CRASH_REPORT_FOLDER = path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports')
@@ -793,7 +795,7 @@ function dlAsync(login = true){
                         shell.showItemInFolder(CRASH_REPORT_PATH)
                         setOverlayContent(
                             'Game Crashed!',
-                            'Uh oh! It looks like your game has just crashed. We have opened up the crash-reports folder so that you can easily share it with our staff team over on Discord. If you have any repeating crashes, we always recommend that you come and see us!<br><br>For future reference, your crash report file is: <br>' + CRASH_REPORT_NAME,
+                            'Uh oh! It looks like your game has just crashed. We have opened up the crash-reports folder so that you can easily share it with our staff team over on Discord. If you have any repeating crashes, we always recommend that you come and see us on <a href="https://discord.gg/tKKeTdc">Discord!</a><br><br>For future reference, your crash report file is: <br>' + CRASH_REPORT_NAME,
                             'Okay, thanks!',
                             'Open Crash Report'
                         )
@@ -807,11 +809,30 @@ function dlAsync(login = true){
                     }
                 }
 
-                const gameErrorListener = function(data){
+                const gameLaunchErrorListener = function(data){
                     data = data.trim()
                     if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
                         loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not downloaded properly.')
-                        showLaunchFailure('Error During Launch', 'The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href="https://github.com/dscalzi/HeliosLauncher/issues">submit an issue</a> and let us know what antivirus software you use. We\'ll contact them and try to straighten things out.')
+                        showLaunchFailure('Error During Launch', 'The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href="https://github.com/ModRealms-Network/ModRealmsLauncher/issues">submit an issue</a> and let us know what antivirus software you use. We\'ll contact them and try to straighten things out.')
+                        proc.kill(9)
+                    }  else if(data.includes('net.minecraftforge.fml.relauncher.FMLSecurityManager$ExitTrappedException')){
+                        loggerLaunchSuite.error('Game launch failed before the JVM could open the window!')
+                        let LOG_FILE = path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'logs', 'latest.log')
+                        setOverlayContent(
+                            'Error During Launch!',
+                            'It seems that your client was not able to launch past the point where the client opens up and crash reports can be generated. A common cause of this can be a mixin mismatch between mods early on during the launch.<br><br>If you have installed any custom drop-in mods, please disable these and try launch again.<br><br>If you continue to have this issue, please upload your latest.log to a <a href="https://ptero.co">pastebin</a> and drop it to us on our <a href="https://discord.gg/tKKeTdc">Discord</a> server!',
+                            'Okay, thanks!',
+                            'Open latest.log'
+                        )
+                        setOverlayHandler(() => {
+                            toggleOverlay(false)
+                        })
+                        setDismissHandler(() => {
+                            shell.openPath(LOG_FILE)
+                        })
+                        toggleOverlay(true, true)
+                        toggleLaunchArea(false)
+                        proc.kill(9)
                     }
                 }
 
@@ -821,7 +842,7 @@ function dlAsync(login = true){
 
                     // Bind listeners to stdout.
                     proc.stdout.on('data', tempListener)
-                    proc.stderr.on('data', gameErrorListener)
+                    proc.stdout.on('data', gameLaunchErrorListener)
 
                     setLaunchDetails('Your modpack is now launching...<br>Enjoy the server!')
                     proc.on('close', (code, signal) => {
