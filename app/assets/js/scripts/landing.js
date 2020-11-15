@@ -8,10 +8,12 @@ const crypto                  = require('crypto')
 const {URL}                   = require('url')
 const {Remarkable}            = require('remarkable')
 const fs                      = require('fs-extra')
+const chokidar                = require('chokidar')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
 const Mojang                  = require('./assets/js/mojang')
+const ModRealmsRest           = require('./assets/js/modrealms')
 const ProcessBuilder          = require('./assets/js/processbuilder')
 const ServerStatus            = require('./assets/js/serverstatus')
 
@@ -159,6 +161,7 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
         showMainUI(data)
+        refreshModRealmsStatuses()
         setOverlayContent(
             'Launcher Refreshed!',
             'This is a confirmation letting you know that you have manually refreshed your launcher, your server list is now up to date and should be good to go! If you have any problems please do let us know!',
@@ -304,6 +307,47 @@ const refreshMojangStatuses = async function(){
     document.getElementById('mojang_status_icon').style.color = Mojang.statusToHex(status)
 }
 
+const refreshModRealmsStatuses = async function(){
+    loggerLanding.log('Refreshing ModRealms Statuses..')
+    let status = 'grey'
+    let tooltipServerHTML = ''
+    let greenCount = 0
+
+    // let modpacks = await ModRealmsRest.modpacks()
+    // let statuses = await ModRealmsRest.status()
+
+    ModRealmsRest.modpacks().then(modpacks => {
+        ModRealmsRest.status().then(statuses => {
+            if(modpacks.length !== 0){
+                for(let i=0; i<statuses.length; i++){
+                    const server = statuses[i]
+                    const players = server.isOffline() ? 'Restarting' : `${server.players}/${server.maxPlayers}`
+                    tooltipServerHTML += `<div class="modrealmsStatusContainer">
+                    <span class="modrealmsStatusIcon" style="color: ${Mojang.statusToHex(server.status)};">&#8226;</span>
+                    <span class="modrealmsStatusName">${server.name}</span>
+                    <span class="modrealmsStatusPlayers">${players}</span>
+                </div>`
+
+                    if(server.status.toLowerCase() === 'green') ++greenCount
+                }
+
+                if(greenCount === 0){
+                    status = 'red'
+                } else {
+                    status = 'green'
+                }
+            } else {
+                tooltipServerHTML = `<div class="modrealmsStatusContainer">
+                    <span class="modrealmsStatusName" style="text-align: center;">Sorry! There are no modpacks available!</span>
+                </div>`
+            }
+
+            document.getElementById('modrealmsStatusServerContainer').innerHTML = tooltipServerHTML
+            document.getElementById('modrealms_status_icon').style.color = Mojang.statusToHex(status)
+        })
+    })
+}
+
 const refreshServerStatus = async function(fade = false){
     loggerLanding.log('Refreshing Server Status')
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
@@ -348,11 +392,13 @@ function loadDiscord(){
 }
 
 refreshMojangStatuses()
+refreshModRealmsStatuses()
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
 // Set refresh rate to once every 5 minutes.
-let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 300000)
-let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
+let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 30000)
+let networkStatusListener = setInterval(() => refreshModRealmsStatuses(true), 30000)
+let serverStatusListener = setInterval(() => refreshServerStatus(true), 30000)
 
 /**
  * Shows an error overlay, toggles off the launch area.
@@ -751,8 +797,8 @@ function dlAsync(login = true){
                         DiscordWrapper.updateDetails('Launching game...')
                         DiscordWrapper.resetTime()
                     }
+                    gameCrashReportListener()
                     proc.stdout.on('data', gameStateChange)
-                    proc.stdout.on('data', gameCrashReportListener)
                     proc.stdout.removeListener('data', tempListener)
                     proc.stdout.removeListener('data', gameLaunchErrorListener)
                 }
@@ -784,18 +830,16 @@ function dlAsync(login = true){
                 }
 
                 // Listener for Discord RPC.
-                const gameCrashReportListener = function(data){
-                    data = data.trim()
-                    console.log(data)
-                    if(data.includes('---- Minecraft Crash Report ----')){
-                        let date = new Date()
-                        let CRASH_REPORT_FOLDER = path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports')
-                        let CRASH_REPORT_NAME = ('crash-' + date.getFullYear() + '-' + (date.getMonth() + 1).toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-' + date.getDate().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '_' + date.getHours().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getMinutes().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '.' + date.getSeconds().toLocaleString(undefined, {minimumIntegerDigits: 2}) + '-client.txt')
-                        let CRASH_REPORT_PATH = path.join(CRASH_REPORT_FOLDER, CRASH_REPORT_NAME)
-                        shell.showItemInFolder(CRASH_REPORT_PATH)
+                const gameCrashReportListener = function(){
+                    const watcher = chokidar.watch(path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports'), {
+                        persistent: true
+                    })
+
+                    watcher.on('add', path => {
+                        shell.showItemInFolder(path)
                         setOverlayContent(
                             'Game Crashed!',
-                            'Uh oh! It looks like your game has just crashed. We have opened up the crash-reports folder so that you can easily share it with our staff team over on Discord. If you have any repeating crashes, we always recommend that you come and see us on <a href="https://discord.gg/tKKeTdc">Discord!</a><br><br>For future reference, your crash report file is: <br>' + CRASH_REPORT_NAME,
+                            'Uh oh! It looks like your game has just crashed. We have opened up the crash-reports folder so that you can easily share it with our staff team over on Discord. If you have any repeating crashes, we always recommend that you come and see us on <a href="https://discord.gg/tKKeTdc">Discord!</a><br><br>For future reference, your crash report file location is: <br>' + path,
                             'Okay, thanks!',
                             'Open Crash Report'
                         )
@@ -803,10 +847,10 @@ function dlAsync(login = true){
                             toggleOverlay(false)
                         })
                         setDismissHandler(() => {
-                            shell.openPath(CRASH_REPORT_PATH)
+                            shell.openPath(path)
                         })
                         toggleOverlay(true, true)
-                    }
+                    })
                 }
 
                 const gameLaunchErrorListener = function(data){
