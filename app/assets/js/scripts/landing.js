@@ -832,7 +832,8 @@ function dlAsync(login = true){
                 // Listener for Discord RPC.
                 const gameCrashReportListener = function(){
                     const watcher = chokidar.watch(path.join(ConfigManager.getInstanceDirectory(), serv.getID(), 'crash-reports'), {
-                        persistent: true
+                        persistent: true,
+                        ignoreInitial: true
                     })
 
                     watcher.on('add', path => {
