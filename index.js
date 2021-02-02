@@ -24,18 +24,18 @@ const clientID = 'de140eea-429a-4a6b-b67a-30ea6af614f3'
 // Setup auto updater.
 function initAutoUpdater(event, data) {
 
-    if(data){
+    if (data) {
         autoUpdater.allowPrerelease = true
     } else {
         // Defaults to true if application version contains prerelease components (e.g. 0.12.1-alpha.1)
         // autoUpdater.allowPrerelease = true
     }
-    
-    if(isDev){
+
+    if (isDev) {
         autoUpdater.autoInstallOnAppQuit = false
         autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml')
     }
-    if(process.platform === 'darwin'){
+    if (process.platform === 'darwin') {
         autoUpdater.autoDownload = false
     }
     autoUpdater.on('update-available', (info) => {
@@ -52,12 +52,12 @@ function initAutoUpdater(event, data) {
     })
     autoUpdater.on('error', (err) => {
         event.sender.send('autoUpdateNotification', 'realerror', err)
-    }) 
+    })
 }
 
 // Open channel to listen for update actions.
 ipcMain.on('autoUpdateAction', (event, arg, data) => {
-    switch(arg){
+    switch (arg) {
         case 'initAutoUpdater':
             console.log('Initializing auto updater.')
             initAutoUpdater(event, data)
@@ -70,9 +70,9 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
                 })
             break
         case 'allowPrereleaseChange':
-            if(!data){
+            if (!data) {
                 const preRelComp = semver.prerelease(app.getVersion())
-                if(preRelComp != null && preRelComp.length > 0){
+                if (preRelComp != null && preRelComp.length > 0) {
                     autoUpdater.allowPrerelease = true
                 } else {
                     autoUpdater.allowPrerelease = data
@@ -104,11 +104,13 @@ ipcMain.on('cachedDistributionNotification', (event, res) => {
 app.disableHardwareAcceleration()
 
 let MSALoginWindow = null
+let login = false
 
 // Open the Microsoft Account Login window
 ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
-    if(MSALoginWindow != null){ 
-        ipcEvent.sender.send('MSALoginWindowNotification', 'error', 'AlreadyOpenException')
+    login = false
+    if (MSALoginWindow != null) {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AlreadyOpenException')
         return
     }
     MSALoginWindow = new BrowserWindow({
@@ -116,16 +118,23 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
         backgroundColor: '#222222',
         width: 520,
         height: 600,
-        frame: false,
+        frame: true,
         icon: getPlatformIcon('SealCircle')
     })
 
     MSALoginWindow.on('closed', () => {
+
         MSALoginWindow = null
     })
 
+    MSALoginWindow.on('close', event => {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AuthNotFinished')
+
+    })
+
     MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
-        if(uri.startsWith(redirectUriPrefix)) {
+        login = true
+        if (uri.startsWith(redirectUriPrefix)) {
             let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
             let queryMap = new Map()
 
@@ -200,8 +209,8 @@ function createWindow() {
 }
 
 function createMenu() {
-    
-    if(process.platform === 'darwin') {
+
+    if (process.platform === 'darwin') {
 
         // Extend default included application menu to continue support for quit keyboard shortcut
         let applicationSubMenu = {
@@ -263,9 +272,9 @@ function createMenu() {
 
 }
 
-function getPlatformIcon(filename){
+function getPlatformIcon(filename) {
     let ext
-    switch(process.platform) {
+    switch (process.platform) {
         case 'win32':
             ext = 'ico'
             break
