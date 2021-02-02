@@ -23,6 +23,12 @@ const statuses = [
     //     essential: true
     // },
     {
+        service: 'session.minecraft.net',
+        status: 'grey',
+        name: 'Multiplayer Session Service',
+        essential: true
+    },
+    {
         service: 'authserver.mojang.com',
         status: 'grey',
         name: 'Authentication Service',
