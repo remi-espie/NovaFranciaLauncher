@@ -81,7 +81,6 @@ function getXSTSToken(XBLToken) {
                             message: 'Since you are not yet 13 years old, an adult must add you to a family in order for you to use ModRealmsLauncher!'
                         })
                         return
-                
                 }
                 reject(response.body)
             }
@@ -183,7 +182,7 @@ exports.authMinecraft = async accessToken => {
 
         return MCToken
     } catch (error) {
-        Promise.reject(error)
+        await Promise.reject(error)
     }
 }
 
@@ -216,7 +215,6 @@ exports.getMCProfile = MCAccessToken => {
         }
         requestPromise(profileURI, options).then(response => {
             const body = JSON.parse(response.body)
-
             resolve(body)
         }).catch(error => {
             reject(error)

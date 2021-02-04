@@ -152,12 +152,12 @@ exports.addMSAccount = async authCode => {
         const accessToken = await Microsoft.getAccessToken(authCode)
         ConfigManager.setMicrosoftAuth(accessToken)
         const MCAccessToken = await Microsoft.authMinecraft(accessToken.access_token)
-        const minecraftBuyed = await Microsoft.checkMCStore(MCAccessToken.access_token)
-        if(!minecraftBuyed)
+        const MCProfile = await Microsoft.getMCProfile(MCAccessToken.access_token).catch(err => {})
+        if(!MCProfile){
             return Promise.reject({
-                message: 'You didn\'t buy Minecraft! Please use another Microsoft account or buy Minecraft.'
+                message: 'The account you are trying to login with has not purchased a copy of Minecraft You may purchase a copy on <a href="https://minecraft.net/">Minecraft.net</a>.'
             })
-        const MCProfile = await Microsoft.getMCProfile(MCAccessToken.access_token)
+        }
         const ret = ConfigManager.addAuthAccount(MCProfile.id, MCAccessToken.access_token, MCProfile.name, MCProfile.name, MCAccessToken.expires_at, 'microsoft')
         ConfigManager.save()
 
