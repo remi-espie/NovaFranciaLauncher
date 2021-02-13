@@ -1,9 +1,9 @@
 {
   "name": "modrealmslauncher",
-  "version": "2.4.0-release",
+  "version": "2.5.0-prerelease.1",
   "productName": "ModRealms Launcher",
   "description": "Modded Minecraft Launcher",
-  "author": "Rob Weddell and Ally Mitchell (original by Daniel Scalzi)",
+  "author": "ModRealms",
   "license": "UNLICENSED",
   "homepage": "https://github.com/ModRealms-Network/HeliosLauncher",
   "bugs": {

@@ -251,7 +251,6 @@ exports.scanForResourcePacks = function(instanceDir){
     if(fs.existsSync(resourcePackDir)){
         let modCandidates = fs.readdirSync(resourcePackDir)
         for(let file of modCandidates){
-            console.log(file)
             const match = SHADER_REGEX.exec(file)
             if(match != null){
                 packsDiscovered.push({
@@ -305,7 +304,6 @@ exports.setEnabledResourcePack = function(instanceDir, pack){
     } else {
         buf = `resourcePacks:["${pack}"]`
     }
-    console.log(buf)
     fs.writeFileSync(options, buf, {encoding: 'utf-8'})
 }
 

@@ -1,13 +1,5 @@
 // Requirements
-const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-const autoUpdater                   = require('electron-updater').autoUpdater
-const ejse                          = require('ejs-electron')
-const fs                            = require('fs')
-const isDev                         = require('./app/assets/js/isdev')
-const path                          = require('path')
-const semver                        = require('semver')
-const url                           = require('url')
-let settings = require('./app/config/settings.json')
+const {app, BrowserWindow, ipcMain, Menu} = require('electron')
 const autoUpdater = require('electron-updater').autoUpdater
 const ejse = require('ejs-electron')
 const fs = require('fs')
@@ -15,9 +7,10 @@ const isDev = require('./app/assets/js/isdev')
 const path = require('path')
 const semver = require('semver')
 const url = require('url')
+let settings = require('./app/config/settings.json')
 
 // // Enable live reload for all the files inside your project directory
-if(isDev) {
+if (isDev) {
     console.log('Is in dev mode!')
 }
 
@@ -135,12 +128,11 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
 
     MSALoginWindow.on('close', event => {
         ipcEvent.reply('MSALoginWindowReply', 'error', 'AuthNotFinished')
-
     })
 
     MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
+        // eslint-disable-next-line no-unused-vars
         login = true
-        if (uri.startsWith(redirectUriPrefix)) {
         if (uri.startsWith(redirectUriPrefix)) {
             let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
             let queryMap = new Map()
@@ -213,7 +205,7 @@ function createWindow() {
     ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
 
     //load constants into ejs
-    Object.keys(settings).forEach(function(key) {
+    Object.keys(settings).forEach(function (key) {
         ejse.data(key, settings[key])
     })
 
