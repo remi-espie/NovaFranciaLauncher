@@ -3698,8 +3698,10 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Button which opens the server selection view. */
 #server_selection_button {
+    font-size: 32px;
     background: none;
     border: none;
+    border-bottom: 2px #ff0066 double;
     outline: none;
     cursor: pointer;
     line-height: 24px;
