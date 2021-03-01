@@ -469,9 +469,11 @@ function processLogOut(val, isLastAccount, skip = false) {
         val,
         isLastAccount
     }
+
+    const parent = val.closest('.settingsAuthAccount')
+    const uuid = parent.getAttribute('uuid')
+
     if (!skip) {
-        const parent = val.closest('.settingsAuthAccount')
-        const uuid = parent.getAttribute('uuid')
         const account = ConfigManager.getAuthAccount(uuid)
         if (account.type === 'microsoft') {
             toggleOverlay(true, false, 'msOverlay')
