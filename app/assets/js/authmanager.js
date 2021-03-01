@@ -141,7 +141,7 @@ exports.validateSelected = async function(){
     const isValid = await Mojang.validate(current.accessToken, ConfigManager.getClientToken())
     if(!isValid){
         try{
-            if (ConfigManager.getSelectedAccount() === 'microsoft') {
+            if (ConfigManager.getSelectedAccount().type === 'microsoft') {
                 const validate = await validateSelectedMicrosoft()
                 return validate
             } else {
