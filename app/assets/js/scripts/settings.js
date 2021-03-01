@@ -817,7 +817,6 @@ function resolveServerCodesForUI(){
         const code = ele.getAttribute('code')
         const servs = DistroManager.getDistribution().getServersFromCode(code)
         const valid = servs && servs.length
-        loggerSettings.log('valid: ' + valid)
         if(valid){
             for(let serv of servs){
                 loggerSettings.log('server: ' + serv.getName())
