@@ -14,7 +14,7 @@ You can download from [GitHub Releases](https://github.com/ModRealms-Network/Mod
 
 ## Development (ModRealms fork)
 
-All ModRealms-specific changes (UI, assets, default configuration, etc..) will be in the master branch.
+All ModRealms-specific changes (UI, assets, default configuration, etc...) will be in the master branch.
 
 A development branch __mr-features__ will be used to work on new additions to the core mechanics of the original project (as below) and will keep up to date with the original project. We may submit features from this branch as a PR to the original project.
 
