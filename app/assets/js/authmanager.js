@@ -25,7 +25,7 @@ async function validateSelectedMojang() {
             ConfigManager.updateAuthAccount(current.uuid, session.accessToken)
             ConfigManager.save()
         } catch(err) {
-            logger.debug('Error while validating selected profile:', err)
+            logger.log('Error while validating selected profile:', err)
             if(err && err.error === 'ForbiddenOperationException'){
                 // What do we do?
             }
@@ -54,12 +54,12 @@ async function validateSelectedMicrosoft() {
             if (MSExpired) {
                 const newAccessToken = await Microsoft.refreshAccessToken(current.microsoft.refresh_token)
                 const newMCAccessToken = await Microsoft.authMinecraft(newAccessToken.access_token)
-                ConfigManager.updateAuthAccount(current.uuid, newMCAccessToken.access_token, newAccessToken.expires_at)
+                ConfigManager.updateMicrosoftAuthAccount(current.uuid, newMCAccessToken.access_token, newAccessToken.expires_at)
                 ConfigManager.save()
                 return true
             }
             const newMCAccessToken = await Microsoft.authMinecraft(current.microsoft.access_token)
-            ConfigManager.updateAuthAccount(current.uuid, newMCAccessToken.access_token, current.microsoft.access_token, current.microsoft.expires_at, newMCAccessToken.expires_at)
+            ConfigManager.updateMicrosoftAuthAccount(current.uuid, newMCAccessToken.access_token, current.microsoft.access_token, current.microsoft.expires_at, newMCAccessToken.expires_at)
             ConfigManager.save()
 
             return true
