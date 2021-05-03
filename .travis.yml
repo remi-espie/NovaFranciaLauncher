@@ -65,6 +65,6 @@ deploy:
     - dist/latest-linux.yml
     - dist/latest.yml
   draft: true
-  overwrite: false
+  overwrite: true
   on:
     tags: true
