@@ -8,8 +8,8 @@ const fs = require('fs')
 const isDev = require('./app/assets/js/isdev')
 const path = require('path')
 const semver = require('semver')
-const url = require('url')
 let settings = require('./app/config/settings.json')
+const { pathToFileURL }             = require('url')
 
 // // Enable live reload for all the files inside your project directory
 if (isDev) {
@@ -197,19 +197,13 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true,
-            worldSafeExecuteJavaScript: true
+            enableRemoteModule: true
         },
         backgroundColor: '#171614'
     })
 
     let backgroundDir = fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds'))
     ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
-
-    //load constants into ejs
-    Object.keys(settings).forEach(function (key) {
-        ejse.data(key, settings[key])
-    })
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'app', 'app.ejs'),
