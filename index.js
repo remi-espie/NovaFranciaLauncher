@@ -8,8 +8,8 @@ const fs = require('fs')
 const isDev = require('./app/assets/js/isdev')
 const path = require('path')
 const semver = require('semver')
-let settings = require('./app/config/settings.json')
-const { pathToFileURL }             = require('url')
+const settings = require('./app/config/settings.json')
+const url = require('url')
 
 // // Enable live reload for all the files inside your project directory
 if (isDev) {
@@ -19,6 +19,13 @@ if (isDev) {
 app.on('window-all-closed', () => {
     app.quit()
 })
+
+/* Ensure that we export the config to be used by ejse */
+for (let s in settings) {
+    ejse.data(s, settings[s])
+}
+
+ejse.data('APP_DISPLAY_NAME', settings.APP_DISPLAY_NAME)
 
 const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
 const clientID = 'de140eea-429a-4a6b-b67a-30ea6af614f3'
