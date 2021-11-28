@@ -288,12 +288,12 @@ body, button {
     color: white;
     margin-bottom: 30px;
     letter-spacing: 2px;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 #welcomeDescription {
     text-align: center;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 100;
     color: #bdbdbd;
     text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 20px
@@ -330,7 +330,7 @@ body, button {
 #welcomeButtonContent {
     display: flex;
     align-items: center;
-    font-size: 28px;
+    font-size: 18px;
     color: #7289da
 }
 
@@ -505,7 +505,7 @@ body, button {
 #loginSubheader {
     font-family: 'Avenir Medium';
     margin-bottom: 15px;
-    font-size: 30px;
+    font-size: 32px;
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -576,7 +576,7 @@ body, button {
     text-align: center;
     box-sizing: border-box;
     padding: 5px;
-    font-size: 22px;
+    font-size: 12px;
     letter-spacing: 1px;
 }
 .loginField:focus {
@@ -605,7 +605,7 @@ body, button {
 #loginOptions {
     display: flex;
     justify-content: space-between;
-    width: 130%;
+    width: 80%;
 }
 
 /* Remember option text. */
@@ -620,8 +620,8 @@ body, button {
     font-weight: bold;
     letter-spacing: 2px;
     border: none;
-    padding: 20px 0px 20px 0px;
-    margin: 20px 0px 120px 0px;
+    padding: 20px 0;
+    margin: 20px 0;
     cursor: pointer;
     position: relative;
     right: -10px;
@@ -636,7 +636,7 @@ body, button {
 }
 #loginButton:hover,
 #loginButton:focus {
-    text-shadow: 0px 0px 20px #fff;
+    text-shadow: 0 0 20px #fff;
     outline: none;
 }
 #loginButton:active {
@@ -669,7 +669,7 @@ body, button {
 #loginButtonContent {
     display: flex;
     align-items: center;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 #loginButton .circle-loader,
@@ -694,8 +694,8 @@ body, button {
     display: inline-block;
     vertical-align: top;
     border-radius: 50%;
-    width: 16px;
-    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
 }
 .circle-loader-big {
     margin:auto;
@@ -709,8 +709,8 @@ body, button {
     display: block;
     align-self: center;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
 }
 .load-complete {
     animation: none;
@@ -825,7 +825,7 @@ body, button {
     align-items: center;
     position: relative;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 16px;
     -webkit-user-select: none;
 }
 
@@ -971,7 +971,7 @@ body, button {
     justify-content: center;
 }
 #settingsNavHeaderText {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 /* Navigation items outer container. */
@@ -4268,6 +4268,17 @@ input:checked + .toggleSwitchSlider:before {
 
 .spinning {
     animation: spin 0.9s infinite;
+}
+
+.loadIcon{
+    max-height: 350px;
+    max-width: 177px;
+    animation: fadeIn 0.9s infinite;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
 }
 
 /* Pulsing animation for the spinner. */

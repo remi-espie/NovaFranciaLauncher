@@ -331,10 +331,10 @@ settingsNavDone.onclick = () => {
     if(hasRPC){
         if(ConfigManager.getSelectedServer()){
             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-            DiscordWrapper.updateDetails('Ready to Play!')
+            DiscordWrapper.updateDetails('Près à jouer!')
             DiscordWrapper.updateState('Server: ' + serv.getName())
         } else {
-            DiscordWrapper.updateDetails('Landing Screen...')
+            DiscordWrapper.updateDetails('En chargement...')
         }
     }
 }

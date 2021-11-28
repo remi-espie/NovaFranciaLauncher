@@ -1,13 +1,13 @@
 {
-  "name": "modrealmslauncher",
+  "name": "novafrancialauncher",
   "version": "2.5.1-release",
-  "productName": "ModRealms Launcher",
+  "productName": "Nova Francia Launcher",
   "description": "Modded Minecraft Launcher",
-  "author": "ModRealms",
+  "author": "LuckMl1",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/ModRealms-Network/HeliosLauncher",
+  "homepage": "https://github.com/remi-espie/NovaFranciaLauncher",
   "bugs": {
-    "url": "https://github.com/ModRealms-Network/HeliosLauncher/issues"
+    "url": "https://github.com/remi-espie/NovaFranciaLauncher/issues"
   },
   "private": true,
   "main": "index.js",
@@ -49,6 +49,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ModRealms-Network/ModRealmsLauncher.git"
+    "url": "git+https://github.com/remi-espie/NovaFranciaLauncher.git"
   }
 }

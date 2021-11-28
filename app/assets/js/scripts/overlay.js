@@ -120,7 +120,7 @@ function toggleOverlay(toggleState, dismissable = false, content = 'overlayConte
 function toggleServerSelection(toggleState) {
     prepareServerSelectionList()
     toggleOverlay(toggleState, true, 'serverSelectContent')
-    DiscordWrapper.updateDetails('Selecting Server...')
+    DiscordWrapper.updateDetails('Choix du serveur...')
 }
 
 /**
@@ -180,7 +180,7 @@ document.getElementById('serverSelectConfirm').addEventListener('click', () => {
             updateSelectedServer(serv)
             refreshServerStatus(true)
             toggleOverlay(false)
-            DiscordWrapper.updateDetails('Ready to Play!')
+            DiscordWrapper.updateDetails('Près à jouer!')
             DiscordWrapper.updateState('Server: ' + serv.getName())
             return
         }

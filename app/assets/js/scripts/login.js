@@ -251,17 +251,17 @@ loginCancelButton.onclick = (e) => {
         }
         if(loginViewOnSuccess === VIEWS.settings){
             if(hasRPC){
-                DiscordWrapper.updateDetails('In the Settings...')
+                DiscordWrapper.updateDetails('Dans les paramètres...')
                 DiscordWrapper.clearState()
             }
         } else {
             if(hasRPC){
                 if(ConfigManager.getSelectedServer()){
                     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                    DiscordWrapper.updateDetails('Ready to Play!')
+                    DiscordWrapper.updateDetails('Près à jouer!')
                     DiscordWrapper.updateState('Server: ' + serv.getName())
                 } else {
-                    DiscordWrapper.updateDetails('Landing Screen...')
+                    DiscordWrapper.updateDetails('En chargement...')
                 }
             }
         }
@@ -290,17 +290,17 @@ loginButton.addEventListener('click', () => {
                 if(loginViewOnSuccess === VIEWS.settings){
                     prepareSettings()
                     if(hasRPC){
-                        DiscordWrapper.updateDetails('In the Settings...')
+                        DiscordWrapper.updateDetails('Dans les paramètres...')
                         DiscordWrapper.clearState()
                     }
                 } else {
                     if(hasRPC){
                         if(ConfigManager.getSelectedServer()){
                             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                            DiscordWrapper.updateDetails('Ready to Play!')
+                            DiscordWrapper.updateDetails('Près à jouer!')
                             DiscordWrapper.updateState('Server: ' + serv.getName())
                         } else {
-                            DiscordWrapper.updateDetails('Landing Screen...')
+                            DiscordWrapper.updateDetails('En Chargement...')
                         }
                     }
                 }

@@ -80,7 +80,7 @@ function setLaunchPercentage(value, max, percent = ((value/max)*100)){
 function setDownloadPercentage(value, max, percent = ((value/max)*100)){
     remote.getCurrentWindow().setProgressBar(value/max)
     setLaunchPercentage(value, max, percent)
-    DiscordWrapper.updateDetails('Downloading... (' + percent + '%)')
+    DiscordWrapper.updateDetails('Téléchargement... (' + percent + '%)')
 }
 
 /**
@@ -138,7 +138,7 @@ document.getElementById('settingsMediaButton').onclick = (e) => {
     prepareSettings()
     switchView(getCurrentView(), VIEWS.settings)
     if(hasRPC){
-        DiscordWrapper.updateDetails('In the Settings...')
+        DiscordWrapper.updateDetails('Dans les paramètres...')
         DiscordWrapper.clearState()
     }
 }
@@ -789,7 +789,7 @@ function dlAsync(login = true){
                 const onLoadComplete = () => {
                     toggleLaunchArea(false)
                     if(hasRPC){
-                        DiscordWrapper.updateDetails('Launching game...')
+                        DiscordWrapper.updateDetails('Lancement du jeu...')
                         DiscordWrapper.resetTime()
                     }
                     gameCrashReportListener()
@@ -819,7 +819,7 @@ function dlAsync(login = true){
                 const gameStateChange = function(data){
                     data = data.trim()
                     if(SERVER_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Exploring the Realm!')
+                        DiscordWrapper.updateDetails('En Nova Francia!')
                         DiscordWrapper.resetTime()
                     }
                 }
@@ -888,7 +888,7 @@ function dlAsync(login = true){
                     proc.on('close', (code, signal) => {
                         if(hasRPC){
                             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                            DiscordWrapper.updateDetails('Ready to Play!')
+                            DiscordWrapper.updateDetails('Près à jouer!')
                             DiscordWrapper.updateState('Server: ' + serv.getName())
                             DiscordWrapper.resetTime()
                         }
@@ -911,8 +911,8 @@ function dlAsync(login = true){
 }
 
 function validateServerInformation() {
-    setLaunchDetails('Loading server information..')
-    DiscordWrapper.updateDetails('Loading server information...')
+    setLaunchDetails('Chargement des informations du serveur...')
+    DiscordWrapper.updateDetails('Chargement des informations du serveur...')
 
     DistroManager.pullRemoteIfOutdated().then(data => {
         onDistroRefresh(data)
@@ -1046,10 +1046,10 @@ document.getElementById('newsButton').onclick = () => {
         if(hasRPC){
             if(ConfigManager.getSelectedServer()){
                 const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                DiscordWrapper.updateDetails('Ready to Play!')
+                DiscordWrapper.updateDetails('Près à jouer!')
                 DiscordWrapper.updateState('Server: ' + serv.getName())
             } else {
-                DiscordWrapper.updateDetails('Landing Screen...')
+                DiscordWrapper.updateDetails('En chargement...')
             }
         }
     } else {
@@ -1063,7 +1063,7 @@ document.getElementById('newsButton').onclick = () => {
             ConfigManager.save()
         }
         if(hasRPC){
-            DiscordWrapper.updateDetails('Reading the News...')
+            DiscordWrapper.updateDetails('Lis les nouveautés...')
             DiscordWrapper.clearState()
         }
     }
