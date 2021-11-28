@@ -41,9 +41,7 @@ If you want to export the console output, simply right click anywhere on the con
 
 ## Help
 
-For help regarding this version (ModRealms' fork), contact the staff on the discord server below:
-
-[![discord](https://discordapp.com/api/guilds/210739122577473536/embed.png?style=banner2)][discord]
+For help regarding this version (Nova Francia's fork), contact the author.
 
 
 ## Original Authors
