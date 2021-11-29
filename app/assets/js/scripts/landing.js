@@ -161,7 +161,7 @@ document.getElementById('refreshMediaButton').onclick = (e) => {
     DistroManager.pullRemote().then((data) => {
         onDistroRefresh(data)
         showMainUI(data)
-        refreshModRealmsStatuses()
+//        refreshModRealmsStatuses()
         setOverlayContent(
             'Launcher Refreshed!',
             'This is a confirmation letting you know that you have manually refreshed your launcher, your server list is now up to date and should be good to go! If you have any problems please do let us know!',
@@ -197,7 +197,7 @@ document.getElementById('avatarOverlay').onclick = (e) => {
 
 // Bind selected account
 function updateSelectedAccount(authUser){
-    let username = 'No Account Selected'
+    let username = 'Aucun compte sélectionner'
     if(authUser != null){
         if(authUser.displayName != null){
             username = authUser.displayName
@@ -301,7 +301,7 @@ const refreshMojangStatuses = async function(){
     document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
     document.getElementById('mojang_status_icon').style.color = Mojang.statusToHex(status)
 }
-
+/*
 const refreshModRealmsStatuses = async function(){
     loggerLanding.log('Refreshing ModRealms Statuses..')
     let status = 'grey'
@@ -342,7 +342,7 @@ const refreshModRealmsStatuses = async function(){
         })
     })
 }
-
+*/
 const refreshServerStatus = async function(fade = false){
     loggerLanding.log('Refreshing Server Status')
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
@@ -375,6 +375,9 @@ const refreshServerStatus = async function(fade = false){
     
 }
 
+// Is DiscordRPC enabled
+let hasRPC = false
+
 function loadDiscord(){
     if(!ConfigManager.getDiscordIntegration()) return
     const distro = DistroManager.getDistribution()
@@ -387,12 +390,12 @@ function loadDiscord(){
 }
 
 refreshMojangStatuses()
-refreshModRealmsStatuses()
+//refreshModRealmsStatuses()
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
 // Set refresh rate to once every 5 minutes.
 let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 30000)
-let networkStatusListener = setInterval(() => refreshModRealmsStatuses(true), 30000)
+//let networkStatusListener = setInterval(() => refreshModRealmsStatuses(true), 30000)
 let serverStatusListener = setInterval(() => refreshServerStatus(true), 30000)
 
 /**
@@ -602,8 +605,6 @@ function asyncSystemScan(mcVersion, launchAfter = true){
 
 // Keep reference to Minecraft Process
 let proc
-// Is DiscordRPC enabled
-let hasRPC = false
 // Change this if your server uses something different.
 const GAME_JOINED_REGEX = /\[.+\]: Sound engine started/
 const GAME_LAUNCH_REGEX = /^\[.+\]: (?:MinecraftForge .+ Initialized|ModLauncher .+ starting: .+)$/
@@ -884,12 +885,12 @@ function dlAsync(login = true){
                     proc.stdout.on('data', tempListener)
                     proc.stdout.on('data', gameLaunchErrorListener)
 
-                    setLaunchDetails('Your modpack is now launching...<br>Enjoy the server!')
+                    setLaunchDetails('Le modpack est en cours de lancement...<br>Amusez vous bien !')
                     proc.on('close', (code, signal) => {
                         if(hasRPC){
                             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                            DiscordWrapper.updateDetails('Près à jouer!')
-                            DiscordWrapper.updateState('Server: ' + serv.getName())
+                            DiscordWrapper.updateDetails('Prêt à jouer!')
+                            DiscordWrapper.updateState(serv.getName())
                             DiscordWrapper.resetTime()
                         }
                     })
@@ -1046,8 +1047,8 @@ document.getElementById('newsButton').onclick = () => {
         if(hasRPC){
             if(ConfigManager.getSelectedServer()){
                 const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
-                DiscordWrapper.updateDetails('Près à jouer!')
-                DiscordWrapper.updateState('Server: ' + serv.getName())
+                DiscordWrapper.updateDetails('Prêt à jouer!')
+                DiscordWrapper.updateState(serv.getName())
             } else {
                 DiscordWrapper.updateDetails('En chargement...')
             }

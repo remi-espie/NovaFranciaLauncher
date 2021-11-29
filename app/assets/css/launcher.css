@@ -46,10 +46,11 @@ body, button {
     color: white;
 }
 
-/*body {
-    background: url('./../images/backgrounds/0.jpg') no-repeat center center fixed;
+body {
+    background: no-repeat center center fixed;
     background-size: cover;
-}*/
+    font-size: 1em !important;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -3055,9 +3056,9 @@ input:checked + .toggleSwitchSlider:before {
     border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
 }
 
-.mediaButton:hover ~ #mediaSVGTooltip,
-.mediaButton:focus ~ #mediaSVGTooltip,
-.mediaButton:active ~ #mediaSVGTooltip {
+.mediaURL:hover ~ #mediaSVGTooltip , .mediaButton:hover ~ #mediaSVGTooltip,
+.mediaURL:focus ~ #mediaSVGTooltip , .mediaButton:focus ~ #mediaSVGTooltip,
+.mediaURL:active ~ #mediaSVGTooltip , .mediaButton:active ~ #mediaSVGTooltip {
     visibility: visible;
     opacity: 1;
     transition-delay:0.05s;
@@ -3179,7 +3180,7 @@ input:checked + .toggleSwitchSlider:before {
 
 #internalMedia {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 /* Container object which wraps an icon to ensure fluid transitions. */
@@ -3188,6 +3189,7 @@ input:checked + .toggleSwitchSlider:before {
     justify-content: center;
     align-items: center;
     height: 70px;
+    position: relative;
 }
 
 /* Divider bar between the external and internal icons. */
