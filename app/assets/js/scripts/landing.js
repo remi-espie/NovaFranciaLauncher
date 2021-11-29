@@ -219,7 +219,7 @@ function randomiseBackground() {
 
 // Bind selected server
 function updateSelectedServer(serv){
-    server_selection_button.innerHTML = (serv != null ? serv.getName() : 'No Server Selected')
+    server_selection_button.innerHTML = (serv != null ? serv.getName() : 'Aucun serveur sélectionner')
     if(getCurrentView() === VIEWS.settings){
         saveAllModConfigurations()
     }
@@ -230,9 +230,9 @@ function updateSelectedServer(serv){
     }
     setLaunchEnabled(serv != null)
     if(serv){
-        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'PLAY' : 'INSTALL & PLAY')
+        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'JOUER' : 'INSTALLER & JOUER')
     } else {
-        setLaunchButtonText('PLAY')
+        setLaunchButtonText('JOUER')
     }
 
 }
@@ -347,14 +347,14 @@ const refreshServerStatus = async function(fade = false){
     loggerLanding.log('Refreshing Server Status')
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
 
-    let pLabel = 'SERVER'
-    let pVal = 'OFFLINE'
+    let pLabel = 'SERVEUR'
+    let pVal = 'HORS-LIGNE'
 
     try {
         const serverURL = new URL('my://' + serv.getAddress())
         const servStat = await ServerStatus.getStatus(serverURL.hostname, serverURL.port)
         if(servStat.online){
-            pLabel = 'PLAYERS'
+            pLabel = 'JOUEURS'
             pVal = servStat.onlinePlayers + '/' + servStat.maxPlayers
         }
 
