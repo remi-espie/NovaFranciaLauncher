@@ -3,7 +3,7 @@
  */
 document.getElementById('welcomeButton').addEventListener('click', e => {
     switchView(VIEWS.welcome, VIEWS.login)
-    if(hasRPC){
+    if (hasRPC) {
         DiscordWrapper.updateDetails('Ajoute un compte...')
         DiscordWrapper.updateState('Launcher Setup')
     }

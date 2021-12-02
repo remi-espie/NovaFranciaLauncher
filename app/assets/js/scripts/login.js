@@ -2,22 +2,22 @@
  * Script for login.ejs
  */
 // Validation Regexes.
-const validUsername         = /^[a-zA-Z0-9_]{1,16}$/
-const basicEmail            = /^\S+@\S+\.\S+$/
+const validUsername = /^[a-zA-Z0-9_]{1,16}$/
+const basicEmail = /^\S+@\S+\.\S+$/
 //const validEmail          = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 // Login Elements
-const loginCancelContainer  = document.getElementById('loginCancelContainer')
-const loginCancelButton     = document.getElementById('loginCancelButton')
-const loginEmailError       = document.getElementById('loginEmailError')
-const loginUsername         = document.getElementById('loginUsername')
-const loginPasswordError    = document.getElementById('loginPasswordError')
-const loginPassword         = document.getElementById('loginPassword')
-const checkmarkContainer    = document.getElementById('checkmarkContainer')
-const loginRememberOption   = document.getElementById('loginRememberOption')
-const loginButton           = document.getElementById('loginButton')
-const loginForm             = document.getElementById('loginForm')
-const loginMSButton         = document.getElementById('loginMSButton')
+const loginCancelContainer = document.getElementById('loginCancelContainer')
+const loginCancelButton = document.getElementById('loginCancelButton')
+const loginEmailError = document.getElementById('loginEmailError')
+const loginUsername = document.getElementById('loginUsername')
+const loginPasswordError = document.getElementById('loginPasswordError')
+const loginPassword = document.getElementById('loginPassword')
+const checkmarkContainer = document.getElementById('checkmarkContainer')
+const loginRememberOption = document.getElementById('loginRememberOption')
+const loginButton = document.getElementById('loginButton')
+const loginForm = document.getElementById('loginForm')
+const loginMSButton = document.getElementById('loginMSButton')
 
 // Control variables.
 let lu = false, lp = false
@@ -27,22 +27,22 @@ const loggerLogin = LoggerUtil('%c[Login]', 'color: #000668; font-weight: bold')
 
 /**
  * Show a login error.
- * 
+ *
  * @param {HTMLElement} element The element on which to display the error.
  * @param {string} value The error text.
  */
-function showError(element, value){
+function showError(element, value) {
     element.innerHTML = value
     element.style.opacity = 1
 }
 
 /**
  * Shake a login error to add emphasis.
- * 
+ *
  * @param {HTMLElement} element The element to shake.
  */
-function shakeError(element){
-    if(element.style.opacity == 1){
+function shakeError(element) {
+    if (element.style.opacity == 1) {
         element.classList.remove('shake')
         void element.offsetWidth
         element.classList.add('shake')
@@ -51,19 +51,19 @@ function shakeError(element){
 
 /**
  * Validate that an email field is neither empty nor invalid.
- * 
+ *
  * @param {string} value The email value.
  */
-function validateEmail(value){
-    if(value){
-        if(!basicEmail.test(value) && !validUsername.test(value)){
+function validateEmail(value) {
+    if (value) {
+        if (!basicEmail.test(value) && !validUsername.test(value)) {
             showError(loginEmailError, Lang.queryJS('login.error.invalidValue'))
             loginDisabled(true)
             lu = false
         } else {
             loginEmailError.style.opacity = 0
             lu = true
-            if(lp){
+            if (lp) {
                 loginDisabled(false)
             }
         }
@@ -76,14 +76,14 @@ function validateEmail(value){
 
 /**
  * Validate that the password field is not empty.
- * 
+ *
  * @param {string} value The password value.
  */
-function validatePassword(value){
-    if(value){
+function validatePassword(value) {
+    if (value) {
         loginPasswordError.style.opacity = 0
         lp = true
-        if(lu){
+        if (lu) {
             loginDisabled(false)
         }
     } else {
@@ -113,22 +113,22 @@ loginPassword.addEventListener('input', (e) => {
 
 /**
  * Enable or disable the login button.
- * 
+ *
  * @param {boolean} v True to enable, false to disable.
  */
-function loginDisabled(v){
-    if(loginButton.disabled !== v){
+function loginDisabled(v) {
+    if (loginButton.disabled !== v) {
         loginButton.disabled = v
     }
 }
 
 /**
  * Enable or disable loading elements.
- * 
+ *
  * @param {boolean} v True to enable, false to disable.
  */
-function loginLoading(v){
-    if(v){
+function loginLoading(v) {
+    if (v) {
         loginButton.setAttribute('loading', v)
         loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.login'), Lang.queryJS('login.loggingIn'))
     } else {
@@ -139,15 +139,15 @@ function loginLoading(v){
 
 /**
  * Enable or disable login form.
- * 
+ *
  * @param {boolean} v True to enable, false to disable.
  */
-function formDisabled(v){
+function formDisabled(v) {
     loginDisabled(v)
     loginCancelButton.disabled = v
     loginUsername.disabled = v
     loginPassword.disabled = v
-    if(v){
+    if (v) {
         checkmarkContainer.setAttribute('disabled', v)
     } else {
         checkmarkContainer.removeAttribute('disabled')
@@ -158,28 +158,28 @@ function formDisabled(v){
 /**
  * Parses an error and returns a user-friendly title and description
  * for our error overlay.
- * 
+ *
  * @param {Error | {cause: string, error: string, errorMessage: string}} err A Node.js
  * error or Mojang error response.
  */
-function resolveError(err){
+function resolveError(err) {
     // Mojang Response => err.cause | err.error | err.errorMessage
     // Node error => err.code | err.message
-    if(err.cause != null && err.cause === 'UserMigratedException') {
+    if (err.cause != null && err.cause === 'UserMigratedException') {
         return {
             title: Lang.queryJS('login.error.userMigrated.title'),
             desc: Lang.queryJS('login.error.userMigrated.desc')
         }
     } else {
-        if(err.error != null){
-            if(err.error === 'ForbiddenOperationException'){
-                if(err.errorMessage != null){
-                    if(err.errorMessage === 'Invalid credentials. Invalid username or password.'){
+        if (err.error != null) {
+            if (err.error === 'ForbiddenOperationException') {
+                if (err.errorMessage != null) {
+                    if (err.errorMessage === 'Invalid credentials. Invalid username or password.') {
                         return {
                             title: Lang.queryJS('login.error.invalidCredentials.title'),
                             desc: Lang.queryJS('login.error.invalidCredentials.desc')
                         }
-                    } else if(err.errorMessage === 'Invalid credentials.'){
+                    } else if (err.errorMessage === 'Invalid credentials.') {
                         return {
                             title: Lang.queryJS('login.error.rateLimit.title'),
                             desc: Lang.queryJS('login.error.rateLimit.desc')
@@ -189,14 +189,14 @@ function resolveError(err){
             }
         } else {
             // Request errors (from Node).
-            if(err.code != null){
-                if(err.code === 'ENOENT'){
+            if (err.code != null) {
+                if (err.code === 'ENOENT') {
                     // No Internet.
                     return {
                         title: Lang.queryJS('login.error.noInternet.title'),
                         desc: Lang.queryJS('login.error.noInternet.desc')
                     }
-                } else if(err.code === 'ENOTFOUND'){
+                } else if (err.code === 'ENOTFOUND') {
                     // Could not reach server.
                     return {
                         title: Lang.queryJS('login.error.authDown.title'),
@@ -206,8 +206,8 @@ function resolveError(err){
             }
         }
     }
-    if(err.message != null){
-        if(err.message === 'NotPaidAccount'){
+    if (err.message != null) {
+        if (err.message === 'NotPaidAccount') {
             return {
                 title: Lang.queryJS('login.error.notPaid.title'),
                 desc: Lang.queryJS('login.error.notPaid.desc')
@@ -232,8 +232,8 @@ let loginViewOnSuccess = VIEWS.landing
 let loginViewOnCancel = VIEWS.settings
 let loginViewCancelHandler
 
-function loginCancelEnabled(val){
-    if(val){
+function loginCancelEnabled(val) {
+    if (val) {
         $(loginCancelContainer).show()
     } else {
         $(loginCancelContainer).hide()
@@ -245,18 +245,18 @@ loginCancelButton.onclick = (e) => {
         loginUsername.value = ''
         loginPassword.value = ''
         loginCancelEnabled(false)
-        if(loginViewCancelHandler != null){
+        if (loginViewCancelHandler != null) {
             loginViewCancelHandler()
             loginViewCancelHandler = null
         }
-        if(loginViewOnSuccess === VIEWS.settings){
-            if(hasRPC){
+        if (loginViewOnSuccess === VIEWS.settings) {
+            if (hasRPC) {
                 DiscordWrapper.updateDetails('Dans les paramètres...')
                 DiscordWrapper.clearState()
             }
         } else {
-            if(hasRPC){
-                if(ConfigManager.getSelectedServer()){
+            if (hasRPC) {
+                if (ConfigManager.getSelectedServer()) {
                     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
                     DiscordWrapper.updateDetails('Près à jouer!')
                     DiscordWrapper.updateState('Server: ' + serv.getName())
@@ -269,7 +269,9 @@ loginCancelButton.onclick = (e) => {
 }
 
 // Disable default form behavior.
-loginForm.onsubmit = () => { return false }
+loginForm.onsubmit = () => {
+    return false
+}
 
 // Bind login button behavior.
 loginButton.addEventListener('click', () => {
@@ -287,15 +289,15 @@ loginButton.addEventListener('click', () => {
         setTimeout(() => {
             switchView(VIEWS.login, loginViewOnSuccess, 250, 250, () => {
                 // Temporary workaround
-                if(loginViewOnSuccess === VIEWS.settings){
+                if (loginViewOnSuccess === VIEWS.settings) {
                     prepareSettings()
-                    if(hasRPC){
+                    if (hasRPC) {
                         DiscordWrapper.updateDetails('Dans les paramètres...')
                         DiscordWrapper.clearState()
                     }
                 } else {
-                    if(hasRPC){
-                        if(ConfigManager.getSelectedServer()){
+                    if (hasRPC) {
+                        if (ConfigManager.getSelectedServer()) {
                             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
                             DiscordWrapper.updateDetails('Près à jouer!')
                             DiscordWrapper.updateState('Server: ' + serv.getName())
@@ -339,10 +341,10 @@ loginMSButton.addEventListener('click', (event) => {
 
 ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
     if (args[0] === 'error') {
-        
+
         loginMSButton.disabled = false
         loginLoading(false)
-        switch (args[1]){
+        switch (args[1]) {
             case 'AlreadyOpenException': {
                 setOverlayContent('ERROR', 'There is already a login window open!', 'OK')
                 setOverlayHandler(() => {
@@ -362,17 +364,17 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
                 return
             }
         }
-        
+
     }
     toggleOverlay(false, false, 'msOverlay')
     const queryMap = args[0]
     if (queryMap.has('error')) {
         let error = queryMap.get('error')
         let errorDesc = queryMap.get('error_description')
-        if(error === 'access_denied'){
+        if (error === 'access_denied') {
             error = 'ERRPR'
             errorDesc = 'To use our launcher, you must agree to the required permissions, otherwise you can\'t use this launcher with Microsoft accounts.<br><br>Despite agreeing to the permissions you don\'t give us the possibility to do anything with your account, because all data will always be sent back to you (the launcher).'
-        }        
+        }
         setOverlayContent(error, errorDesc, 'OK')
         setOverlayHandler(() => {
             loginMSButton.disabled = false

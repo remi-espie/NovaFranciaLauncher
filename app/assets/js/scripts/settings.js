@@ -2,8 +2,8 @@
 const os = require('os')
 const semver = require('semver')
 
-const { JavaGuard } = require('./assets/js/assetguard')
-const DropinModUtil = require('./assets/js/dropinmodutil')
+const {JavaGuard} = require('./assets/js/assetguard.min')
+const DropinModUtil = require('./assets/js/dropinmodutil.min')
 
 const loggerSettings = LoggerUtil('%c[Settings]', 'color: #353232; font-weight: bold')
 
@@ -42,12 +42,12 @@ document.addEventListener('click', closeSettingsSelect)
 
 bindSettingsSelect()
 
-function bindFolderOpeners(){
-    for(let ele of document.getElementsByClassName('settingsFolderOpenButton')){
+function bindFolderOpeners() {
+    for (let ele of document.getElementsByClassName('settingsFolderOpenButton')) {
         ele.onclick = async e => {
             const pathId = ele.getAttribute('pathId')
-            if(pathId){
-                if(pathId === 'DataDirectory'){
+            if (pathId) {
+                if (pathId === 'DataDirectory') {
                     shell.openPath(ConfigManager.getDataDirectory())
                 }
             }
@@ -58,9 +58,9 @@ function bindFolderOpeners(){
 
 bindFolderOpeners()
 
-function bindFileSelectors(){
-    for(let ele of document.getElementsByClassName('settingsFileSelButton')){
-        
+function bindFileSelectors() {
+    for (let ele of document.getElementsByClassName('settingsFileSelButton')) {
+
         ele.onclick = async e => {
             const isJavaExecSel = ele.id === 'settingsJavaExecSel'
             const directoryDialog = ele.hasAttribute('dialogDirectory') && ele.getAttribute('dialogDirectory') == 'true'
@@ -76,8 +76,8 @@ function bindFileSelectors(){
 
             if (isJavaExecSel && process.platform === 'win32') {
                 options.filters = [
-                    { name: 'Executables', extensions: ['exe'] },
-                    { name: 'All Files', extensions: ['*'] }
+                    {name: 'Executables', extensions: ['exe']},
+                    {name: 'All Files', extensions: ['*']}
                 ]
             }
 
@@ -100,12 +100,12 @@ bindFileSelectors()
  */
 
 /**
-  * Bind value validators to the settings UI elements. These will
-  * validate against the criteria defined in the ConfigManager (if
-  * and). If the value is invalid, the UI will reflect this and saving
-  * will be disabled until the value is corrected. This is an automated
-  * process. More complex UI may need to be bound separately.
-  */
+ * Bind value validators to the settings UI elements. These will
+ * validate against the criteria defined in the ConfigManager (if
+ * and). If the value is invalid, the UI will reflect this and saving
+ * will be disabled until the value is corrected. This is an automated
+ * process. More complex UI may need to be bound separately.
+ */
 function initSettingsValidators() {
     const sEls = document.getElementById('settingsContainer').querySelectorAll('[cValue]')
     Array.from(sEls).map((v, index, arr) => {
@@ -153,9 +153,9 @@ function initSettingsValues() {
                         v.value = gFn()
                     } else if (cVal === 'DataDirectory') {
                         v.value = gFn()
-                    } else if (cVal === 'ServerCode'){
+                    } else if (cVal === 'ServerCode') {
                         v.value = gFn()
-                    } else if(cVal === 'JVMOptions'){
+                    } else if (cVal === 'JVMOptions') {
                         v.value = gFn().join(' ')
                     } else {
                         v.value = gFn()
@@ -235,7 +235,7 @@ let selectedSettingsTab = 'settingsTabAccount'
 /**
  * Modify the settings container UI when the scroll threshold reaches
  * a certain poin.
- * 
+ *
  * @param {UIEvent} e The scroll event.
  */
 function settingsTabScrollListener(e) {
@@ -262,7 +262,7 @@ function setupSettingsTabs() {
 /**
  * Settings nav item onclick lisener. Function is exposed so that
  * other UI elements can quickly toggle to a certain tab from other views.
- * 
+ *
  * @param {Element} ele The nav item which has been clicked.
  * @param {boolean} fade Optional. True to fade transition.
  */
@@ -283,7 +283,7 @@ function settingsNavItemListener(ele, fade = true) {
     document.getElementById(prevTab).onscroll = null
     document.getElementById(selectedSettingsTab).onscroll = settingsTabScrollListener
 
-    if(fade){
+    if (fade) {
         $(`#${prevTab}`).fadeOut(150, () => {
             $(`#${selectedSettingsTab}`).fadeIn({
                 duration: 150,
@@ -312,7 +312,7 @@ const settingsNavDone = document.getElementById('settingsNavDone')
 
 /**
  * Set if the settings save (done) button is disabled.
- * 
+ *
  * @param {boolean} v True to disable, false to enable.
  */
 function settingsSaveDisabled(v) {
@@ -328,8 +328,8 @@ settingsNavDone.onclick = () => {
     saveShaderpackSettings()
     saveResourcePackSettings()
     switchView(getCurrentView(), VIEWS.landing)
-    if(hasRPC){
-        if(ConfigManager.getSelectedServer()){
+    if (hasRPC) {
+        if (ConfigManager.getSelectedServer()) {
             const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
             DiscordWrapper.updateDetails('Près à jouer!')
             DiscordWrapper.updateState('Server: ' + serv.getName())
@@ -349,7 +349,7 @@ document.getElementById('settingsAddAccount').onclick = (e) => {
         loginViewOnCancel = VIEWS.settings
         loginViewOnSuccess = VIEWS.settings
         loginCancelEnabled(true)
-        if(hasRPC){
+        if (hasRPC) {
             DiscordWrapper.updateDetails('Adding an Account...')
             DiscordWrapper.clearState()
         }
@@ -359,13 +359,13 @@ document.getElementById('settingsAddAccount').onclick = (e) => {
 /**
  * Binds the functionality within the server codes section of the launcher settings
  */
-function bindServerCodeButtons(){
+function bindServerCodeButtons() {
     // Sets up the onclick listeners for the button to add codes
     document.getElementById('settingsAddServerCode').onclick = () => {
-        for(let ele of document.getElementsByClassName('settingsInputServerCodeVal')){
+        for (let ele of document.getElementsByClassName('settingsInputServerCodeVal')) {
             const code = ele.value
             ele.value = ''
-            if(!ConfigManager.getServerCodes().includes(code) && code){
+            if (!ConfigManager.getServerCodes().includes(code) && code) {
                 ConfigManager.getServerCodes().push(code)
                 ConfigManager.save()
                 loggerSettings.log('Added server code to configuration and saved it')
@@ -380,9 +380,9 @@ function bindServerCodeButtons(){
     const sEls = document.querySelectorAll('[remcode]')
     Array.from(sEls).map((v, index, arr) => {
         v.onclick = () => {
-            if(v.hasAttribute('remcode')){
+            if (v.hasAttribute('remcode')) {
                 const code = v.getAttribute('remcode')
-                if(ConfigManager.getServerCodes().includes(code)){
+                if (ConfigManager.getServerCodes().includes(code)) {
                     ConfigManager.getServerCodes().splice(ConfigManager.getServerCodes().indexOf(code), 1)
                     ConfigManager.save()
                     loggerSettings.log('Added removed code from configuration and saved it')
@@ -439,7 +439,7 @@ function bindAuthAccountLogOut() {
                     processLogOut(val, isLastAccount)
                     toggleOverlay(false)
                     switchView(getCurrentView(), VIEWS.login)
-                    if(hasRPC){
+                    if (hasRPC) {
                         DiscordWrapper.updateDetails('Adding an Account...')
                         DiscordWrapper.clearState()
                     }
@@ -456,11 +456,11 @@ function bindAuthAccountLogOut() {
     })
 }
 
-let  data = null
+let data = null
 
 /**
  * Process a log out.
- * 
+ *
  * @param {Element} val The log out button element.
  * @param {boolean} isLastAccount If this logout is on the last added account.
  */
@@ -502,7 +502,7 @@ ipcRenderer.on('MSALogoutWindowReply', (event, ...args) => {
 /**
  * Refreshes the status of the selected account on the auth account
  * elements.
- * 
+ *
  * @param {string} uuid The UUID of the new selected account.
  */
 function refreshAuthAccountSelected(uuid) {
@@ -587,8 +587,8 @@ function prepareLauncherTab() {
  */
 
 /**
-  * Disable decimals, negative signs, and scientific notation.
-  */
+ * Disable decimals, negative signs, and scientific notation.
+ */
 document.getElementById('settingsGameWidth').addEventListener('keydown', (e) => {
     if (/^[-.eE]$/.test(e.key)) {
         e.preventDefault()
@@ -623,7 +623,7 @@ function resolveModsForUI() {
 
 /**
  * Recursively build the mod UI elements.
- * 
+ *
  * @param {Object[]} mdls An array of modules to parse.
  * @param {boolean} submodules Whether or not we are parsing submodules.
  * @param {Object} servConf The server configuration object for this module level.
@@ -723,7 +723,7 @@ function saveModConfiguration() {
 
 /**
  * Recursively save mod config with submods.
- * 
+ *
  * @param {Object} modConf Mod config object to save.
  */
 function _saveModConfiguration(modConf) {
@@ -761,7 +761,7 @@ function resolveDropinModsForUI() {
 
     let dropinMods = ''
 
-    for(dropin of CACHE_DROPIN_MODS){
+    for (dropin of CACHE_DROPIN_MODS) {
 
         dropinMods += `<div id="${dropin.fullName}" class="settingsBaseMod settingsDropinMod" ${!dropin.disabled ? 'enabled' : ''}>
                     <div class="settingsModContent">
@@ -785,10 +785,10 @@ function resolveDropinModsForUI() {
     document.getElementById('settingsDropinModsContent').innerHTML = dropinMods
 }
 
-function resolveServerCodesForUI(){
+function resolveServerCodesForUI() {
     /* Server Codes */
     let servCodes = ''
-    for(let servCode of ConfigManager.getServerCodes()){
+    for (let servCode of ConfigManager.getServerCodes()) {
         const servs = DistroManager.getDistribution().getServersFromCode(servCode)
         const valid = servs && servs.length
         servCodes +=
@@ -814,13 +814,14 @@ function resolveServerCodesForUI(){
     document.getElementById('settingsServerCodesListContent').innerHTML = servCodes
 
     /* Server Names List */
-    for(let ele of document.getElementsByClassName('settingsServerCodeServerNamesContent')){
+    let servNames
+    for (let ele of document.getElementsByClassName('settingsServerCodeServerNamesContent')) {
         servNames = ''
         const code = ele.getAttribute('code')
         const servs = DistroManager.getDistribution().getServersFromCode(code)
         const valid = servs && servs.length
-        if(valid){
-            for(let serv of servs){
+        if (valid) {
+            for (let serv of servs) {
                 loggerSettings.log('server: ' + serv.getName())
                 servNames +=
                     `
@@ -837,6 +838,7 @@ function resolveServerCodesForUI(){
         ele.innerHTML = servNames
     }
 }
+
 /**
  * Bind the remove button for each loaded drop-in mod.
  */
@@ -846,7 +848,7 @@ function bindDropinModsRemoveButton() {
         v.onclick = async () => {
             const fullName = v.getAttribute('remmod')
             const res = await DropinModUtil.deleteDropinMod(CACHE_SETTINGS_MODS_DIR, fullName)
-            if(res){
+            if (res) {
                 document.getElementById(fullName).remove()
             } else {
                 setOverlayContent(
@@ -1024,7 +1026,7 @@ function bindShaderpackButton() {
 /**
  * Load resource pack information.
  */
-function resolveResourcePacksForUI(){
+function resolveResourcePacksForUI() {
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
     CACHE_SETTINGS_INSTANCE_DIR = path.join(ConfigManager.getInstanceDirectory(), serv.getID())
     CACHE_RESOURCEPACKS = DropinModUtil.scanForResourcePacks(CACHE_SETTINGS_INSTANCE_DIR)
@@ -1033,20 +1035,20 @@ function resolveResourcePacksForUI(){
     setResourcePackOptions(CACHE_RESOURCEPACKS, CACHE_SELECTED_RESOURCEPACK)
 }
 
-function setResourcePackOptions(arr, selected){
+function setResourcePackOptions(arr, selected) {
     const cont = document.getElementById('settingsResourcePackOptions')
     cont.innerHTML = ''
-    for(let opt of arr) {
+    for (let opt of arr) {
         const d = document.createElement('DIV')
         d.innerHTML = opt.name
         d.setAttribute('value', opt.fullName)
-        if(opt.fullName === selected) {
+        if (opt.fullName === selected) {
             d.setAttribute('selected', '')
             document.getElementById('settingsResourcePackSelected').innerHTML = opt.name
         }
-        d.addEventListener('click', function(e) {
+        d.addEventListener('click', function (e) {
             this.parentNode.previousElementSibling.innerHTML = this.innerHTML
-            for(let sib of this.parentNode.children){
+            for (let sib of this.parentNode.children) {
                 sib.removeAttribute('selected')
             }
             this.setAttribute('selected', '')
@@ -1056,10 +1058,10 @@ function setResourcePackOptions(arr, selected){
     }
 }
 
-function saveResourcePackSettings(){
+function saveResourcePackSettings() {
     let sel = 'OFF'
-    for(let opt of document.getElementById('settingsResourcePackOptions').childNodes){
-        if(opt.hasAttribute('selected')){
+    for (let opt of document.getElementById('settingsResourcePackOptions').childNodes) {
+        if (opt.hasAttribute('selected')) {
             sel = opt.getAttribute('value')
         }
     }
@@ -1135,7 +1137,7 @@ function saveAllModConfigurations() {
  * Function to refresh the mods tab whenever the selected
  * server is changed.
  */
-function animateModsTabRefresh(){
+function animateModsTabRefresh() {
     $('#settingsTabMods').fadeOut(150, () => {
         prepareModsTab()
         $('#settingsTabMods').fadeIn(150)
@@ -1194,9 +1196,9 @@ settingsMinRAMRange.onchange = (e) => {
     const max = (os.totalmem() - 1000000000) / 1000000000
 
     // Change range bar color based on the selected value.
-    if(sMinV >= max/1.25){
+    if (sMinV >= max / 1.25) {
         bar.style.background = '#e86060'
-    } else if(sMinV >= max/2) {
+    } else if (sMinV >= max / 2) {
         bar.style.background = '#e8e18b'
     } else {
         bar.style.background = null
@@ -1226,9 +1228,9 @@ settingsMaxRAMRange.onchange = (e) => {
     const max = (os.totalmem() - 1000000000) / 1000000000
 
     // Change range bar color based on the selected value.
-    if(sMaxV >= max/1.25){
+    if (sMaxV >= max / 1.25) {
         bar.style.background = '#e86060'
-    } else if(sMaxV >= max/2) {
+    } else if (sMaxV >= max / 2) {
         bar.style.background = '#e8e18b'
     } else {
         bar.style.background = null
@@ -1246,8 +1248,8 @@ settingsMaxRAMRange.onchange = (e) => {
 
 /**
  * Calculate common values for a ranged slider.
- * 
- * @param {Element} v The range slider to calculate against. 
+ *
+ * @param {Element} v The range slider to calculate against.
  * @returns {Object} An object with meta values for the provided ranged slider.
  */
 function calculateRangeSliderMeta(v) {
@@ -1312,7 +1314,7 @@ function bindRangeSlider() {
 
 /**
  * Update a ranged slider's value and position.
- * 
+ *
  * @param {Element} element The ranged slider to update.
  * @param {string | number} value The new value for the ranged slider.
  * @param {number} notch The notch that the slider should now be at.
@@ -1358,7 +1360,7 @@ function populateMemoryStatus() {
 /**
  * Validate the provided executable path and display the data on
  * the UI.
- * 
+ *
  * @param {string} execPath The executable path to populate against.
  */
 function populateJavaExecDetails(execPath) {
@@ -1402,13 +1404,13 @@ document.getElementById('settingsAboutDevToolsButton').onclick = (e) => {
 
 /**
  * Return whether or not the provided version is a prerelease.
- * 
+ *
  * @param {string} version The semver version to test.
  * @returns {boolean} True if the version is a prerelease, otherwise false.
  */
 function isPrerelease(version) {
     const preRelComp = semver.prerelease(version)
-    if(preRelComp != null && preRelComp.includes('release')) {
+    if (preRelComp != null && preRelComp.includes('release')) {
         return false
     }
     return preRelComp != null && preRelComp.length > 0
@@ -1417,7 +1419,7 @@ function isPrerelease(version) {
 /**
  * Utility method to display version information on the
  * About and Update settings tabs.
- * 
+ *
  * @param {string} version The semver version to display.
  * @param {Element} valueElement The value element.
  * @param {Element} titleElement The title element.
@@ -1497,7 +1499,7 @@ const settingsUpdateActionButton = document.getElementById('settingsUpdateAction
 
 /**
  * Update the properties of the update action button.
- * 
+ *
  * @param {string} text The new button text.
  * @param {boolean} disabled Optional. Disable or enable the button
  * @param {function} handler Optional. New button event handler.
@@ -1512,7 +1514,7 @@ function settingsUpdateButtonStatus(text, disabled = false, handler = null) {
 
 /**
  * Populate the update tab with relevant information.
- * 
+ *
  * @param {Object} data The update data.
  */
 function populateSettingsUpdateInformation(data) {
@@ -1545,7 +1547,7 @@ function populateSettingsUpdateInformation(data) {
 
 /**
  * Prepare update tab for display.
- * 
+ *
  * @param {Object} data The update data.
  */
 function prepareUpdateTab(data = null) {
@@ -1557,10 +1559,10 @@ function prepareUpdateTab(data = null) {
  */
 
 /**
-  * Prepare the entire settings UI.
-  * 
-  * @param {boolean} first Whether or not it is the first load.
-  */
+ * Prepare the entire settings UI.
+ *
+ * @param {boolean} first Whether or not it is the first load.
+ */
 function prepareSettings(first = false) {
     if (first) {
         setupSettingsTabs()

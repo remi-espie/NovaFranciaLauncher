@@ -27,7 +27,7 @@ function requestPromise(uri, options) {
 
 function getXBLToken(accessToken) {
     return new Promise((resolve, reject) => {
-        const data = new Object()
+        const data = {}
 
         const options = {
             method: 'post',
@@ -75,8 +75,8 @@ function getXSTSToken(XBLToken) {
                             message: 'Your Microsoft account is not connected to an Xbox account. Please create one before continuing.<br>'
                         })
                         return
-        
-                    case 2148916238: 
+
+                    case 2148916238:
                         reject({
                             message: 'Since you are not yet 18 years old, an adult must add you to a family in order for you to use Helios Launcher!'
                         })
@@ -93,7 +93,7 @@ function getXSTSToken(XBLToken) {
 
 function getMCAccessToken(UHS, XSTSToken) {
     return new Promise((resolve, reject) => {
-        const data = new Object()
+        const data = {}
         const expiresAt = new Date()
 
         const options = {
@@ -120,7 +120,7 @@ function getMCAccessToken(UHS, XSTSToken) {
 exports.getAccessToken = authCode => {
     return new Promise((resolve, reject) => {
         const expiresAt = new Date()
-        const data = new Object()
+        const data = {}
 
         const options = {
             method: 'post',
@@ -149,7 +149,7 @@ exports.getAccessToken = authCode => {
 exports.refreshAccessToken = refreshToken => {
     return new Promise((resolve, reject) => {
         const expiresAt = new Date()
-        const data = new Object()
+        const data = {}
 
         const options = {
             method: 'post',
@@ -178,15 +178,13 @@ exports.authMinecraft = async accessToken => {
     try {
         const XBLToken = await getXBLToken(accessToken)
         const XSTSToken = await getXSTSToken(XBLToken.token)
-        const MCToken = await getMCAccessToken(XBLToken.uhs, XSTSToken)
-
-        return MCToken
+        return await getMCAccessToken(XBLToken.uhs, XSTSToken)
     } catch (error) {
         await Promise.reject(error)
     }
 }
 
-exports.checkMCStore = async function(access_token){
+exports.checkMCStore = async function (access_token) {
     return new Promise((resolve, reject) => {
         request.get({
             url: 'https://api.minecraftservices.com/entitlements/mcstore',
@@ -199,7 +197,7 @@ exports.checkMCStore = async function(access_token){
                 resolve(false)
                 return
             }
-            if(body.items && body.items.length > 0) resolve(true)
+            if (body.items && body.items.length > 0) resolve(true)
             else resolve(false)
         })
     })

@@ -6,16 +6,16 @@
  * @module modrealms
  */
 // Requirements
-const request                               = require('request')
-const logger                                = require('./loggerutil')('%c[ModRealms RestAPI]', 'color: #a02d2a; font-weight: bold')
+const request = require('request')
+const logger = require('./loggerutil.min')('%c[ModRealms RestAPI]', 'color: #a02d2a; font-weight: bold')
 
 const restUrl = 'https://api.modrealms.net'
 
 let modpacks = []
 
-exports.status = async function(){
+exports.status = async function () {
     const newStatuses = []
-    for(let i=0; i<modpacks.length; i++){
+    for (let i = 0; i < modpacks.length; i++) {
         newStatuses.push(await exports.getServerStatus(modpacks[i]))
     }
 
@@ -35,27 +35,27 @@ exports.getServerStatus = async function (modpack) {
                 json: true,
                 timeout: 2500
             },
-            function(error, response, body){
-                if(!body || error || response.statusCode !== 200){
+            function (error, response, body) {
+                if (!body || error || response.statusCode !== 200) {
                     logger.warn('Unable to retrieve gameshards!')
                     logger.error(error)
                     reject(error)
                 } else {
                     const gameshards = body
 
-                    for(let gameshard of gameshards){
-                        players+=gameshard.playersOnline
+                    for (let gameshard of gameshards) {
+                        players += gameshard.playersOnline
                     }
 
 
                     status = gameshards.length === 0 ? 'YELLOW' : 'GREEN'
-                    resolve(new Status(name, status, players, (60*gameshards.length)))
+                    resolve(new Status(name, status, players, (60 * gameshards.length)))
                 }
             })
     })
 }
 
-exports.modpacks = async function(){
+exports.modpacks = async function () {
     const newModpacks = []
     return new Promise((resolve, reject) => {
         request.get(restUrl + '/modpacks',
@@ -63,14 +63,13 @@ exports.modpacks = async function(){
                 json: true,
                 timeout: 2500
             },
-            function(error, response, body){
-                if(error || response.statusCode !== 200){
+            function (error, response, body) {
+                if (error || response.statusCode !== 200) {
                     logger.warn('Unable to retrieve access api')
                     logger.debug(error)
                     reject(error)
                 } else {
-                    const modpackList = body
-                    for(let modpack of modpackList){
+                    for (let modpack of body) {
                         newModpacks.push(new Modpack(modpack._id, modpack.tag, modpack.name, modpack.version, modpack.description, modpack.image))
                     }
                     modpacks = newModpacks
@@ -89,35 +88,35 @@ class Status {
         this.maxPlayers = maxPlayers
     }
 
-    getName(){
+    getName() {
         return this.name
     }
 
-    getStatus(){
+    getStatus() {
         return this.status
     }
 
-    getPlayers(){
+    getPlayers() {
         return this.players
     }
 
-    getMaxPlayers(){
+    getMaxPlayers() {
         return this.maxPlayers
     }
 
-    setName(name){
+    setName(name) {
         this.name = name
     }
 
-    setStatus(status){
+    setStatus(status) {
         this.status = status
     }
 
-    setPlayers(players){
+    setPlayers(players) {
         this.players = players
     }
 
-    isOffline(){
+    isOffline() {
         return this.status.toLowerCase() === 'red' || this.status.toLowerCase() === 'gray' || this.status.toLowerCase() === 'yellow'
     }
 }
@@ -133,27 +132,27 @@ class Modpack {
         this.image = image
     }
 
-    static getId(){
+    static getId() {
         return this.id
     }
 
-    static getTag(){
+    static getTag() {
         return this.tag
     }
 
-    static getName(){
+    static getName() {
         return this.name
     }
 
-    static getVersion(){
+    static getVersion() {
         return this.version
     }
 
-    static getDescription(){
+    static getDescription() {
         return this.description
     }
 
-    static getImage(){
+    static getImage() {
         return this.image
     }
 }

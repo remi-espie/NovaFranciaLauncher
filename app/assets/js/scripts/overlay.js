@@ -6,7 +6,7 @@
 
 /**
  * Check to see if the overlay is visible.
- * 
+ *
  * @returns {boolean} Whether or not the overlay is visible.
  */
 function isOverlayVisible() {
@@ -17,7 +17,7 @@ let overlayHandlerContent
 
 /**
  * Overlay keydown handler for a non-dismissable overlay.
- * 
+ *
  * @param {KeyboardEvent} e The keydown event.
  */
 function overlayKeyHandler(e) {
@@ -25,9 +25,10 @@ function overlayKeyHandler(e) {
         document.getElementById(overlayHandlerContent).getElementsByClassName('overlayKeybindEnter')[0].click()
     }
 }
+
 /**
  * Overlay keydown handler for a dismissable overlay.
- * 
+ *
  * @param {KeyboardEvent} e The keydown event.
  */
 function overlayKeyDismissableHandler(e) {
@@ -40,10 +41,10 @@ function overlayKeyDismissableHandler(e) {
 
 /**
  * Bind overlay keydown listeners for escape and exit.
- * 
+ *
  * @param {boolean} state Whether or not to add new event listeners.
  * @param {string} content The overlay content which will be shown.
- * @param {boolean} dismissable Whether or not the overlay is dismissable 
+ * @param {boolean} dismissable Whether or not the overlay is dismissable
  */
 function bindOverlayKeys(state, content, dismissable) {
     overlayHandlerContent = content
@@ -60,7 +61,7 @@ function bindOverlayKeys(state, content, dismissable) {
 
 /**
  * Toggle the visibility of the overlay.
- * 
+ *
  * @param {boolean} toggleState True to display, false to hide.
  * @param {boolean} dismissable Optional. True to show the dismiss option, otherwise false.
  * @param {string} content Optional. The content div to be shown.
@@ -125,7 +126,7 @@ function toggleServerSelection(toggleState) {
 
 /**
  * Set the content of the overlay.
- * 
+ *
  * @param {string} title Overlay title text.
  * @param {string} description Overlay description text.
  * @param {string} acknowledge Acknowledge button text.
@@ -141,8 +142,8 @@ function setOverlayContent(title, description, acknowledge, dismiss = 'Dismiss')
 /**
  * Set the onclick handler of the overlay acknowledge button.
  * If the handler is null, a default handler will be added.
- * 
- * @param {function} handler 
+ *
+ * @param {function} handler
  */
 function setOverlayHandler(handler) {
     if (handler == null) {
@@ -157,8 +158,8 @@ function setOverlayHandler(handler) {
 /**
  * Set the onclick handler of the overlay dismiss button.
  * If the handler is null, a default handler will be added.
- * 
- * @param {function} handler 
+ *
+ * @param {function} handler
  */
 function setDismissHandler(handler) {
     if (handler == null) {
@@ -226,13 +227,13 @@ document.getElementById('accountSelectCancel').addEventListener('click', () => {
     })
 })
 
-$('#serverSelectListScrollable').on('mousewheel', function(event, delta) {
+$('#serverSelectListScrollable').on('mousewheel', function (event, delta) {
     let speed = event.originalEvent.deltaY > 0 ? event.originalEvent.deltaY - 60 : event.originalEvent.deltaY + 60
     this.scrollLeft += speed
     event.preventDefault()
 })
 
-function setServerListingHandlers(){
+function setServerListingHandlers() {
     const listings = Array.from(document.getElementsByClassName('serverListing'))
     listings.map((val) => {
         val.onclick = e => {
@@ -275,8 +276,8 @@ function populateServerListings() {
     const giaSel = ConfigManager.getSelectedServer()
     const servers = distro.getServers()
     let htmlString = ''
-    for(const serv of servers){
-        if(serv.getServerCode() && !ConfigManager.getServerCodes().includes(serv.getServerCode())){
+    for (const serv of servers) {
+        if (serv.getServerCode() && !ConfigManager.getServerCodes().includes(serv.getServerCode())) {
             continue
         }
         htmlString += `<button class="serverListing" servid="${serv.getID()}" ${serv.getID() === giaSel ? 'selected' : ''}>
@@ -299,8 +300,8 @@ function populateAccountListings() {
     const accountsObj = ConfigManager.getAuthAccounts()
     const accounts = Array.from(Object.keys(accountsObj), v => accountsObj[v])
     let htmlString = ''
-    for(let i=0; i<accounts.length; i++){
-        htmlString += `<button class="accountListing" uuid="${accounts[i].uuid}" ${i===0 ? 'selected' : ''}>
+    for (let i = 0; i < accounts.length; i++) {
+        htmlString += `<button class="accountListing" uuid="${accounts[i].uuid}" ${i === 0 ? 'selected' : ''}>
             <img src="https://mc-heads.net/head/${accounts[i].uuid}/40">
             <div class="accountListingName">${accounts[i].displayName}</div>
         </button>`

@@ -1,14 +1,14 @@
 // Work in progress
-const logger = require('./loggerutil')('%c[DiscordWrapper]', 'color: #7289da; font-weight: bold')
+const logger = require('./loggerutil.min')('%c[DiscordWrapper]', 'color: #7289da; font-weight: bold')
 
 const {Client} = require('discord-rpc')
 
 let client
 let activity
 
-exports.initRPC = function(genSettings, servSettings = null, initialDetails = 'Waiting for Client..'){
+exports.initRPC = function (genSettings, servSettings = null, initialDetails = 'Waiting for Client..') {
     logger.log('Now Loading Discord RPC')
-    client = new Client({ transport: 'ipc' })
+    client = new Client({transport: 'ipc'})
 
     activity = {
         details: initialDetails,
@@ -22,26 +22,26 @@ exports.initRPC = function(genSettings, servSettings = null, initialDetails = 'W
         logger.log('Discord RPC Connected')
         client.setActivity(activity)
     })
-    
+
     client.login({clientId: genSettings.clientId}).catch(error => {
-        if(error.message.includes('ENOENT')) {
+        if (error.message.includes('ENOENT')) {
             logger.log('Unable to initialize Discord Rich Presence, no client detected.')
         } else {
             logger.log('Unable to initialize Discord Rich Presence: ' + error.message, error)
-        }l
+        }
     })
 }
 
-exports.updateState = function(state){
-    if(client){
+exports.updateState = function (state) {
+    if (client) {
         activity.state = state
         client.setActivity(activity)
         logger.log('Updated discord state to: ' + state)
     }
 }
 
-exports.clearState = function(){
-    if(client){
+exports.clearState = function () {
+    if (client) {
         activity = {
             details: activity.details,
             largeImageKey: activity.largeImageKey,
@@ -54,16 +54,16 @@ exports.clearState = function(){
     }
 }
 
-exports.updateDetails = function(details){
-    if(client){
+exports.updateDetails = function (details) {
+    if (client) {
         activity.details = details
         client.setActivity(activity)
         logger.log('Updated discord details to: ' + details)
     }
 }
 
-exports.clearDetails = function(){
-    if(client){
+exports.clearDetails = function () {
+    if (client) {
         activity = {
             state: activity.state,
             largeImageKey: activity.largeImageKey,
@@ -75,22 +75,22 @@ exports.clearDetails = function(){
     }
 }
 
-exports.resetTime = function(){
-    if(client){
+exports.resetTime = function () {
+    if (client) {
         activity.startTimestamp = new Date().getTime()
         client.setActivity(activity)
         logger.log('Reset the activity time!')
     }
 }
 
-exports.shutdownRPC = function(){
-    if(!client) return
+exports.shutdownRPC = function () {
+    if (!client) return
     client.clearActivity()
     client.destroy()
     client = null
     activity = null
 }
 
-exports.getClient = function(){
+exports.getClient = function () {
     return client
 }
