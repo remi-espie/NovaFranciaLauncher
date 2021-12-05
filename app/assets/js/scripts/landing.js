@@ -6,16 +6,14 @@
 const cp = require('child_process')
 const crypto = require('crypto')
 const {URL} = require('url')
-const {Remarkable} = require('remarkable')
 const fs = require('fs-extra')
 const chokidar = require('chokidar')
+const Query = require('minecraft-query')
 
 // Internal Requirements
 const DiscordWrapper = require('./assets/js/discordwrapper.min')
 const Mojang = require('./assets/js/mojang.min')
-require('./assets/js/modrealms.min')
 const ProcessBuilder = require('./assets/js/processbuilder.min')
-const ServerStatus = require('./assets/js/serverstatus.min')
 
 // Launch Elements
 const launch_content = document.getElementById('launch_content')
@@ -29,8 +27,6 @@ const user_text = document.getElementById('user_text')
 const loggerLanding = LoggerUtil('%c[Landing]', 'color: #000668; font-weight: bold')
 const loggerAEx = LoggerUtil('%c[AEx]', 'color: #353232; font-weight: bold')
 const loggerLaunchSuite = LoggerUtil('%c[LaunchSuite]', 'color: #000668; font-weight: bold')
-const loggerMetrics = LoggerUtil('%c[ModRealms Metrics]', 'color: #7289da; font-weight: bold')
-
 /* Launch Progress Wrapper Functions */
 
 /**
@@ -95,7 +91,7 @@ function setLaunchEnabled(val) {
 /**
  * Enable or disable the launch button.
  *
- * @param {string} the text to set the launch button to.
+ * @param text
  */
 function setLaunchButtonText(text) {
     document.getElementById('launch_button').innerHTML = text
@@ -179,9 +175,6 @@ document.getElementById('refreshMediaButton').onclick = () => {
         setOverlayHandler(() => {
             toggleOverlay(false)
         })
-        setDismissHandler(() => {
-            shell.openExternal('https://discord.gg/tKKeTdc')
-        })
         toggleOverlay(true, true)
         ele.removeAttribute('inprogress')
     })
@@ -231,7 +224,7 @@ function updateSelectedServer(serv) {
     }
     setLaunchEnabled(serv != null)
     if (serv) {
-        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'JOUER' : 'INSTALLER & JOUER')
+        setLaunchButtonText(fs.pathExistsSync(path.join(ConfigManager.getDataDirectory(), 'instances', serv.getID())) ? 'JOUER' : 'INSTALLER <br> & JOUER')
     } else {
         setLaunchButtonText('JOUER')
     }
@@ -305,77 +298,64 @@ const refreshMojangStatuses = async function () {
     document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
     document.getElementById('mojang_status_icon').style.color = Mojang.statusToHex(status)
 }
-/*
-const refreshModRealmsStatuses = async function(){
-    loggerLanding.log('Refreshing ModRealms Statuses..')
-    let status = 'grey'
-    let tooltipServerHTML = ''
-    let greenCount = 0
 
-    // let modpacks = await ModRealmsRest.modpacks()
-    // let statuses = await ModRealmsRest.status()
-
-    ModRealmsRest.modpacks().then(modpacks => {
-        ModRealmsRest.status().then(statuses => {
-            if(modpacks.length !== 0){
-                for(let i=0; i<statuses.length; i++){
-                    const server = statuses[i]
-                    const players = server.isOffline() ? 'Restarting' : `${server.players}/${server.maxPlayers}`
-                    tooltipServerHTML += `<div class="modrealmsStatusContainer">
-                    <span class="modrealmsStatusIcon" style="color: ${Mojang.statusToHex(server.status)};">&#8226;</span>
-                    <span class="modrealmsStatusName">${server.name}</span>
-                    <span class="modrealmsStatusPlayers">${players}</span>
-                </div>`
-
-                    if(server.status.toLowerCase() === 'green') ++greenCount
-                }
-
-                if(greenCount === 0){
-                    status = 'red'
-                } else {
-                    status = 'green'
-                }
-            } else {
-                tooltipServerHTML = `<div class="modrealmsStatusContainer">
-                    <span class="modrealmsStatusName" style="text-align: center;">Sorry! There are no modpacks available!</span>
-                </div>`
-            }
-
-            document.getElementById('modrealmsStatusServerContainer').innerHTML = tooltipServerHTML
-            document.getElementById('modrealms_status_icon').style.color = Mojang.statusToHex(status)
-        })
-    })
-}
-*/
 const refreshServerStatus = async function (fade = false) {
     loggerLanding.log('Refreshing Server Status')
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
 
     let pLabel = 'SERVEUR'
     let pVal = 'HORS-LIGNE'
+    let pPlayer = ''
+    //const serverURL = new URL(serv.getAddress())
 
-    try {
-        const serverURL = new URL('my://' + serv.getAddress())
-        const servStat = await ServerStatus.getStatus(serverURL.hostname, serverURL.port)
-        if (servStat.online) {
+
+    const query = new Query({host: serv.address, port: serv.port, timeout: 2500})
+
+
+    query.fullStat()
+        .then(success => {
+
             pLabel = 'JOUEURS'
-            pVal = servStat.onlinePlayers + '/' + servStat.maxPlayers
-        }
+            pVal = success.online_players + '/' + success.max_players
+            success.players.forEach(function (player){
+                pPlayer +='<div>' + player +'</div>'
+            })
 
-    } catch (err) {
-        loggerLanding.warn('Unable to refresh server status, assuming offline.')
-        loggerLanding.debug(err)
-    }
-    if (fade) {
-        $('#server_status_wrapper').fadeOut(150, () => {
-            document.getElementById('landingPlayerLabel').innerHTML = pLabel
-            document.getElementById('player_count').innerHTML = pVal
-            $('#server_status_wrapper').fadeIn(250)
+            if (fade) {
+                $('#server_status_wrapper').fadeOut(150, () => {
+                    document.getElementById('landingPlayerLabel').innerHTML = pLabel
+                    document.getElementById('player_count').innerHTML = pVal
+                    document.getElementById('serverStatusTooltip').innerHTML = pPlayer
+                    $('#server_status_wrapper').fadeIn(250)
+                })
+            } else {
+                document.getElementById('landingPlayerLabel').innerHTML = pLabel
+                document.getElementById('player_count').innerHTML = pVal
+                document.getElementById('serverStatusTooltip').innerHTML = pPlayer
+            }
+
+
+            query.close()
         })
-    } else {
-        document.getElementById('landingPlayerLabel').innerHTML = pLabel
-        document.getElementById('player_count').innerHTML = pVal
-    }
+    
+    /*
+                try {
+                    const servStat = await ServerStatus.getStatus('137.74.246.153', 25566)
+                    if (servStat.online) {
+                        pLabel = 'JOUEURS'
+                        pVal = servStat.onlinePlayers + '/' + servStat.maxPlayers
+                    }
+
+                } catch (err) {
+                    loggerLanding.warn('Unable to refresh server status, assuming offline.')
+                    loggerLanding.debug(err)
+                }
+            */
+
+
+
+
+
 
 }
 

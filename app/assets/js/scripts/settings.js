@@ -2,7 +2,7 @@
 const os = require('os')
 const semver = require('semver')
 
-const {JavaGuard} = require('./assets/js/assetguard.min')
+const {JavaGuard} = require('./assets/js/assetguard')
 const DropinModUtil = require('./assets/js/dropinmodutil.min')
 
 const loggerSettings = LoggerUtil('%c[Settings]', 'color: #353232; font-weight: bold')

@@ -1,5 +1,6 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "rss": "https://www.nova-francia.com/launcher/news.html",
   "discord": {
     "clientId": "914922425412620288",
     "smallImageText": "Nova Francia !",
@@ -8,15 +9,15 @@
   "java": {
     "oracle": "http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html"
   },
-  "rss": "https://www.nova-francia.com/launcher/news.html",
   "servers": [
     {
       "id": "NovaFrancia-1.15.2",
       "name": "Nova Francia",
       "description": "Serveur officiel de Nova Francia !",
       "icon": "https://www.nova-francia.com/img/logo/ico2.png",
-      "version": "0.1.0",
-      "address": "novafrancia.minesr.com",
+      "version": "1.0.0",
+      "address": "137.74.246.153",
+      "port": 25566,
       "minecraftVersion": "1.15.2",
       "discord": {
         "shortId": "NovaFrancia",
@@ -24,404 +25,674 @@
         "largeImageKey": "seal-circle"
       },
       "mainServer": true,
-      "serverCode": "",
-      "autoconnect": true,
-
+      "autoconnect": false,
       "modules": [
         {
-          "id": "net.minecraftforge:forge:1.11.2-13.20.1.2429",
-          "name": "Minecraft Forge",
+          "id": "net.minecraftforge:forge:1.15.2-31.2.55",
+          "name": "Minecraft Forge (base jar)",
           "type": "ForgeHosted",
           "artifact": {
-            "size": 4450992,
-            "MD5": "3fcc9b0104f0261397d3cc897e55a1c5",
-            "url": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.11.2-13.20.1.2429/forge-1.11.2-13.20.1.2429-universal.jar"
+            "size": 194674,
+            "MD5": "38f58ac3632279f22cf2c8bbdd0111d8",
+            "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/forge/1.15.2-31.2.55/forge-1.15.2-31.2.55.jar"
           },
           "subModules": [
             {
-              "id": "net.minecraft:launchwrapper:1.12",
-              "name": "Mojang (LaunchWrapper)",
-              "type": "Library",
+              "id": "1.15.2-31.2.55",
+              "name": "Minecraft Forge (version.json)",
+              "type": "VersionManifest",
               "artifact": {
-                "size": 32999,
-                "MD5": "934b2d91c7c5be4a49577c9e6b40e8da",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/launchwrapper-1.12.jar"
+                "size": 9795,
+                "MD5": "1d80500ddcfc933a871ff6d835af109c",
+                "url": "https://www.nova-francia.com/launcher/repo/versions/1.15.2-forge-31.2.55/1.15.2-forge-31.2.55.json"
               }
             },
             {
-              "id": "org.ow2.asm:asm-all:5.0.3",
-              "name": "Mojang (ASM)",
+              "id": "net.minecraftforge:forge:1.15.2-31.2.55:universal",
+              "name": "Minecraft Forge (universal jar)",
               "type": "Library",
               "artifact": {
-                "size": 241639,
-                "MD5": "c5cc4613bbdfba3ccf5f0ab85390d0b8",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/asm-all-5.0.3.jar"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-library:2.11.1@jar.pack.xz",
-              "name": "Minecraft Forge (scala-library)",
-              "type": "Library",
-              "artifact": {
-                "size": 1474672,
-                "MD5": "379c15c4f724421c6d5d7aecedaf87a6",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-library-2.11.1.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-compiler:2.11.1@jar.pack.xz",
-              "name": "Minecraft Forge (scala-compiler)",
-              "type": "Library",
-              "artifact": {
-                "size": 3076920,
-                "MD5": "7d89e952f2d5c74577310cd2c28e3f20",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-compiler-2.11.1.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-actors-migration_2.11:1.1.0@jar.pack.xz",
-              "name": "Minecraft Forge (scala-actors-migration)",
-              "type": "Library",
-              "artifact": {
-                "size": 21324,
-                "MD5": "04e3428b2600ace33c7ae2bf1f6c0a4c",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-actors-migration_2.11-1.1.0.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang.plugins:scala-continuations-library_2.11:1.0.2@jar.pack.xz",
-              "name": "Minecraft Forge (scala-continuations-library)",
-              "type": "Library",
-              "artifact": {
-                "size": 7956,
-                "MD5": "ed9b1d27aba8ac4090a3749c4dfc895a",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-continuations-library_2.11-1.0.2.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang.plugins:scala-continuations-plugin_2.11.1:1.0.2@jar.pack.xz",
-              "name": "Minecraft Forge (scala-continuations-plugin)",
-              "type": "Library",
-              "artifact": {
-                "size": 46140,
-                "MD5": "a8232db22a72a981de6b1399eb86dff7",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-continuations-plugin_2.11.1-1.0.2.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-parser-combinators_2.11:1.0.1@jar.pack.xz",
-              "name": "Minecraft Forge (scala-parser-combinators)",
-              "type": "Library",
-              "artifact": {
-                "size": 85568,
-                "MD5": "2e50a7df17680daadacca69f07f8a16d",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-parser-combinators_2.11-1.0.1.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-reflect:2.11.1@jar.pack.xz",
-              "name": "Minecraft Forge (scala-reflect)",
-              "type": "Library",
-              "artifact": {
-                "size": 1070312,
-                "MD5": "84e5dc81c10e2bd74c579c9d0332fdd9",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-reflect-2.11.1.jar.pack.xz"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-swing_2.11:1.0.1",
-              "name": "Minecraft Forge (scala-swing)",
-              "type": "Library",
-              "artifact": {
-                "size": 736795,
-                "MD5": "1d360289e697022a3f57abaad344b28f",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-swing_2.11-1.0.1.jar"
-              }
-            },
-            {
-              "id": "org.scala-lang:scala-xml_2.11:1.0.2@jar.pack.xz",
-              "name": "Minecraft Forge (scala-xml)",
-              "type": "Library",
-              "artifact": {
-                "size": 217812,
-                "MD5": "cc891b094a4c32dedc56bfefe9b072ff",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/scala-xml_2.11-1.0.2.jar.pack.xz"
-              }
-            },
-            {
-              "id": "com.typesafe.akka:akka-actor_2.11:2.3.3@jar.pack.xz",
-              "name": "Minecraft Forge (akka-actor)",
-              "type": "Library",
-              "artifact": {
-                "size": 746612,
-                "MD5": "25cb22c3078e9fb3f7a861c912924862",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/akka-actor_2.11-2.3.3.jar.pack.xz"
-              }
-            },
-            {
-              "id": "com.typesafe:config:1.2.1@jar.pack.xz",
-              "name": "Minecraft Forge (typesafe-config)",
-              "type": "Library",
-              "artifact": {
-                "size": 56636,
-                "MD5": "10ec4ccabc4e68aac9cf87165ead5d7d",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/config-1.2.1.jar.pack.xz"
-              }
-            },
-            {
-              "id": "lzma:lzma:0.0.1",
-              "name": "Mojang (LZMA)",
-              "type": "Library",
-              "artifact": {
-                "size": 5762,
-                "MD5": "a3e3c3186e41c4a1a3027ba2bb23cdc6",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/lzma-0.0.1.jar"
-              }
-            },
-            {
-              "id": "net.sf.trove4j:trove4j:3.0.3",
-              "name": "Trove4J",
-              "type": "Library",
-              "artifact": {
-                "size": 2523218,
-                "MD5": "8fc4d4e0129244f9fd39650c5f30feb2",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/trove4j-3.0.3.jar"
-              }
-            },
-            {
-              "id": "java3d:vecmath:1.5.2",
-              "name": "Vecmath",
-              "type": "Library",
-              "artifact": {
-                "size": 318956,
-                "MD5": "e5d2b7f46c4800a32f62ce75676a5710",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/vecmath-1.5.2.jar"
-              }
-            },
-            {
-              "id": "net.sf.jopt-simple:jopt-simple:4.6",
-              "name": "Jopt-simple",
-              "type": "Library",
-              "artifact": {
-                "size": 62477,
-                "MD5": "13560a58a79b46b82057686543e8d727",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/jopt-simple-4.6.jar"
-              }
-            },
-            {
-              "id": "net.minecraftforge:MercuriusUpdater:1.11.2",
-              "name": "MercuriusUpdater",
-              "type": "Library",
-              "artifact": {
-                "size": 15146,
-                "MD5": "7556d06064ebbfa3b334a15092d725d0",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/MercuriusUpdater-1.11.2.jar"
-              }
-            }
-          ]
-        },
-        {
-          "id": "com.westeroscraft:westerosblocks:3.2.0-beta-1-190",
-          "name": "WesterosBlocks",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 17376788,
-            "MD5": "370f4f1804c93f498f31af8dac509605",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/WesterosBlocks.jar"
-          }
-        },
-        {
-          "id": "com.westeroscraft:westeroscraftrp:2019-01-21",
-          "name": "WesterosCraft Resource Pack",
-          "type": "File",
-          "artifact": {
-            "size": 46999843,
-            "MD5": "309eb9e5296e9f55cfecb7d4058245a4",
-            "path": "resourcepacks/WesterosCraft.zip",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/resourcepacks/WesterosCraft.zip"
-          }
-        },
-        {
-          "id": "net.optifine:optifine:1.11.2_HD_U_C7",
-          "name": "Optifine",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 2254712,
-            "MD5": "0dd7761e908f9b245bb0dc0fac5649f5",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/OptiFine.jar"
-          }
-        },
-        {
-          "id": "mezz:jei:1.11.2-4.5.0.290",
-          "name": "JustEnoughItems",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 538740,
-            "MD5": "f4d931f6db6210621a86fa1e7eae8016",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/jei.jar"
-          }
-        },
-        {
-          "id": "org.blockartistry:dynsurround:1.11.2-3.4.9.3",
-          "name": "DynamicSurroundings",
-          "type": "ForgeMod",
-          "required": {
-            "value": false
-          },
-          "artifact": {
-            "size": 22291385,
-            "MD5": "65403c66d8b3655b372f58047941d206",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/DynamicSurroundings.jar"
-          },
-          "subModules": [
-            {
-              "id": "dsurround.cfg",
-              "name": "DynamicSurroundings General Configuration File",
-              "type": "File",
-              "artifact": {
-                "size": 20258,
-                "path": "/config/dsurround/dsurround.cfg",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/config/dsurround/dsurround.cfg"
-              }
-            },
-            {
-              "id": "westeros.json",
-              "name": "DynamicSurroundings WesterosCraft Configuration File",
-              "type": "File",
-              "artifact": {
-                "size": 608,
-                "MD5": "44eab112ff24d0bd29974c270de868ba",
-                "path": "/config/dsurround/westeros.json",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/config/dsurround/westeros.json"
-              }
-            }
-          ]
-        },
-        {
-          "id": "octarine-noise:betterfoliage:1.11.2-2.1.10",
-          "name": "BetterFoliage",
-          "type": "ForgeMod",
-          "required": {
-            "value": false
-          },
-          "artifact": {
-            "size": 4675903,
-            "MD5": "522fdf73b6e4343cb6243872fb7b4b6c",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/BetterFoliage.jar"
-          },
-          "subModules": [
-            {
-              "id": "betterfoliage.cfg",
-              "name": "BetterFoliage Configuration File",
-              "type": "File",
-              "artifact": {
-                "size": 7878,
-                "MD5": "6dd38f873c4129af05a2d6c500cbe954",
-                "path": "/config/betterfoliage.cfg",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/config/betterfoliage.cfg"
-              }
-            }
-          ]
-        },
-        {
-          "id": "techbrew:journeymap:1.11.2-5.4.7",
-          "name": "JourneyMap",
-          "type": "ForgeMod",
-          "required": {
-            "value": false
-          },
-          "artifact": {
-            "size": 1735525,
-            "MD5": "1c3380502eb7b9a495581b2402d144df",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/journeymap.jar"
-          }
-        },
-        {
-          "id": "com.github.hexomod:worldeditcuife2:2.1.1-mf-1.11.2-13.20.0.2228",
-          "name": "WorldEditCUI",
-          "type": "ForgeMod",
-          "required": {
-            "value": false
-          },
-          "artifact": {
-            "size": 461691,
-            "MD5": "439f82b69f3464969163c188818c677b",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/worldeditcuife.jar"
-          }
-        },
-        {
-          "id": "mcp.mobius:waila:1.7.1_1.11.2",
-          "name": "Waila",
-          "type": "ForgeMod",
-          "required": {
-            "value": false
-          },
-          "artifact": {
-            "size": 542744,
-            "MD5": "26258a3557bf333e8f4ce8b1e9481031",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/Waila.jar"
-          }
-        },
-        {
-          "id": "com.mumfrey:liteloader:1.11.2",
-          "name": "Liteloader",
-          "type": "LiteLoader",
-          "required": {
-            "value": false,
-            "def": false
-          },
-          "artifact": {
-            "size": 1685422,
-            "MD5": "3a98b5ed95810bf164e71c1a53be568d",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/1.11.2/liteloader.jar"
-          },
-          "subModules": [
-            {
-              "id": "com.mumfrey:macrokeybindmod:0.14.4-1.11.2@litemod",
-              "name": "Macro/Keybind Mod",
-              "type": "LiteMod",
-              "required": {
-                "value": false,
-                "def": false
+                "size": 2257153,
+                "MD5": "79d8a50ea353afbcc7527c582a09dc82",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/forge/1.15.2-31.2.55/forge-1.15.2-31.2.55-universal.jar"
               },
+              "subModules": []
+            },
+            {
+              "id": "net.minecraftforge:forge:1.15.2-31.2.55:client",
+              "name": "Minecraft Forge (client jar)",
+              "type": "Library",
               "artifact": {
-                "size": 1670811,
-                "MD5": "16080785577b391d426c62c8d3138558",
-                "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/mods/macrokeybindmod.litemod"
+                "size": 3691606,
+                "MD5": "7f51f35b608b8cd9e7641aacd9641b48",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/forge/1.15.2-31.2.55/forge-1.15.2-31.2.55-client.jar"
+              },
+              "subModules": []
+            },
+            {
+              "id": "net.minecraft:client:1.15.2-20200515.085601:srg",
+              "name": "Minecraft Forge (client srg)",
+              "type": "Library",
+              "artifact": {
+                "size": 10344805,
+                "MD5": "52dd8724d94e83eaa753a9319273f1ff",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraft/client/1.15.2-20200515.085601/client-1.15.2-20200515.085601-srg.jar"
+              },
+              "subModules": []
+            },
+            {
+              "id": "net.minecraft:client:1.15.2:slim",
+              "name": "Minecraft Forge (client slim)",
+              "type": "Library",
+              "artifact": {
+                "size": 8333902,
+                "MD5": "9ae10222f494ed1f09e2b5fc6d38c958",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraft/client/1.15.2/client-1.15.2-slim.jar"
+              },
+              "subModules": []
+            },
+            {
+              "id": "net.minecraft:client:1.15.2:extra",
+              "name": "Minecraft Forge (client extra)",
+              "type": "Library",
+              "artifact": {
+                "size": 7197612,
+                "MD5": "93e99cf6eab4a25f5811f821a59646c9",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraft/client/1.15.2/client-1.15.2-extra.jar"
+              },
+              "subModules": []
+            },
+            {
+              "id": "org.ow2.asm:asm:7.2",
+              "name": "Minecraft Forge (asm)",
+              "type": "Library",
+              "artifact": {
+                "size": 114873,
+                "MD5": "26cf10dfd4729fd22fcae0694e041167",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/ow2/asm/asm/7.2/asm-7.2.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-commons:7.2",
+              "name": "Minecraft Forge (asm-commons)",
+              "type": "Library",
+              "artifact": {
+                "size": 70051,
+                "MD5": "321121317a6c6221cc26e8f9ee97022f",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/ow2/asm/asm-commons/7.2/asm-commons-7.2.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-tree:7.2",
+              "name": "Minecraft Forge (asm-tree)",
+              "type": "Library",
+              "artifact": {
+                "size": 50283,
+                "MD5": "c7214695c379f25861500e576a1f8cea",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/ow2/asm/asm-tree/7.2/asm-tree-7.2.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-util:7.2",
+              "name": "Minecraft Forge (asm-util)",
+              "type": "Library",
+              "artifact": {
+                "size": 80707,
+                "MD5": "0891d2562ab1db2a1d5fc013af9b40c5",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/ow2/asm/asm-util/7.2/asm-util-7.2.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-analysis:7.2",
+              "name": "Minecraft Forge (asm-analysis)",
+              "type": "Library",
+              "artifact": {
+                "size": 33444,
+                "MD5": "e0aa4ec0cfa837415818aac762ed5dc2",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/ow2/asm/asm-analysis/7.2/asm-analysis-7.2.jar"
+              }
+            },
+            {
+              "id": "cpw.mods:modlauncher:5.1.2",
+              "name": "Minecraft Forge (modlauncher)",
+              "type": "Library",
+              "artifact": {
+                "size": 115985,
+                "MD5": "a88ee4c85ca958dbcf6f12eef3df4501",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/cpw/mods/modlauncher/5.1.2/modlauncher-5.1.2.jar"
+              }
+            },
+            {
+              "id": "cpw.mods:grossjava9hacks:1.3.3",
+              "name": "Minecraft Forge (grossjava9hacks)",
+              "type": "Library",
+              "artifact": {
+                "size": 2113,
+                "MD5": "d19b487241008d8e6111137a289ea1d7",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/cpw/mods/grossjava9hacks/1.3.3/grossjava9hacks-1.3.3.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:accesstransformers:2.1.3-shadowed",
+              "name": "Minecraft Forge (accesstransformers)",
+              "type": "Library",
+              "artifact": {
+                "size": 444938,
+                "MD5": "18abd6bfeff3695c5a6b885a07b5b10b",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/accesstransformers/2.1.3/accesstransformers-2.1.3-shadowed.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:eventbus:2.2.1-service",
+              "name": "Minecraft Forge (eventbus)",
+              "type": "Library",
+              "artifact": {
+                "size": 39772,
+                "MD5": "c5c522d748bc1cce398c5426dc812dce",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/eventbus/2.2.1/eventbus-2.2.1-service.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:forgespi:3.0.0",
+              "name": "Minecraft Forge (forgespi)",
+              "type": "Library",
+              "artifact": {
+                "size": 19925,
+                "MD5": "05a3abf10e4a5c26557a7ce700cc50ff",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/forgespi/3.0.0/forgespi-3.0.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:coremods:2.0.3",
+              "name": "Minecraft Forge (coremods)",
+              "type": "Library",
+              "artifact": {
+                "size": 21802,
+                "MD5": "53aef4d28866ac1cc755b69e825d7878",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/coremods/2.0.3/coremods-2.0.3.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:unsafe:0.2.0",
+              "name": "Minecraft Forge (unsafe)",
+              "type": "Library",
+              "artifact": {
+                "size": 2834,
+                "MD5": "2d1016ebe4c1a63dd50a59d26bd12db1",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecraftforge/unsafe/0.2.0/unsafe-0.2.0.jar"
+              }
+            },
+            {
+              "id": "org.spongepowered:mixin:0.8.2",
+              "name": "Minecraft Forge (mixin)",
+              "type": "Library",
+              "artifact": {
+                "size": 935252,
+                "MD5": "1f0c4faa50360623e49b9c2522edc602",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/spongepowered/mixin/0.8.2/mixin-0.8.2.jar"
+              }
+            },
+            {
+              "id": "com.electronwill.night-config:core:3.6.2",
+              "name": "Minecraft Forge (core)",
+              "type": "Library",
+              "artifact": {
+                "size": 199091,
+                "MD5": "243fc0b7f1e509aaca3550c14d8f60af",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/com/electronwill/night-config/core/3.6.2/core-3.6.2.jar"
+              }
+            },
+            {
+              "id": "com.electronwill.night-config:toml:3.6.2",
+              "name": "Minecraft Forge (toml)",
+              "type": "Library",
+              "artifact": {
+                "size": 31152,
+                "MD5": "7b2339065e252b1c187d39351d84a09f",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/com/electronwill/night-config/toml/3.6.2/toml-3.6.2.jar"
+              }
+            },
+            {
+              "id": "org.jline:jline:3.12.1",
+              "name": "Minecraft Forge (jline)",
+              "type": "Library",
+              "artifact": {
+                "size": 732926,
+                "MD5": "ffd8c9d6eb8a8456ef505c8ef9fc777d",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/jline/jline/3.12.1/jline-3.12.1.jar"
+              }
+            },
+            {
+              "id": "org.apache.maven:maven-artifact:3.6.0",
+              "name": "Minecraft Forge (maven-artifact)",
+              "type": "Library",
+              "artifact": {
+                "size": 55051,
+                "MD5": "89e95013b11f347e48c0525965600404",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/apache/maven/maven-artifact/3.6.0/maven-artifact-3.6.0.jar"
+              }
+            },
+            {
+              "id": "net.jodah:typetools:0.8.3",
+              "name": "Minecraft Forge (typetools)",
+              "type": "Library",
+              "artifact": {
+                "size": 15425,
+                "MD5": "ee4596e1413cc1a5e080c971d6064753",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/jodah/typetools/0.8.3/typetools-0.8.3.jar"
+              }
+            },
+            {
+              "id": "org.apache.logging.log4j:log4j-api:2.11.2",
+              "name": "Minecraft Forge (log4j-api)",
+              "type": "Library",
+              "artifact": {
+                "size": 266283,
+                "MD5": "3f7ee51e3dd0830de799dae0b90243dd",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/apache/logging/log4j/log4j-api/2.11.2/log4j-api-2.11.2.jar"
+              }
+            },
+            {
+              "id": "org.apache.logging.log4j:log4j-core:2.11.2",
+              "name": "Minecraft Forge (log4j-core)",
+              "type": "Library",
+              "artifact": {
+                "size": 1629585,
+                "MD5": "c8bd8b5c5aaaa07a3dcbf57de01c9266",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/org/apache/logging/log4j/log4j-core/2.11.2/log4j-core-2.11.2.jar"
+              }
+            },
+            {
+              "id": "net.minecrell:terminalconsoleappender:1.2.0",
+              "name": "Minecraft Forge (terminalconsoleappender)",
+              "type": "Library",
+              "artifact": {
+                "size": 15977,
+                "MD5": "679363fa893293791e55a21f81342f87",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/minecrell/terminalconsoleappender/1.2.0/terminalconsoleappender-1.2.0.jar"
+              }
+            },
+            {
+              "id": "net.sf.jopt-simple:jopt-simple:5.0.4",
+              "name": "Minecraft Forge (jopt-simple)",
+              "type": "Library",
+              "artifact": {
+                "size": 78146,
+                "MD5": "eb0d9dffe9b0eddead68fe678be76c49",
+                "url": "https://www.nova-francia.com/launcher/repo/lib/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar"
               }
             }
           ]
         },
         {
-          "id": "com.sonicether:seus:11.0",
-          "name": "Sonic Ether's Unbelievable Shaders",
-          "type": "File",
+          "id": "net.mcreator:ancient_guns:3.0@jar",
+          "name": "Ancient Guns",
+          "type": "ForgeMod",
           "artifact": {
-            "size": 175159,
-            "MD5": "bfa8c31d1da8131b59917bb2460205b1",
-            "path": "shaderpacks/SEUS v11.0.zip",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/shaderpacks/SEUS.zip"
+            "size": 628619,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/AncientGuns_3.0_1.15.2.jar",
+            "MD5": "329a3537cd0ccedf953b85e82be496da"
           }
         },
         {
-          "id": "options.txt",
-          "name": "Default Client Options",
-          "type": "File",
+          "id": "squeek.appleskin:appleskin:1.0.14@jar",
+          "name": "AppleSkin",
+          "type": "ForgeMod",
           "artifact": {
-            "size": 1973,
-            "path": "options.txt",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/files/options-1.11.2.txt"
+            "size": 28861,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/AppleSkin-Mod-1.15.2.jar",
+            "MD5": "6aeac8d0074ab0a2372ec2c5f0ad0f69"
+          },
+          "required": {
+            "value": false
           }
         },
         {
-          "id": "servers.dat",
-          "name": "Saved Client Servers",
-          "type": "File",
+          "id": "com.teammetallurgy:aquaculture:1.15.2-2.0.23@jar",
+          "name": "Aquaculture 2",
+          "type": "ForgeMod",
           "artifact": {
-            "size": 84,
-            "MD5": "71d99e229d7d2b8d2a6423e46832a4b8",
-            "path": "servers.dat",
-            "url": "http://mc.westeroscraft.com/WesterosCraftLauncher/prod-1.11.2/servers.dat"
+            "size": 521812,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/Aquaculture-1.15.2-2.0.23.jar",
+            "MD5": "dc8f29b2239736a4673e256d6bc47ee1"
+          }
+        },
+        {
+          "id": "de.mennomax:astikorcarts:1.0.4@jar",
+          "name": "AstikorCarts",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 208313,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/astikorcarts-1.15.2-1.0.4.jar",
+            "MD5": "10f79cabbf42aaf90b235d19a8762032"
+          }
+        },
+        {
+          "id": "com.mrcrayfish:backpacked:1.4.1@jar",
+          "name": "Backpacked",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 54591,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/backpacked-1.4.1-1.15.2.jar",
+            "MD5": "e19785ba8c5ee40d7cb7dee328fb87ad"
+          }
+        },
+        {
+          "id": "com.legobmw99:betterthanmending:1.4.0@jar",
+          "name": "BetterThanMending",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 4992,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/BetterThanMending-1.4.0.jar",
+            "MD5": "b62a2d5f8d65544618d52ff894efed73"
+          }
+        },
+        {
+          "id": "biomesoplenty.core:biomesoplenty:1.15.2-10.0.0.366@jar",
+          "name": "Biomes O' Plenty",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 3232629,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/BiomesOPlenty-1.15.2-10.0.0.366-universal.jar",
+            "MD5": "83160fc8aa49ee6c47cc508e74833fbf"
+          }
+        },
+        {
+          "id": "net.darkhax:bookshelf:5.6.40@jar",
+          "name": "Bookshelf",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 178961,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/Bookshelf-1.15.2-5.6.40.jar",
+            "MD5": "fff093f7cef52838c8773b86a47094b5"
+          }
+        },
+        {
+          "id": "com.supermartijn642:chunkloaders:1.1.3@jar",
+          "name": "Chunk Loaders",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 90107,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/chunkloaders-1.1.3-mc1.15.jar",
+            "MD5": "8db1a58acd0667ac837d7d8131cf5b3a"
+          }
+        },
+        {
+          "id": "net.darkhax:coins:1.0.2@jar",
+          "name": "Coins",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 34923,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/Coins-1.15.2-1.0.2.jar",
+            "MD5": "f729158120b89e1151451940ae38d926"
+          }
+        },
+        {
+          "id": "com.natamus:collective:2.26@jar",
+          "name": "Collective",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 128995,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/collective-1.15.2-2.26.jar",
+            "MD5": "2d7be43e36fb028832e714764a55d49d"
+          }
+        },
+        {
+          "id": "me.shedaniel.forge.clothconfig2:cloth-config2:3.0@jar",
+          "name": "Cloth Config v2 API",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 351021,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/config-2-3.0.jar",
+            "MD5": "ba581595476656d2c114cedd756177b1"
+          }
+        },
+        {
+          "id": "com.blamejared:crafttweaker:6.0.0.44@jar",
+          "name": "CraftTweaker",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 1933113,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/CraftTweaker-1.15.2-6.0.0.44.jar",
+            "MD5": "d647b8b67953857bc52a0f8335490bc3"
+          }
+        },
+        {
+          "id": "com.natamus:cyclepaintings:1.6@jar",
+          "name": "Cycle Paintings",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 6543,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/cyclepaintings_1.15.2-1.6.jar",
+            "MD5": "c08ab890a051ff40c186f0c7527723d0"
+          }
+        },
+        {
+          "id": "com.markus1002.extraboats.core:extraboats:1.3.6@jar",
+          "name": "Extra Boats",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 333452,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/extraboats-1.3.6-1.15.2.jar",
+            "MD5": "664e7c44dc2ac9ff4ecf02fc9ba95be9"
+          }
+        },
+        {
+          "id": "vectorwing.farmersdelight:farmersdelight:1.15.2-0.2.4b@jar",
+          "name": "Farmer's Delight",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 984099,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/FarmersDelight-1.15.2-0.2.4b.jar",
+            "MD5": "f7c580c2ccd7171873f5a0519d93ee20"
+          }
+        },
+        {
+          "id": "mezz.jei:jei:6.0.0.2@jar",
+          "name": "Just Enough Items",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 700499,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/jei-1.15.2-6.0.0.2.jar",
+            "MD5": "bffd55151e84f85de5479ab00c7882c1"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.blamejared:jeitweaker:1.0.1.3@jar",
+          "name": "JEI Tweaker",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 7604,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/JEITweaker-1.15.2-1.0.1.3.jar",
+            "MD5": "8daee9e20a0662afe69d27492bb28b61"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "journeymap:journeymap:1.15.2-5.7.0beta1@jar",
+          "name": "Journeymap",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 6815374,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/journeymap-1.15.2-5.7.0beta1.jar",
+            "MD5": "3f01a531e6ca1f06164bac1e5a317fae"
+          }
+        },
+        {
+          "id": "jeresources:jeresources:0.10.1.77@jar",
+          "name": "Just Enough Resources",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 221036,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/JustEnoughResources-1.15.2-0.10.1.77.jar",
+            "MD5": "bef1008f5ffe5a640123decc36c0beda"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.shedaniel.lightoverlay:lightoverlay-forge:4.3@jar",
+          "name": "Light Overlay Forge",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 443208,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/LightOverlay-4.3.jar",
+            "MD5": "64c059631ee0125c58ea5688d221746f"
+          }
+        },
+        {
+          "id": "me.jellysquid.mods:lithium:0.4.6-rc3@jar",
+          "name": "Lithium",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 257410,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/lithium-mc1.15.2-forge-0.4.6-rc3-mod.jar",
+            "MD5": "90daeda553fed2d7d0fcfe002d183ffb"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "generated.forgemod:mixinbootstrap:1.0.5@jar",
+          "name": "MixinBootstrap",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 1066150,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/MixinBootstrap-1.0.5.jar",
+            "MD5": "bd76dd9467f3bc208d37b3c827e86c38"
+          }
+        },
+        {
+          "id": "lain.mods.skins.init:offlineskins:1.15.2-v2@jar",
+          "name": "OfflineSkins",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 96852,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/OfflineSkins-1.15.2-v2.jar",
+            "MD5": "f91d386bef45bc62d66dc07035c67fcb"
+          }
+        },
+        {
+          "id": "net.optifine:optifine:1.15.2_HD_U_G6@jar",
+          "name": "OptiFine",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 5748075,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/OptiFine_1.15.2_HD_U_G6.jar",
+            "MD5": "d6eb5851db2284dacfdb2eb9fefbffba"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.jellysquid.mods:phosphor:0.5.2+build.4@jar",
+          "name": "Phosphor",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 45363,
+            "url": "https://www.nova-francia.com/launcher/forgemods/optionalon/phosphor-forge-mc1.15.2-0.5.2+build.4.jar",
+            "MD5": "bc5d52e419292e8ad0d2741006f7d0f5"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "playingcards:playingcards:1.15.2-1.0.3@jar",
+          "name": "Playing Cards",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 188566,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/PlayingCards-1.0.3-MC1.15.2.jar",
+            "MD5": "f867da387282e96e5946ea8c38179071"
+          }
+        },
+        {
+          "id": "sereneseasons.core:sereneseasons:1.15.2-3.0.0.92@jar",
+          "name": "Serene Seasons",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 131752,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/SereneSeasons-1.15.2-3.0.0.92-universal.jar",
+            "MD5": "db15186b48589701c01b7da5d7ee75a6"
+          }
+        },
+        {
+          "id": "enemeez.simplefarming:simplefarming:1.15.1-1.3.0@jar",
+          "name": "Simple Farming",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 687658,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/simplefarming-1.15.2-1.3.0.jar",
+            "MD5": "a37128988ee1de8d2965d81920d5f713"
+          }
+        },
+        {
+          "id": "knightminer.simplytea:simplytea:1.15.2-2.2.1@jar",
+          "name": "Simply Tea",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 102767,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/simplytea-1.15.2-2.2.1.jar",
+            "MD5": "d8e44af2addf461d40782b5a34ff74a0"
+          }
+        },
+        {
+          "id": "bl4ckscor3.mod:sit:v1.3@jar",
+          "name": "Sit",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 12274,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/sit-1.15.1-v1.3.jar",
+            "MD5": "e8e5e4186cd22deaff72066d6ecc1d5c"
+          }
+        },
+        {
+          "id": "net.mehvahdjukaar:supplementaries:0.9.2@jar",
+          "name": "Supplementaries",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 781219,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/supplementaries-0.9.2-1.15.2.jar",
+            "MD5": "cd4be398c6d3db8ab3d1095d9f914a18"
+          }
+        },
+        {
+          "id": "com.terraforged.mod:terraforged:0.1.3@jar",
+          "name": "TerraForged",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 1299689,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/TerraForged-1.15.2-0.1.3.jar",
+            "MD5": "1238c79937206662158e8a99f9caf2b3"
+          }
+        },
+        {
+          "id": "xerca.xercamusic:xercamusic:1.15.2-3.0@jar",
+          "name": "Xerca's Music Maker Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 9138487,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/xercamusic-1.15.2-3.0.jar",
+            "MD5": "5134a045e713e97d9bd8519159b27980"
+          }
+        },
+        {
+          "id": "xerca.xercapaint:xercapaint:1.15.2-3.3@jar",
+          "name": "Joy of Painting",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 117677,
+            "url": "https://www.nova-francia.com/launcher/forgemods/required/xercapaint-1.15.2-3.3.jar",
+            "MD5": "7742409efdbd8c0d1fd4792743427987"
           }
         }
       ]

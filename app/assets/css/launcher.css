@@ -111,7 +111,7 @@ body {
 }
 
 #frameTitleText {
-    font-size: 1em;
+    font-size: 16px;
     font-family: 'Avenir Medium', sans-serif;
     letter-spacing: 1px;
 }
@@ -2718,6 +2718,7 @@ input:checked + .toggleSwitchSlider:before {
 #landingContainer > #lower {
     height: 23%;
     display: flex;
+    justify-content: space-around;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
@@ -2726,16 +2727,15 @@ input:checked + .toggleSwitchSlider:before {
     transition: top 2s ease;
     top: 0;
     height: 100%;
-    width: 33%;
+    width: 30%;
     display: inline-flex;
     justify-content: center;
 }
 
 #landingContainer > #lower > #left #content {
     position: relative;
-    top: 25px;
+    top: 10%;
     display: inline-flex;
-    line-height: 50px;
     left: 50px;
 }
 
@@ -2761,8 +2761,10 @@ input:checked + .toggleSwitchSlider:before {
     transition: top 2s ease;
     top: 0;
     height: 100%;
-    width: 33%;
+    width: 30%;
     display: inline-flex;
+    justify-content: center;
+    text-align: center;
 }
 
 /*******************************************************************************
@@ -3183,7 +3185,7 @@ input:checked + .toggleSwitchSlider:before {
     z-index: 1;
     top: 100%;
     font-family: 'Avenir Medium', sans-serif;
-    font-size: 1em;
+    font-size: 1.4em;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
 
@@ -3219,7 +3221,7 @@ input:checked + .toggleSwitchSlider:before {
     z-index: 1;
     top: 100%;
     font-family: 'Avenir Medium', sans-serif;
-    font-size: 1em;
+    font-size: 1.2em;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
 
@@ -3327,7 +3329,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* User profile name text. */
 #user_text {
-    font-size: 1.3em;
+    font-size: 2em;
     min-width: 135px;
     font-weight: 900;
     letter-spacing: 1px;
@@ -3496,6 +3498,7 @@ input:checked + .toggleSwitchSlider:before {
     letter-spacing: 1px;
     font-weight: bold;
     text-shadow: 0 0 0 #bebcbb;
+    margin: auto;
 }
 
 /* Divider used on the bottom of the landing view. */
@@ -3532,13 +3535,16 @@ input:checked + .toggleSwitchSlider:before {
     width: 105px;
 }
 
+#landingPlayerLabel{
+    cursor: pointer;
+}
 /* Span which displays the player count of the selected server. */
 #player_count {
     color: #949494;
     font-size: 1em;
     font-weight: 900;
     text-shadow: 0 0 20px #949494;
-    margin-left: 10px;
+    justify-content: center;
 }
 
 /* Wrapper container for the mojang status bar. */
@@ -3546,13 +3552,14 @@ input:checked + .toggleSwitchSlider:before {
     position: relative;
     display: flex;
     cursor: pointer;
+    margin: auto;
 }
 
 /* Icon which displays the status of the mojang services. */
 #mojang_status_icon {
     font-size: 2.5em;
     color: #848484;
-    margin-left: 15px;
+    margin-left: 15px !important;
     font-family: 'sans-serif';
 }
 
@@ -3569,7 +3576,7 @@ input:checked + .toggleSwitchSlider:before {
     padding: 5px 10px;
     z-index: 1;
     font-family: 'Avenir Medium', sans-serif;
-    font-size: 0.8em;
+    font-size: 1.4em;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
     bottom: calc(100% + 15px);
     transform: translateX(-50%);
@@ -3634,7 +3641,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Displays the name of the mojang service. */
 .mojangStatusName {
     width: 100%;
-    font-size: 1em;
+    font-size: 1.1em;
     letter-spacing: 1px;
     line-height: 26px;
     padding: 12px 0;
@@ -3642,9 +3649,16 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Displays the status of the mojang service. */
 .mojangStatusIcon {
-    margin-right: 10px;
+    margin: auto 10px auto auto;
     font-size: 1.6em;
     color: #848484;
+}
+
+#serverplayers{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
 }
 
 /* Wrapper container for the mojang status bar. */
@@ -3658,16 +3672,16 @@ input:checked + .toggleSwitchSlider:before {
 #modrealms_status_icon {
     font-size: 2.5em;
     color: #848484;
-    margin-left: 15px;
+    margin: auto auto auto 15px;
     font-family: 'sans-serif';
 }
 
 /* Tooltip which displays more details about the mojang statuses. */
-#modrealmsStatusTooltip {
+#serverStatusTooltip {
     position: absolute;
     visibility: hidden;
     opacity: 0;
-    width: 330px;
+    width: 150px;
     min-height: 150px;
     background-color: rgba(0, 0, 0, 0.35);
     color: #fff;
@@ -3675,16 +3689,18 @@ input:checked + .toggleSwitchSlider:before {
     padding: 5px 10px;
     z-index: 1;
     font-family: 'Avenir Medium', sans-serif;
-    font-size: 0.8em;
+    font-size: 1.2em;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
-    bottom: calc(100% + 15px);
-    transform: translateX(-50%);
     margin-left: 50%;
     box-shadow: 0 0 10px rgb(0, 0, 0);
     cursor: default;
+    bottom: calc(100% + 15px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-#modrealmsStatusTooltip:after {
+#serverStatusTooltip:after {
     content: " ";
     position: absolute;
     left: 50%;
@@ -3695,7 +3711,7 @@ input:checked + .toggleSwitchSlider:before {
     border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
 }
 
-#modrealmsStatusWrapper:hover #modrealmsStatusTooltip {
+#serverplayers:hover #serverStatusTooltip {
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;
@@ -3829,11 +3845,10 @@ input:checked + .toggleSwitchSlider:before {
 #landingContainer > #lower > #right #launch_content {
     position: relative;
     top: 26px;
-    display: inline-flex;
 }
 
 #launch_content {
-    width: 525px;
+    width: max-content;
 }
 
 /* The launch button. */
@@ -3850,14 +3865,6 @@ input:checked + .toggleSwitchSlider:before {
     transition: 0.25s ease;
     outline: none;
     color: #7289da
-}
-
-#launch_button:hover,
-#launch_button:focus {
-
-}
-
-#launch_button:active {
 }
 
 #launch_button:disabled {
@@ -3884,9 +3891,7 @@ input:checked + .toggleSwitchSlider:before {
     letter-spacing: 1px;
     text-shadow: 0 0 0 #bebcbb;
     font-size: 1.6em;
-    min-width: 53px;
-    max-width: 53px;
-    text-align: right;
+    justify-content: center;
 }
 
 /* Right side of launch details container, displays progress bar and details. */
@@ -3940,6 +3945,7 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 0.7em;
     text-overflow: ellipsis;
     white-space: nowrap;
+    justify-content: center;
 }
 
 /*******************************************************************************

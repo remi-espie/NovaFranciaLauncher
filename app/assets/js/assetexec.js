@@ -1,4 +1,4 @@
-let target = require('./assetguard.min')[process.argv[2]]
+let target = require('./assetguard')[process.argv[2]]
 if (target == null) {
     process.send({context: 'error', data: null, error: 'Invalid class name'})
     console.error('Invalid class name passed to argv[2], cannot continue.')
@@ -56,7 +56,7 @@ process.on('message', (msg) => {
             process.send({context: 'error', data: null, error: `Function ${func} not found on ${process.argv[2]}`})
         }
     } else if (msg.task === 'changeContext') {
-        target = require('./assetguard.min')[msg.class]
+        target = require('./assetguard')[msg.class]
         if (target == null) {
             process.send({context: 'error', data: null, error: `Invalid class ${msg.class}`})
         } else {
