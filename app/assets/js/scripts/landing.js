@@ -40,7 +40,7 @@ function toggleLaunchArea(loading) {
         launch_content.style.display = 'none'
     } else {
         launch_details.style.display = 'none'
-        launch_content.style.display = 'inline-flex'
+        launch_content.style.display = 'flex'
     }
 }
 
